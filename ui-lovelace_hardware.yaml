@@ -1,0 +1,42 @@
+title: Hardware Status
+icon: 'mdi:chip'
+panel: true
+badges: []
+cards:
+  - type: 'custom:layout-card'
+    layout: vertical
+    max_columns: 3 
+    column_width: 200
+    max_width: [40%, 40%, 20%]     
+    cards:
+      ######################################################################
+      # 1st column
+      ######################################################################
+      - type: glance
+        style: |
+          ha-card {
+            color: white;
+            font-size: 12px;
+          }
+          .card-header {
+            font-size: 18px;
+            text-align: center;
+            line-height: 100%;
+          }                
+        entities:
+          - entity: sensor.hl_l2340d_status
+            name: Status
+          - entity: sensor.hl_l2340d_uptime
+            name: Uptime
+          - entity: sensor.hl_l2340d_page_counter
+            name: Pages
+          - entity: sensor.hl_l2340d_black_toner_remaining
+            name: Toner
+          - entity: sensor.hl_l2340d_drum_remaining_life
+            name: Drum
+        state_color: true
+        title: Printer
+        show_state: true
+        show_icon: true
+        show_name: true
+        columns: 5
