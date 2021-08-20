@@ -24,7 +24,7 @@ lovelace:
 
     # mini-media-player (HACS): https://github.com/kalkih/mini-media-player
     - {type: module, url: '/local/community/mini-media-player/mini-media-player-bundle.js'}
-  
+
     # Custom Components - Dependencies -------------------------------------------------------------
   
     # card-mod (HACS) - https://github.com/thomasloven/lovelace-card-mod
@@ -60,16 +60,21 @@ recorder:
       - sensor.living_*
       - sensor.gameroom_*
       - sensor.laundry_*
-      - sensor.sonoff_media1_*
       - sensor.sonoff_freezer_*
       - sensor.sonoff_washer_*
+      - sensor.sonoff_fridge_*
+      - sensor.airthings_*
     entities:
       - sensor.temperature_mean
       - sensor.humidity_mean
+      - sensor.total_power
       - binary_sensor.night
       - switch.sonoff_frontdoor
       - switch.sonoff_freezer
       - switch.sonoff_humidifier
+      - switch.sonoff_fridge
+      - sensor.kuroshio_network_down
+      - sensor.kuroshio_network_up
 
 # InfluxDB database
 # Reference: https://www.home-assistant.io/integrations/influxdb/
@@ -88,15 +93,20 @@ influxdb:
       - sensor.living_*
       - sensor.gameroom_*
       - sensor.laundry_*
-      - sensor.sonoff_media1_*
       - sensor.sonoff_freezer_*
       - sensor.sonoff_washer_*
+      - sensor.sonoff_fridge_*
+      - sensor.airthings_*
     entities:
       - sensor.temperature_mean
       - sensor.humidity_mean
+      - sensor.total_power      
       - switch.sonoff_frontdoor
       - switch.sonoff_freezer
       - switch.sonoff_humidifier
+      - switch.sonoff_fridge
+      - sensor.kuroshio_network_down
+      - sensor.kuroshio_network_up      
 
 # Climate Integration - Control and monitor HVAC devices and thermostats
 # Reference: https://www.home-assistant.io/integrations/climate/
