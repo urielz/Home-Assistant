@@ -473,7 +473,7 @@ cards:
             cards:
               - type: 'custom:mini-graph-card'
                 name: 'Kitchen: Volatile Organic Compounds'
-                icon: mdi:water-percent
+                icon: mdi:air-filter
                 height: 150
                 font_size: 75
                 hours_to_show: 72 
@@ -504,7 +504,7 @@ cards:
             cards:
               - type: 'custom:mini-graph-card'
                 name: 'Basement: Radon'
-                icon: mdi:water-percent
+                icon: mdi:radioactive
                 height: 150
                 font_size: 75
                 hours_to_show: 72 
@@ -513,6 +513,7 @@ cards:
                 show:
                   labels: false 
                   labels_secondary: false 
+                  extrema: true
                 entities:
                   - entity: sensor.airthings_basement_radonshorttermavg
                     name: Radon Short Term Mean
