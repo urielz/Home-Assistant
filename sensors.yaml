@@ -69,7 +69,7 @@
     - sensor.laundry_room_humidity
     - sensor.living_room_humidity
 
-# thermal comfort - Not in HACS (location: ./custom_components/thermal_comfort)
+# thermal comfort - Not in official HACS (location: ./custom_components/thermal_comfort)
 # source: https://github.com/dolezsa/thermal_comfort
 #
 # References:
@@ -104,6 +104,10 @@
       temperature_sensor: sensor.laundry_room_temperature
       humidity_sensor: sensor.laundry_room_humidity
 
+# Airthings cloud - Not in official HACS (location: ./custom_components/airthings_cloud)
+# source: https://github.com/Danielhiversen/home_assistant_airthings_cloud
+# important: entities won't show up in HA if they are not added to the airthings dashboard
+#            see: https://github.com/Danielhiversen/home_assistant_airthings_cloud/issues/25
 - platform: airthings_cloud
   username: !secret airthings_username
   password: !secret airthings_password
