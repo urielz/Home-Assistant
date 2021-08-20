@@ -4,68 +4,331 @@ panel: true
 badges: []
 cards:
 
-  - type: 'custom:layout-card' # https://github.com/thomasloven/lovelace-layout-card
+  # https://github.com/thomasloven/lovelace-layout-card
+  - type: 'custom:layout-card'
     layout_type: vertical
-    max_columns: 4
-    column_width: 200
-    max_width: [33%, 25%, 20%, 22%]     
+    max_columns: 3 
     cards:
 
-      ######################################################################
+      #########################################################################
       # 1st Column
-      ######################################################################
+      #########################################################################
+
+      # Weather Forecast Card -------------------------------------------------
+      # https://www.home-assistant.io/lovelace/weather-forecast/
+      - type: custom:mod-card
+        card:
+          type: weather-forecast
+          name: Halifax
+          entity: weather.bellevue
+          secondary_info_attribute: wind_speed
+          style: |
+            .card-header {
+              font-size: 9px;
+              text-align: center;
+              line-height: 0px;
+            }
+        card_mod:
+          style: |
+            ha-card {
+              color: white;
+              font-size: 11px;              
+            }            
+
+      # SONOS Media Player ----------------------------------------------------
+      # https://github.com/kalkih/mini-media-player
+      - type: custom:mini-media-player
+        name: SONOS
+        entity: media_player.speaker
+        artwork: cover
+        icon: mdi:music
+        source: icon
+
+      # Grid Panel with Switches ----------------------------------------------
+      # https://www.home-assistant.io/lovelace/grid/
+      - type: grid 
+        columns: 3
+        square: false
+        cards:
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_frontdoor
+            icon: mdi:lightbulb 
+            color: rgb(255, 255, 102)
+            name: Front Door
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 80px
+            state:
+              - value: 'on' 
+                icon: bha:outdoor-lamp-variant
+              - value: 'off'
+                icon: bha:outdoor-lamp-variant
+
+          - type: 'custom:button-card'
+            entity: climate.heat_pump
+            icon: mdi:air-conditioner
+            color: rgb(255, 255, 102)
+            name: Heat Pump
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 80px
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_humidifier
+            icon: mdi:air-humidifier
+            color: rgb(255, 255, 102)
+            name: Humidifier
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 80px
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_freezer
+            icon: 'mdi:fridge'
+            color: rgb(255, 255, 102)
+            name: Freezer
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 80px
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_fridge
+            icon: 'mdi:fridge'
+            color: rgb(255, 255, 102)
+            name: Fridge
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 80px              
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_washer
+            icon: mdi:washing-machine
+            color: rgb(255, 255, 102)
+            name: Washer
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 80px
+            hold_action:
+              action: more-info              
+
+      #     - type: 'custom:button-card'
+      #       entity: light.eb45e14e47084faddcsa7p
+      #       icon: mdi:floor-lamp
+      #       color: rgb(255, 255, 102)
+      #       name: Basement
+      #       show_state: true
+      #       show_name: true
+      #       styles:
+      #         card:
+      #         - font-size: 11px
+      #         - height: 80px
+      #       hold_action:
+      #         action: more-info
+
+
+      # Heat Pump Thermostat --------------------------------------------------
+      # 
+      - type: thermostat
+        entity: climate.heat_pump
+        name: Heat Pump
+ 
+      - type: custom:layout-break
+      
+      # ######################################################################
+      # # 2nd Column
+      # ######################################################################
+      
+      # Office chart (T,P,RH,AH,TD,HI) -------------------------------------
+      - type: custom:mod-card
+        card:
+          type: glance # https://www.home-assistant.io/lovelace/glance/
+          title: Office
+          style: |
+            .card-header {
+              font-size: 18px;
+              text-align: center;
+              line-height: 0px;
+            }
+
+          columns: 6
+          entities:
+            - entity: sensor.office_temperature
+              name: Temp.
+            - entity: sensor.office_heatindex
+              name: Heat Index
+            - entity: sensor.office_dewpoint
+              name: Dew Point       
+            - entity: sensor.office_humidity
+              name: Humidity
+            - entity: sensor.office_absolutehumidity             
+              name: AH (ρv)
+            - entity: sensor.office_pressure
+              name: Pressure
+        card_mod:
+          style: |
+            ha-card {
+              color: white;
+              font-size: 11px;              
+            }
+
+      # Tobi's Room chart (T,P,RH,AH,TD,HI) --------------------------------
+      - type: custom:mod-card
+        card:
+          type: glance
+          title: Tobi's Bedroom
+          style: |
+            .card-header {
+              font-size: 18px;
+              text-align: center;
+              line-height: 0px;
+            }             
+          columns: 6
+          entities:
+            - entity: sensor.tobis_bedroom_temperature
+              name: Temp.
+            - entity: sensor.tobis_bedroom_heatindex
+              name: Heat Index
+            - entity: sensor.tobis_bedroom_dewpoint
+              name: Dew Point
+            - entity: sensor.tobis_bedroom_humidity
+              name: Humidity
+            - entity: sensor.tobis_bedroom_absolutehumidity
+              name: AH (ρv)
+            - entity: sensor.tobis_bedroom_pressure
+              name: Pressure
+        card_mod:
+          style: |
+            ha-card {
+              color: white;
+              font-size: 11px;
+              #--ha-card-background: black;
+            }
+      
+      # Game Room chart (T,P,RH,AH,TD,HI) -------------------------------------
+      - type: custom:mod-card
+        card:
+          type: glance
+          title: Game Room
+          columns: 6 
+          style: |
+            .card-header {
+              font-size: 18px;
+              text-align: center;
+              line-height: 0px;
+            }
+          entities:
+            - entity: sensor.gameroom_temperature
+              name: Temp.
+            - entity: sensor.gameroom_heatindex
+              name: Heat Index
+            - entity: sensor.gameroom_dewpoint
+              name: Dew Point
+            - entity: sensor.gameroom_humidity
+              name: Humidity
+            - entity: sensor.gameroom_absolutehumidity
+              name: AH (ρv)
+            - entity: sensor.gameroom_pressure
+              name: Pressure
+        card_mod:
+          style: |
+            ha-card {
+              color: white;
+              font-size: 11px;
+              #--ha-card-background: black;
+            }
+
+      # Living Room chart (T,P,RH,AH,TD,HI) --------------------------------
+      - type: custom:mod-card
+        card:
+          type: glance
+          title: Living Room
+          columns: 6
+          style: |
+            .card-header {
+              font-size: 18px;
+              text-align: center;
+              line-height: 0px;
+            }
+          entities:
+            - entity: sensor.living_room_temperature
+              name: Temp.
+            - entity: sensor.living_room_heatindex
+              name: Heat Index
+            - entity: sensor.living_room_dewpoint
+              name: Dew Point
+            - entity: sensor.living_room_humidity
+              name: Humidity
+            - entity: sensor.living_room_absolutehumidity
+              name: AH (ρv)
+            - entity: sensor.living_room_pressure
+              name: Pressure
+        card_mod:
+          style: |
+            ha-card {
+              color: white;
+              font-size: 11px;
+            }
+
+      # Laundry Room chart (T,P,RH,AH,TD,HI) --------------------------------
+      - type: custom:mod-card
+        card:
+          type: glance
+          title: Laundry Room
+          columns: 6
+          style: |
+            .card-header {
+              font-size: 18px;
+              text-align: center;
+              line-height: 0px;
+            }
+          entities:
+            - entity: sensor.laundry_room_temperature
+              name: Temp.
+            - entity: sensor.laundry_room_heatindex
+              name: Heat Index
+            - entity: sensor.laundry_room_dewpoint
+              name: Dew Point
+            - entity: sensor.laundry_room_humidity
+              name: Humidity
+            - entity: sensor.laundry_room_absolutehumidity
+              name: AH (ρv)
+            - entity: sensor.laundry_room_pressure
+              name: Pressure
+        card_mod:
+          style: |
+            ha-card {
+              color: white;
+              font-size: 11px;
+            }              
+
+      - type: custom:layout-break
+
+      #########################################################################
+      # 3rd Column
+      #########################################################################
+
       - type: vertical-stack
         cards:
 
-          # SONOS Media Player ---------------------------------------------
-          # reference: https://github.com/kalkih/mini-media-player
-          - type: custom:mini-media-player
-            name: SONOS
-            entity: media_player.speaker
-            artwork: cover
-            icon: mdi:music
-            source: icon
-
-            # Buttons - didn't really like them, would leave this code here
-            # to give it another try later.
-            #
-            # shortcuts:
-            #   columns: 4
-            #   buttons:
-            #     - name: "CBC One"
-            #       type: source
-            #       id: "CBC Radio One Halifax"
-            #     - name: "CNN"
-            #       type: source
-            #       id: "CNN International"
-            #     - name: "BBC"
-            #     #- cover: /local/community/_images/radio_bbc.png
-            #       type: source
-            #       id: "BBC World Service News (World News)"
-            #     - name: "?"
-            #       type: source
-            #       id: "BBC World Service News (World News)"
-            #     - name: "CBC Music"
-            #       type: source
-            #       id: "CBC Music Halifax"
-            #     - name: "Q104"
-            #       type: source
-            #       id: "Q104"
-            #     - name: "Favorites"
-            #       type: source
-            #       id: "Favorites"
-            #     - name: "Dec14"
-            #       type: source
-            #       id: "Dec14"
-            #
-            # Removes left space of card when buttons are present:
-            #
-            # card_mod:
-            #   style: |
-            #     div.mmp-player__adds {
-            #     margin-left: 0px;
-            #     }                  
-            
           # Temperature plot -----------------------------------------------
           - type: vertical-stack
             cards:
@@ -101,7 +364,7 @@ cards:
                     name: Laundry Room
                     color: rgba(255,255,255)
                   - entity: binary_sensor.night
-                    color: grey                    
+                    color: rgba(255,255,255)                    
                     y_axis: secondary
                     show_state: false
                     show_legend: false
@@ -124,6 +387,8 @@ cards:
                 hours_to_show: 72 
                 points_per_hour: 4
                 line_width: 2
+                upper_bound: 5
+                lower_bound: -5
                 show:
                   labels: false 
                   labels_secondary: false 
@@ -203,469 +468,64 @@ cards:
                   - value: "on"
                     label: "Night"
 
-          # Heat Pump Thermostat -------------------------------------------
-          - type: thermostat
-            entity: climate.heat_pump
-            name: Heat Pump
+          # Kitchen TVOC -------------------------------------
+          - type: vertical-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: 'Kitchen: Volatile Organic Compounds'
+                icon: mdi:water-percent
+                height: 150
+                font_size: 75
+                hours_to_show: 72 
+                points_per_hour: 4
+                line_width: 2
+                show:
+                  labels: false 
+                  labels_secondary: false 
+                entities:
+                  - entity: sensor.airthings_kitchen_voc
+                    name: VOC
+                    color: rgba(241,196,15)
+                  - entity: binary_sensor.night
+                    color: rgba(255,255,255)
+                    y_axis: secondary
+                    show_state: false
+                    show_legend: false
+                    show_line: false
+                    show_points: false
+                state_map:
+                  - value: "off"
+                    label: "Day"
+                  - value: "on"
+                    label: "Night" 
 
-      #     # power consumption plot -----------------------------------------
-      #     - type: 'custom:mini-graph-card'
-      #       style: |
-      #         ha-card {
-      #           color: white;
-      #           font-size: 12px;
-      #         }
-      #         .card-header {
-      #           font-size: 20px;
-      #           text-align: center;
-      #           line-height: 70%;
-      #         }                    
-      #       name: Power Consumption
-      #       font_size: 75
-      #       hours_to_show: 72 
-      #       points_per_hour: 4
-      #       line_width: 2
-      #       icon: mdi:flash 
-      #       show:
-      #         labels: false 
-      #         labels_secondary: false 
-      #       entities:
-      #         - entity: sensor.total_power
-      #           name: Total Power
-      #           show_graph: false
-      #         - entity: sensor.sonoff_1000cd8a56_power
-      #           name: Fridge 
-      #           color: '#e74c3c'
-      #         - entity: sensor.sonoff_1000cd8a60_power
-      #           name: A/V System
-      #           color: '#aaffc3'
-      #         - entity: sensor.sonoff_1000cd8a67_power
-      #           name: Washer
-      #           color: '#ffd8b1'
-      #         - entity: binary_sensor.night
-      #           color: rgba(255,255,255)
-      #           y_axis: secondary
-      #           show_state: false
-      #           show_legend: false
-      #           show_line: false
-      #           show_points: false
-      #       state_map:
-      #         - value: "off"
-      #           label: "Day"
-      #         - value: "on"
-      #           label: "Night"                
-               
-      - type: custom:layout-break
-      
-      # ######################################################################
-      # # 2nd Column
-      # ######################################################################
-      
-      # Office chart (T,P,RH,AH,TD,HI) -------------------------------------
-      - type: custom:mod-card
-        card:
-          type: glance
-          title: Office
-          style: |
-            .card-header {
-              font-size: 18px;
-              text-align: center;
-              line-height: 70%;
-            }     
-          columns: 3
-          entities:
-            - entity: sensor.office_temperature
-              name: Temperature
-            - entity: sensor.office_heatindex
-              name: Heat Index
-            - entity: sensor.office_dewpoint
-              name: Dew Point       
-            - entity: sensor.office_humidity
-              name: Humidity
-            - entity: sensor.office_absolutehumidity
-              name: Abs. Humidity              
-            - entity: sensor.office_pressure
-              name: Pressure
-        card_mod:
-          style: |
-            ha-card {
-              color: white;
-              font-size: 11px;
-              #--ha-card-background: black;
-            }
-
-      # Tobi's Room chart (T,P,RH,AH,TD,HI) --------------------------------
-      - type: custom:mod-card
-        card:
-          type: glance
-          title: Tobi's Bedroom
-          style: |
-            .card-header {
-              font-size: 18px;
-              text-align: center;
-              line-height: 70%;
-            }             
-          columns: 3
-          entities:
-            - entity: sensor.tobis_bedroom_temperature
-              name: Temperature
-            - entity: sensor.tobis_bedroom_heatindex
-              name: Heat Index
-            - entity: sensor.tobis_bedroom_dewpoint
-              name: Dew Point
-            - entity: sensor.tobis_bedroom_humidity
-              name: Humidity
-            - entity: sensor.tobis_bedroom_absolutehumidity
-              name: Abs. Humidity
-            - entity: sensor.tobis_bedroom_pressure
-              name: Pressure
-        card_mod:
-          style: |
-            ha-card {
-              color: white;
-              font-size: 11px;
-              #--ha-card-background: black;
-            }
-      
-      # Game Room chart (T,P,RH,AH,TD,HI) -------------------------------------
-      - type: custom:mod-card
-        card:
-          type: glance
-          title: Game Room
-          columns: 3
-          style: |
-            .card-header {
-              font-size: 18px;
-              text-align: center;
-              line-height: 100%;
-            }
-          entities:
-            - entity: sensor.gameroom_temperature
-              name: Temperature 
-            - entity: sensor.gameroom_heatindex
-              name: Heat Index
-            - entity: sensor.gameroom_dewpoint
-              name: Dew Point
-            - entity: sensor.gameroom_humidity
-              name: Humidity
-            - entity: sensor.gameroom_absolutehumidity
-              name: Abs. Humidity
-            - entity: sensor.gameroom_pressure
-              name: Pressure
-        card_mod:
-          style: |
-            ha-card {
-              color: white;
-              font-size: 11px;
-              #--ha-card-background: black;
-            }
-
-      # Living Room chart (T,P,RH,AH,TD,HI) --------------------------------
-      - type: custom:mod-card
-        card:
-          type: glance
-          title: Living Room
-          columns: 3
-          style: |
-            .card-header {
-              font-size: 18px;
-              text-align: center;
-              line-height: 100%;
-            }
-          entities:
-            - entity: sensor.living_room_temperature
-              name: Temperature
-            - entity: sensor.living_room_heatindex
-              name: Heat Index
-            - entity: sensor.living_room_dewpoint
-              name: Dew Point
-            - entity: sensor.living_room_humidity
-              name: Humidity
-            - entity: sensor.living_room_absolutehumidity
-              name: Abs. Humidity
-            - entity: sensor.living_room_pressure
-              name: Pressure
-        card_mod:
-          style: |
-            ha-card {
-              color: white;
-              font-size: 11px;
-            }
-
-      # Laundry Room chart (T,P,RH,AH,TD,HI) --------------------------------
-      - type: custom:mod-card
-        card:
-          type: glance
-          title: Laundry Room
-          columns: 3
-          style: |
-            .card-header {
-              font-size: 18px;
-              text-align: center;
-              line-height: 100%;
-            }
-          entities:
-            - entity: sensor.laundry_room_temperature
-              name: Temperature
-            - entity: sensor.laundry_room_heatindex
-              name: Heat Index
-            - entity: sensor.laundry_room_dewpoint
-              name: Dew Point
-            - entity: sensor.laundry_room_humidity
-              name: Humidity
-            - entity: sensor.laundry_room_absolutehumidity
-              name: Abs. Humidity
-            - entity: sensor.laundry_room_pressure
-              name: Pressure
-        card_mod:
-          style: |
-            ha-card {
-              color: white;
-              font-size: 11px;
-            }              
-
-      - type: custom:layout-break
-
-      #########################################################################
-      # 3rd Column
-      #########################################################################
-
-      # Grid Panel with Switches ----------------------------------------------
-      # reference: https://www.home-assistant.io/lovelace/grid/
-      #
-      - type: grid 
-        columns: 3
-        square: false
-        cards:
-          - type: 'custom:button-card'
-            entity: switch.sonoff_frontdoor
-            icon: mdi:lightbulb 
-            color: rgb(255, 255, 102)
-            name: Front Door
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 80px
-            state:
-              - value: 'on' 
-                icon: bha:outdoor-lamp-variant
-              - value: 'off'
-                icon: bha:outdoor-lamp-variant
-      #     - type: 'custom:button-card'
-      #       entity: light.eb45e14e47084faddcsa7p
-      #       icon: mdi:floor-lamp
-      #       color: rgb(255, 255, 102)
-      #       name: Basement
-      #       show_state: true
-      #       show_name: true
-      #       styles:
-      #         card:
-      #         - font-size: 11px
-      #         - height: 80px
-      #       hold_action:
-      #         action: more-info  
-          - type: 'custom:button-card'
-            entity: switch.sonoff_media1
-            icon: mdi:music
-            color: rgb(255, 255, 102)
-            name: A/V System
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 80px
-            hold_action:
-              action: more-info                
-          - type: 'custom:button-card'
-            entity: climate.heat_pump
-            icon: mdi:air-conditioner
-            color: rgb(255, 255, 102)
-            name: Heat Pump
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 80px
-          - type: 'custom:button-card'
-            entity: switch.sonoff_freezer
-            icon: 'mdi:fridge'
-            color: rgb(255, 255, 102)
-            name: Freezer
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 80px
-          - type: 'custom:button-card'
-            entity: switch.sonoff_humidifier
-            icon: mdi:air-humidifier
-            color: rgb(255, 255, 102)
-            name: Humidifier
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 80px
-      # - type: grid
-      #   columns: 3
-      #   cards:                                  
-      #     - type: 'custom:button-card'
-      #       #entity: climate.ac_uty_a0cc2beda5f7
-      #       icon: mdi:washing-machine
-      #       color: rgb(255, 255, 102)
-      #       name: Washer 
-      #       show_state: true
-      #       show_name: true
-      #       styles:
-      #         card:
-      #         - font-size: 11px
-      #         - height: 80px          
-      - type: custom:layout-break
-
-      #########################################################################
-      # 4th Column
-      #########################################################################
-      
-      # Sonoff POWR2 @ Freezer ------------------------------------------------
-      #
-      - type: glance
-        title: Freezer
-        columns: 3
-        entities:
-          - entity: sensor.sonoff_freezer_current
-            name: Current
-          - entity: sensor.sonoff_freezer_voltage
-            name: Voltage
-          - entity: sensor.sonoff_freezer_power
-            name: Power
-          - entity: sensor.freezer_monthly
-            name: Monthly
-          - entity: sensor.freezer_cost_monthly
-            name: Monthly Cost
-            icon: mdi:currency-usd            
-          - entity: sensor.freezer_cost_yearly
-            name: Yearly Cost
-            icon: mdi:currency-usd
-        card_mod:
-          style: |
-            ha-card {
-              color: white;
-              font-size: 11px;
-            } 
-            .card-header {
-              font-size: 18px;
-              text-align: center;
-              line-height: 70%;
-            } 
-      - type: 'custom:mini-graph-card'             
-        font_size: 70 
-        hours_to_show: 6
-        points_per_hour: 6
-        show:
-          extrema: true
-        name: Freezer Power Consumption
-        line_width: 1
-        entities:
-          - entity: sensor.sonoff_freezer_power
-            name: Power
-          - entity: sensor.sonoff_freezer_current
-            name: Current
-            y_axis: secondary
-          - color: gray
-            entity: input_number.nighttime
-            name: Night
-            show_line: false
-            show_points: false
-            show_legend: false
-            y_axis: secondary
-
-      # # second Sonoff POWR2 (A/V System)
-      # - type: glance
-      #   style: |
-      #     ha-card {
-      #       color: white;
-      #       font-size: 11px;
-      #     }
-      #     .card-header {
-      #       font-size: 18px;
-      #       text-align: center;
-      #       line-height: 70%;
-      #     }
-      #   columns: 3
-      #   entities:
-      #     - entity: sensor.sonoff_1000cd8a60_current
-      #       name: Current
-      #     - entity: sensor.sonoff_1000cd8a60_power
-      #       name: Power
-      #     - entity: sensor.sonoff_1000cd8a60_voltage
-      #       name: Voltage
-      #     - entity: sensor.av_daily
-      #       name: Today
-      #     - entity: sensor.av_monthly
-      #       name: This Month
-      #     - entity: sensor.av_cost_monthly
-      #       name: Monthly Cost
-      #       icon: mdi:currency-usd
-      #   title: Audio/Video System
-      # - type: 'custom:mini-graph-card'
-      #   style: |
-      #     ha-card {
-      #       color: white;
-      #       font-size: 11px;
-      #     }
-      #     .card-header {
-      #       font-size: 18px;
-      #       text-align: center;
-      #       line-height: 70%;
-      #     }                 
-      #   name: Audio/Video Power
-      #   font_size: 70 
-      #   hours_to_show: 6
-      #   points_per_hour: 6
-      #   show:
-      #     extrema: true
-      #   entities:
-      #     - entity: sensor.sonoff_1000cd8a60_power
-      #       name: Power
-      #     - entity: sensor.sonoff_1000cd8a60_current
-      #       name: Current
-      #     - color: gray
-      #       entity: input_number.nighttime
-      #       name: Night
-      #       show_line: false
-      #       show_points: false
-      #       show_legend: false
-      #       y_axis: secondary
-      # - type: glance
-      #   style: |
-      #     ha-card {
-      #       color: white;
-      #       font-size: 11px;
-      #     }      
-      #     .card-header {
-      #       font-size: 18px;
-      #       text-align: center;
-      #       line-height: 70%;
-      #     }          
-      #   columns: 3 
-      #   entities:
-      #     - entity: sensor.sonoff_1000cd8a67_current
-      #       name: Current
-      #     - entity: sensor.sonoff_1000cd8a67_voltage
-      #       name: Voltage
-      #     - entity: sensor.sonoff_1000cd8a67_power
-      #       name: Power
-      #     - entity: sensor.washer_daily
-      #       name: Today
-      #     - entity: sensor.washer_monthly
-      #       name: This Month
-      #     - entity: sensor.washer_cost_monthly
-      #       name: Monthly Cost
-      #       icon: mdi:currency-usd
-      #   title: Laundry              
+          # Basement Radon -------------------------------------
+          - type: vertical-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: 'Basement: Radon'
+                icon: mdi:water-percent
+                height: 150
+                font_size: 75
+                hours_to_show: 72 
+                points_per_hour: 4
+                line_width: 2
+                show:
+                  labels: false 
+                  labels_secondary: false 
+                entities:
+                  - entity: sensor.airthings_basement_radonshorttermavg
+                    name: Radon Short Term Mean
+                    color: rgba(241,196,15)
+                  - entity: binary_sensor.night
+                    color: rgba(255,255,255)
+                    y_axis: secondary
+                    show_state: false
+                    show_legend: false
+                    show_line: false
+                    show_points: false
+                state_map:
+                  - value: "off"
+                    label: "Day"
+                  - value: "on"
+                    label: "Night"                             
