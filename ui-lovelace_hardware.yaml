@@ -3,15 +3,19 @@ icon: 'mdi:chip'
 panel: true
 badges: []
 cards:
+
+  # https://github.com/thomasloven/lovelace-layout-card
   - type: 'custom:layout-card'
     layout: vertical
     max_columns: 3 
     column_width: 200
     max_width: [40%, 40%, 20%]     
     cards:
+
       ######################################################################
       # 1st column
       ######################################################################
+
       - type: glance
         style: |
           ha-card {
@@ -19,7 +23,7 @@ cards:
             font-size: 12px;
           }
           .card-header {
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             line-height: 100%;
           }                
@@ -40,3 +44,104 @@ cards:
         show_icon: true
         show_name: true
         columns: 4
+
+      ######################################################################
+      # 2nd column
+      ######################################################################
+
+      - type: vertical-stack
+        cards:
+          # Row 1: Tag
+          - type: "custom:button-card"
+            name: Kuroshio NAS - Synology DS216se
+            styles:
+              card:
+                - font-size: 16px
+          # Row 2: Overall Status
+          # Row 3: Main Gauges
+          - cards:
+              - entity: sensor.kuroshio_cpu_utilization_total
+                max: 100
+                min: 0
+                name: CPU
+                severity:
+                  green: 0
+                  red: 80
+                  yellow: 50
+                theme: default
+                type: gauge             
+              - entity: sensor.kuroshio_memory_usage_real
+                max: 100
+                min: 0
+                name: Memory
+                severity:
+                  green: 0
+                  red: 90
+                  yellow: 70
+                theme: default
+                type: gauge
+              - entity: sensor.kuroshio_volume_1_volume_used
+                max: 100
+                min: 0
+                name: Storage
+                severity:
+                  green: 0
+                  red: 90
+                  yellow: 80
+                theme: default
+                type: gauge
+            type: horizontal-stack
+          # Row 4: Network Traffic
+          - cards:
+              - type: 'custom:mini-graph-card'
+                name: Down
+                icon: mdi:download-network
+                font_size: 70
+                color: 'white'
+                entities:
+                  - entity: sensor.kuroshio_network_down
+                hours_to_show: 12
+                points_per_hour: 10
+                line_color: '#0074D9'
+              - type: 'custom:mini-graph-card'
+                name: Up
+                icon: mdi:upload-network
+                font_size: 70
+                entities:
+                  - entity: sensor.kuroshio_network_up
+                hours_to_show: 12
+                points_per_hour: 10
+                line_color: '#FF4136'
+            type: horizontal-stack
+          # Row 5: Temp and Free Space
+          - cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.kuroshio_free_space
+                name: Free space
+                show:
+                  graph: bar
+                hours_to_show: 12
+                points_per_hour: 1
+                line_color: '#FF851B'
+                font_size: 70
+              - type: custom:mini-graph-card
+                name: CPU
+                icon: mdi:thermometer
+                entities:
+                  - entity: sensor.kuroshio_temperature
+                hours_to_show: 12
+                points_per_hour: 10
+                line_color: '#B10DC9'
+                font_size: 70
+              - type: custom:mini-graph-card
+                name: System
+                icon: mdi:thermometer
+                entities:
+                  - entity: sensor.kuroshio_volume_1_average_disk_temp
+                hours_to_show: 12
+                points_per_hour: 10
+                line_color: '#39CCCC'
+                font_size: 70
+            type: horizontal-stack          
+     
