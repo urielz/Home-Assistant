@@ -75,6 +75,9 @@ recorder:
       - switch.sonoff_fridge
       - sensor.kuroshio_network_down
       - sensor.kuroshio_network_up
+      - sensor.kuroshio_volume_1_average_disk_temp
+      - sensor.kuroshio_temperature
+      - sensor.kuroshio_free_space      
 
 # InfluxDB database
 # Reference: https://www.home-assistant.io/integrations/influxdb/
@@ -106,7 +109,10 @@ influxdb:
       - switch.sonoff_humidifier
       - switch.sonoff_fridge
       - sensor.kuroshio_network_down
-      - sensor.kuroshio_network_up      
+      - sensor.kuroshio_network_up
+      - sensor.kuroshio_volume_1_average_disk_temp
+      - sensor.kuroshio_temperature
+      - sensor.kuroshio_free_space
 
 # Climate Integration - Control and monitor HVAC devices and thermostats
 # Reference: https://www.home-assistant.io/integrations/climate/
