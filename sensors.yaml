@@ -2,7 +2,7 @@
 # Sensors                                                                     #
 ###############################################################################
 
-# # Tides      
+# # Tides
 # # https://www.worldtides.info/ - using custom code to use API v2, see link below:
 # # https://github.com/jugla/worldtidesinfocustom
 # # https://www.home-assistant.io/integrations/worldtidesinfo
@@ -37,23 +37,14 @@
   unit_time: h
   round: 2
 
-# # Riemann sum (For Fridge Energy)
-# # https://www.home-assistant.io/integrations/integration/
-# - platform: integration 
-#   source: sensor.sonoff_1000cd8a56_power # POWR2 hooked up to the fridge
-#   name: fridge_energy_spent
-#   unit_prefix: k
-#   unit_time: h
-#   round: 2
-
-# # Riemann sum (For A/V Energy)
-# # https://www.home-assistant.io/integrations/integration/
-# - platform: integration 
-#   source: sensor.sonoff_1000cd8a60_power # POWR2 hooked up to the A/V system
-#   name: av_energy_spent
-#   unit_prefix: k
-#   unit_time: h
-#   round: 2
+# Riemann sum (For Fridge Energy)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration 
+  source: sensor.sonoff_fridge_power # POWR2 hooked up to the fridge
+  name: fridge_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
 
 # MIN/MAX sensor to compute min/max/mean/median
 # https://www.home-assistant.io/integrations/min_max/
@@ -112,6 +103,10 @@
       friendly_name: Laundry Room
       temperature_sensor: sensor.laundry_room_temperature
       humidity_sensor: sensor.laundry_room_humidity
+
+- platform: airthings_cloud
+  username: !secret airthings_username
+  password: !secret airthings_password
 
 ################################################################################
 # Templates (entity derived sensors)                                           #
@@ -190,6 +185,13 @@
 #       unit_of_measurement: 'GBs'
 #       value_template: "{{((states('sensor.arris_dg2470a_router_b_received') | float / 1000000000))| round(2)}}"
 
+# Total Power consumption (as measured by POWR2s)
+- platform: template
+  sensors:
+    total_power:
+      unit_of_measurement: "W"
+      value_template: "{{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}"
+
 # Freezer Cost
 - platform: template
   sensors:
@@ -214,44 +216,17 @@
       value_template: "{{ (states('sensor.washer_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
       unit_of_measurement: "$"
 
-# # Fridge Cost
-# - platform: template
-#   sensors:
-#     fridge_cost_daily:
-#       friendly_name: 'Fridge Daily Cost'
-#       value_template: "{{ (states('sensor.fridge_daily')|float * states('input_number.energy_cost')|float)|round(2) }}"
-#       unit_of_measurement: "$"
-#     fridge_cost_monthly:
-#       friendly_name: 'Fridge Monthly Cost'
-#       value_template: "{{ (states('sensor.fridge_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
-#       unit_of_measurement: "$"
-#     fridge_cost_yearly:
-#       friendly_name: 'Fridge Yearly Cost'
-#       value_template: "{{ (states('sensor.fridge_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
-#       unit_of_measurement: "$"
-
-# # Audio/Video System Cost
-# - platform: template
-#   sensors:
-#     av_cost_daily:
-#       friendly_name: 'A/V Daily Cost'
-#       value_template: "{{ (states('sensor.av_daily')|float * states('input_number.energy_cost')|float)|round(2) }}"
-#       unit_of_measurement: "$"
-#     av_cost_monthly:
-#       friendly_name: 'A/V Monthly Cost'
-#       value_template: "{{ (states('sensor.av_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
-#       unit_of_measurement: "$"
-#     av_cost_yearly:
-#       friendly_name: 'A/V Yearly Cost'
-#       value_template: "{{ (states('sensor.av_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
-#       unit_of_measurement: "$"     
-
-# # Total Power consumption (as measured by POWR2)
-# - platform: template
-#   sensors:
-#     total_power:
-#       unit_of_measurement: "W"
-#       value_template: "{{ (states('sensor.sonoff_1000cd8a56_power') | float) + (states('sensor.sonoff_1000cd8a67_power') | float) + (states('sensor.sonoff_1000cd8a60_power') | float) }}"
+# Fridge Cost
+- platform: template
+  sensors:
+    fridge_cost_monthly:
+      friendly_name: 'Fridge Monthly Cost'
+      value_template: "{{ (states('sensor.fridge_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    fridge_cost_yearly:
+      friendly_name: 'Fridge Yearly Cost'
+      value_template: "{{ (states('sensor.fridge_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
 
 # Temperature Anomalies
 - platform: template
