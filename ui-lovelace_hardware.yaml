@@ -16,7 +16,8 @@ cards:
       # 1st column
       ######################################################################
 
-      - type: glance
+      - type: glance # https://www.home-assistant.io/lovelace/glance/
+        title: Office Printer      
         style: |
           ha-card {
             color: white;
@@ -30,8 +31,6 @@ cards:
         entities:
           - entity: sensor.hl_l2340d_status
             name: Status
-         # - entity: sensor.hl_l2340d_uptime
-         #   name: Uptime
           - entity: sensor.hl_l2340d_page_counter
             name: Pages
           - entity: sensor.hl_l2340d_black_toner_remaining
@@ -39,7 +38,6 @@ cards:
           - entity: sensor.hl_l2340d_drum_remaining_life
             name: Drum
         state_color: true
-        title: Office Printer
         show_state: true
         show_icon: true
         show_name: true
@@ -52,58 +50,123 @@ cards:
       - type: vertical-stack
         cards:
           # Row 1: Tag
-          - type: "custom:button-card"
+          - type: "custom:button-card" # https://github.com/custom-cards/button-card
             name: Kuroshio NAS - Synology DS216se
+            entity: sensor.kuroshio_last_boot
+            show_icon: false
+            show_state: true
             styles:
               card:
                 - font-size: 16px
+
           # Row 2: Overall Status
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                name: HDD 1 Status
+                entity: sensor.kuroshio_drive_1_status
+                icon: mdi:harddisk
+                show_state: true
+                color: rgb(68,115,158)
+                size: 20%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.kuroshio_drive_1_status'].state != 'normal';
+                      ]]]
+                    color: rgb(255,65,54)
+                  - operator: default
+                    color: rgb(46, 204, 64)
+                styles:
+                  card:
+                    - font-size: 14px
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                entity: sensor.kuroshio_drive_2_status
+                name: HDD 2 Status
+                icon: mdi:harddisk
+                show_state: true
+                color: rgb(68,115,158)
+                size: 20%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.kuroshio_drive_2_status'].state != 'normal';
+                      ]]]
+                    color: rgb(255,65,54)
+                  - operator: default
+                    color: rgb(46, 204, 64)
+                styles:
+                  card:
+                    - font-size: 14px
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                entity: binary_sensor.kuroshio_update_available
+                name: Operating System
+                icon: mdi:nas
+                show_state: false
+                show_label: true
+                color: rgb(68,115,158)
+                size: 20%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['binary_sensor.kuroshio_update_available'].state == 'On';
+                      ]]]
+                    color: rgb(46, 204, 64)
+                    label: update available
+                  - operator: default
+                    color: rgb(46, 204, 64)
+                    label: up to date
+                styles:
+                  card:
+                    - font-size: 14px
+
           # Row 3: Main Gauges
-          - cards:
-              - entity: sensor.kuroshio_cpu_utilization_total
-                max: 100
+          - cards:             
+              - type: gauge # https://www.home-assistant.io/lovelace/gauge/
+                name: CPU              
+                entity: sensor.kuroshio_cpu_utilization_total
                 min: 0
-                name: CPU
+                max: 100
                 severity:
                   green: 0
                   red: 80
                   yellow: 50
-                theme: default
-                type: gauge             
-              - entity: sensor.kuroshio_memory_usage_real
-                max: 100
-                min: 0
+              - type: gauge # https://www.home-assistant.io/lovelace/gauge/
                 name: Memory
+                entity: sensor.kuroshio_memory_usage_real
+                min: 0
+                max: 100
                 severity:
                   green: 0
                   red: 90
                   yellow: 70
-                theme: default
-                type: gauge
-              - entity: sensor.kuroshio_volume_1_volume_used
-                max: 100
-                min: 0
+              - type: gauge # https://www.home-assistant.io/lovelace/gauge/
                 name: Storage
+                entity: sensor.kuroshio_volume_1_volume_used
+                min: 0
+                max: 100
                 severity:
                   green: 0
                   red: 90
                   yellow: 80
-                theme: default
-                type: gauge
             type: horizontal-stack
+
           # Row 4: Network Traffic
           - cards:
-              - type: 'custom:mini-graph-card'
+              - type: 'custom:mini-graph-card' # https://github.com/kalkih/mini-graph-card
                 name: Down
                 icon: mdi:download-network
                 font_size: 70
-                color: 'white'
                 entities:
                   - entity: sensor.kuroshio_network_down
                 hours_to_show: 12
                 points_per_hour: 10
                 line_color: '#0074D9'
-              - type: 'custom:mini-graph-card'
+                line_width: 3
+              - type: 'custom:mini-graph-card' # https://github.com/kalkih/mini-graph-card
                 name: Up
                 icon: mdi:upload-network
                 font_size: 70
@@ -112,10 +175,12 @@ cards:
                 hours_to_show: 12
                 points_per_hour: 10
                 line_color: '#FF4136'
+                line_width: 3
             type: horizontal-stack
+
           # Row 5: Temp and Free Space
           - cards:
-              - type: custom:mini-graph-card
+              - type: custom:mini-graph-card # https://github.com/kalkih/mini-graph-card
                 entities:
                   - entity: sensor.kuroshio_free_space
                 name: Free space
@@ -125,7 +190,7 @@ cards:
                 points_per_hour: 1
                 line_color: '#FF851B'
                 font_size: 70
-              - type: custom:mini-graph-card
+              - type: custom:mini-graph-card # https://github.com/kalkih/mini-graph-card
                 name: CPU
                 icon: mdi:thermometer
                 entities:
@@ -133,8 +198,9 @@ cards:
                 hours_to_show: 12
                 points_per_hour: 10
                 line_color: '#B10DC9'
+                line_width: 3
                 font_size: 70
-              - type: custom:mini-graph-card
+              - type: custom:mini-graph-card # https://github.com/kalkih/mini-graph-card
                 name: System
                 icon: mdi:thermometer
                 entities:
@@ -142,6 +208,6 @@ cards:
                 hours_to_show: 12
                 points_per_hour: 10
                 line_color: '#39CCCC'
+                line_width: 3
                 font_size: 70
-            type: horizontal-stack          
-     
+            type: horizontal-stack
