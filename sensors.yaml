@@ -258,6 +258,15 @@
       unit_of_measurement: "GB"
       value_template: "{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}" 
 
+# Home Assistant local and latest version
+# https://www.home-assistant.io/integrations/version/
+- platform: version
+  name: local_version
+  source: local
+- platform: version
+  name: latest_version
+  source: supervisor
+
 # ################################################################################
 # # Rest (Sensors derived from RESTful API endpoints                             #
 # # https://www.home-assistant.io/integrations/rest/                             # 
