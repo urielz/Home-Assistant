@@ -329,6 +329,54 @@ cards:
       - type: vertical-stack
         cards:
 
+          # Basement Radon -------------------------------------
+          - type: vertical-stack
+            cards:
+              - type: custom:apexcharts-card
+                apex_config:
+                  chart:
+                    height: 220
+                    zoom:
+                      enabled: true
+                    toolbar:
+                      show: true
+                      
+                      # tools:
+                      #   zoom: true
+                      #   zoomin: true
+                      #   zoomout: true
+                      #   pan: true
+                      #   reset: true                    
+                  legend:
+                    show: false
+                  xaxis:
+                    offsetY: 5
+                  grid:
+                    borderColor: '#90A4AE'
+                    strokeDashArray: 2
+                graph_span: 7d
+                header:
+                  show: true
+                  show_states: true
+                series:         
+                  - entity: binary_sensor.night
+                    transform: 'return x === "on" ? 80 : 0;'
+                    color: grey
+                    type: area
+                    curve: stepline
+                    opacity: 0.5
+                    stroke_width: 0
+                    show:
+                      legend_value: false
+                      in_header: false
+                      name_in_header: false
+                  - entity: sensor.airthings_basement_radonshorttermavg
+                    name: Radon in Gameroom
+                    stroke_width: 1.5
+                    color: rgb(241,196,15)
+                    type: area
+                    opacity: 0.1
+          
           # Temperature plot -----------------------------------------------
           - type: vertical-stack
             cards:
@@ -497,36 +545,4 @@ cards:
                   - value: "off"
                     label: "Day"
                   - value: "on"
-                    label: "Night" 
-
-          # Basement Radon -------------------------------------
-          - type: vertical-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: 'Basement: Radon'
-                icon: mdi:radioactive
-                height: 150
-                font_size: 75
-                hours_to_show: 72 
-                points_per_hour: 4
-                line_width: 2
-                show:
-                  labels: false 
-                  labels_secondary: false 
-                  extrema: true
-                entities:
-                  - entity: sensor.airthings_basement_radonshorttermavg
-                    name: Radon Short Term Mean
-                    color: rgba(241,196,15)
-                  - entity: binary_sensor.night
-                    color: rgba(255,255,255)
-                    y_axis: secondary
-                    show_state: false
-                    show_legend: false
-                    show_line: false
-                    show_points: false
-                state_map:
-                  - value: "off"
-                    label: "Day"
-                  - value: "on"
-                    label: "Night"                             
+                    label: "Night"
