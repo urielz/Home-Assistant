@@ -25,6 +25,9 @@ lovelace:
     # mini-media-player (HACS): https://github.com/kalkih/mini-media-player
     - {type: module, url: '/local/community/mini-media-player/mini-media-player-bundle.js'}
 
+    # Apex Charts (HACS): https://github.com/RomRider/apexcharts-card
+    - {type: module, url: '/local/apexcharts-card.js?v=1.9.0'}
+
     # Custom Components - Dependencies -------------------------------------------------------------
   
     # card-mod (HACS) - https://github.com/thomasloven/lovelace-card-mod
@@ -33,7 +36,7 @@ lovelace:
 
     # button-card (HACS): https://github.com/custom-cards/button-card
     # upstream: lovelace UI
-    - {type: module, url: '/local/community/button-card/button-card.js'}    
+    - {type: module, url: '/local/community/button-card/button-card.js'}
 
 
 # Text to speech
