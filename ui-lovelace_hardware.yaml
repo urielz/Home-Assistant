@@ -16,32 +16,86 @@ cards:
       # 1st column
       ######################################################################
 
-      - type: glance # https://www.home-assistant.io/lovelace/glance/
-        title: Office Printer      
-        style: |
-          ha-card {
-            color: white;
-            font-size: 12px;
-          }
-          .card-header {
-            font-size: 16px;
-            text-align: center;
-            line-height: 100%;
-          }                
-        entities:
-          - entity: sensor.hl_l2340d_status
-            name: Status
-          - entity: sensor.hl_l2340d_page_counter
-            name: Pages
-          - entity: sensor.hl_l2340d_black_toner_remaining
-            name: Toner
-          - entity: sensor.hl_l2340d_drum_remaining_life
-            name: Drum
-        state_color: true
-        show_state: true
-        show_icon: true
-        show_name: true
-        columns: 4
+      - type: vertical-stack
+        cards:
+          # Printer Header
+          - type: "custom:button-card" # https://github.com/custom-cards/button-card
+            name: Office Printer 
+            styles:
+              card:
+                - font-size: 16px
+          - type: horizontal-stack
+            cards:
+              # Printer Status
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_status 
+                icon: mdi:printer
+                name: Status
+                show_state: true
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hl_l2340d_status'].state != 'sleep';
+                      ]]]
+                    color: rgb(46,204,64) # green
+                  - operator: default
+                    color: rgb(224, 224, 224) # gray
+                styles:
+                  card:
+                    - font-size: 12px
+              # Page Counter
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_page_counter 
+                icon: mdi:stack-overflow
+                name: Pages 
+                show_state: true
+                size: 30%
+                state:
+                  - operator: default
+                    color: rgb(224, 224, 224) # gray
+                styles:
+                  card:
+                    - font-size: 12px
+              # Black Toner remaining
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_black_toner_remaining 
+                icon: mdi:printer-3d-nozzle
+                name: Black Toner
+                show_state: true
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hl_l2340d_black_toner_remaining'].state < 20;
+                      ]]]
+                    color: rgb(255,65,54) # red                
+                  - operator: default
+                    color: rgb(46, 204, 64) # green
+                styles:
+                  card:
+                    - font-size: 12px
+              # Drum Remaining Life     
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_drum_remaining_life 
+                icon: mdi:chart-donut
+                name: Drum Life
+                show_state: true
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hl_l2340d_drum_remaining_life'].state < 20;
+                      ]]]
+                    color: rgb(255,65,54) # red                
+                  - operator: default
+                    color: rgb(46, 204, 64) # green
+                styles:
+                  card:
+                    - font-size: 12px                       
 
       ######################################################################
       # 2nd column
@@ -67,7 +121,6 @@ cards:
                 entity: sensor.kuroshio_drive_1_status
                 icon: mdi:harddisk
                 show_state: true
-                color: rgb(68,115,158)
                 size: 30%
                 state:
                   - operator: template
@@ -75,9 +128,9 @@ cards:
                       [[[
                         return states['sensor.kuroshio_drive_1_status'].state != 'normal';
                       ]]]
-                    color: rgb(255,65,54)
+                    color: rgb(255,65,54) # red
                   - operator: default
-                    color: rgb(46, 204, 64)
+                    color: rgb(46, 204, 64) # green
                 styles:
                   card:
                     - font-size: 12px
