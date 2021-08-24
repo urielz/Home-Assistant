@@ -26,7 +26,7 @@ lovelace:
     - {type: module, url: '/local/community/mini-media-player/mini-media-player-bundle.js'}
 
     # Apex Charts (HACS): https://github.com/RomRider/apexcharts-card
-    - {type: module, url: '/local/apexcharts-card.js?v=1.9.0'}
+    - {type: module, url: '/local/community/apexcharts-card/apexcharts-card.js?v=1.9.0'}
 
     # Custom Components - Dependencies -------------------------------------------------------------
   
@@ -79,6 +79,8 @@ recorder:
       - sensor.kuroshio_network_down
       - sensor.kuroshio_network_up
       - sensor.kuroshio_volume_1_average_disk_temp
+      - sensor.kuroshio_drive_1_temperature
+      - sensor.kuroshio_drive_2_temperature
       - sensor.kuroshio_temperature
       - sensor.kuroshio_free_space      
 
@@ -114,6 +116,8 @@ influxdb:
       - sensor.kuroshio_network_down
       - sensor.kuroshio_network_up
       - sensor.kuroshio_volume_1_average_disk_temp
+      - sensor.kuroshio_drive_1_temperature
+      - sensor.kuroshio_drive_2_temperature      
       - sensor.kuroshio_temperature
       - sensor.kuroshio_free_space
 
