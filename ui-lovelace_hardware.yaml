@@ -1,4 +1,4 @@
-title: Hardware Status
+title: Devices Status
 icon: 'mdi:chip'
 panel: true
 badges: []
@@ -15,6 +15,8 @@ cards:
       ######################################################################
       # 1st column
       ######################################################################
+      # Office Printer
+
 
       - type: vertical-stack
         cards:
@@ -100,10 +102,11 @@ cards:
       ######################################################################
       # 2nd column
       ######################################################################
+      # Kuroshio NAS
 
       - type: vertical-stack
         cards:
-          # Row 1: Tag
+          # Row 1: Header
           - type: "custom:button-card" # https://github.com/custom-cards/button-card
             name: Kuroshio NAS - Synology DS216se
             entity: sensor.kuroshio_last_boot
@@ -116,6 +119,24 @@ cards:
           # Row 2: Overall Status
           - type: horizontal-stack
             cards:
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                name: Free Space
+                entity: sensor.kuroshio_free_space
+                icon: mdi:harddisk-plus
+                show_state: true
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.kuroshio_free_space'].state < 500;
+                      ]]]
+                    color: rgb(255,65,54) # red
+                  - operator: default
+                    color: rgb(46, 204, 64) # green
+                styles:
+                  card:
+                    - font-size: 12px
               - type: "custom:button-card" # https://github.com/custom-cards/button-card
                 name: HDD 1 Status
                 entity: sensor.kuroshio_drive_1_status
@@ -155,7 +176,7 @@ cards:
                     - font-size: 12px
               - type: "custom:button-card" # https://github.com/custom-cards/button-card
                 entity: binary_sensor.kuroshio_update_available
-                name: Operating System
+                name: Op. System
                 icon: mdi:nas
                 show_state: false
                 show_label: true
@@ -171,7 +192,7 @@ cards:
                     label: update available
                   - operator: default
                     color: rgb(46, 204, 64)
-                    label: no pending updates
+                    label: no updates
                 styles:
                   card:
                     - font-size: 12px
@@ -209,65 +230,79 @@ cards:
 
           # Row 4: Network Traffic
           - cards:
-              - type: 'custom:mini-graph-card' # https://github.com/kalkih/mini-graph-card
-                name: Down
-                icon: mdi:download-network
-                font_size: 70
-                entities:
+              - type: custom:apexcharts-card
+                apex_config:
+                  chart:
+                    height: 180 
+                  legend:
+                    position: top
+                    offsetY: 15
+                  xaxis:
+                    offsetY: 5
+                  grid:
+                    borderColor: '#90A4AE'
+                    strokeDashArray: 2
+                    xaxis: {
+                      lines: {
+                        show: true
+                      }
+                    }  
+                graph_span: 16h
+                all_series_config:
+                  stroke_width: 1
+                  opacity: 0.3
+                  transform: return x / 1024;
+                  unit: Mb/s
+                series:
                   - entity: sensor.kuroshio_network_down
-                hours_to_show: 12
-                points_per_hour: 10
-                line_color: '#0074D9'
-                line_width: 3
-              - type: 'custom:mini-graph-card' # https://github.com/kalkih/mini-graph-card
-                name: Up
-                icon: mdi:upload-network
-                font_size: 70
-                entities:
+                    name: Traffic Down
+                    color: rgb(204,0,0)
+                    type: area
+                    invert: true
                   - entity: sensor.kuroshio_network_up
-                hours_to_show: 12
-                points_per_hour: 10
-                line_color: '#FF4136'
-                line_width: 3
+                    name: Traffic Up
+                    color: rgb(0,102,204)
+                    type: area
             type: horizontal-stack
 
           # Row 5: Temp and Free Space
           - cards:
-              - type: custom:mini-graph-card # https://github.com/kalkih/mini-graph-card
-                entities:
-                  - entity: sensor.kuroshio_free_space
-                name: Free space
-                show:
-                  graph: bar
-                hours_to_show: 12
-                points_per_hour: 1
-                line_color: '#FF851B'
-                font_size: 70
-              - type: custom:mini-graph-card # https://github.com/kalkih/mini-graph-card
-                name: CPU
-                icon: mdi:thermometer
-                entities:
+              - type: custom:apexcharts-card
+                apex_config:
+                  chart:
+                    height: 180
+                  legend:
+                    position: top
+                    offsetY: 15
+                  xaxis:
+                    offsetY: 5
+                  grid:
+                    borderColor: '#90A4AE'
+                    strokeDashArray: 2
+                    xaxis: {
+                      lines: {
+                        show: true
+                      }
+                    }  
+                graph_span: 16h
+                all_series_config:
+                  stroke_width: 2
+                series:
                   - entity: sensor.kuroshio_temperature
-                hours_to_show: 12
-                points_per_hour: 10
-                line_color: '#B10DC9'
-                line_width: 3
-                font_size: 70
-              - type: custom:mini-graph-card # https://github.com/kalkih/mini-graph-card
-                name: System
-                icon: mdi:thermometer
-                entities:
-                  - entity: sensor.kuroshio_volume_1_average_disk_temp
-                hours_to_show: 12
-                points_per_hour: 10
-                line_color: '#39CCCC'
-                line_width: 3
-                font_size: 70
+                    name: CPU
+                    color: rgb(204,0,0)
+                  - entity: sensor.kuroshio_drive_1_temperature
+                    name: Drive 1
+                    color: rgb(0,204,102) 
+                  - entity: sensor.kuroshio_drive_2_temperature
+                    name: Drive 2
+                    color: rgb(204,204,0)                    
             type: horizontal-stack
 
       ######################################################################
       # 3rd column
       ######################################################################
+      # HASS
 
       - type: vertical-stack
         cards:
