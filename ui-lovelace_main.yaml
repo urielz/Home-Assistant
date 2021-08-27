@@ -61,7 +61,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 80px
+              - height: 75px
             state:
               - value: 'on' 
                 icon: bha:outdoor-lamp-variant
@@ -78,7 +78,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 80px
+              - height: 75px
 
           - type: 'custom:button-card'
             entity: switch.sonoff_humidifier
@@ -90,7 +90,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 80px
+              - height: 75px
 
           - type: 'custom:button-card'
             entity: switch.sonoff_freezer
@@ -102,7 +102,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 80px
+              - height: 75px
 
           - type: 'custom:button-card'
             entity: switch.sonoff_fridge
@@ -114,7 +114,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 80px              
+              - height: 75px              
 
           - type: 'custom:button-card'
             entity: switch.sonoff_washer
@@ -126,7 +126,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 80px
+              - height: 75px
             hold_action:
               action: more-info              
 
@@ -146,10 +146,16 @@ cards:
 
 
       # Heat Pump Thermostat --------------------------------------------------
-      # 
-      - type: thermostat
+      - type: custom:simple-thermostat # https://github.com/nervetattoo/simple-thermostat
         entity: climate.heat_pump
-        name: Heat Pump
+        style: |
+          ha-card {
+            --st-font-size-xl: 22px;
+            --st-font-size-m: 22px;
+            --st-font-size-title: 22px;
+            --st-font-size-sensors: 16px;
+            --st-spacing: 1px;
+          }
  
       - type: custom:layout-break
       
