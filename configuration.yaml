@@ -1,9 +1,11 @@
+#
 # Home Assistant Configuration - Uriel Zajaczkovski
 # 2020-Dec-03: Initial setup
 # 2021-Jan-26: Switch to YAML mode (lovelace GUI is a mess and lacks functionality)
 # 2021-May-16: Started from scratch, mayor changes: 
 #              - Improved speed and stability: migrate Debian to SSD
 #              - Variables to store in db need to be explicity add
+#
 
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
@@ -49,11 +51,14 @@ lovelace:
     # Dependencies: Roomba
     - {type: module, url: '/local/community/lovelace-fold-entity-row/fold-entity-row.js'}
 
-    # https://github.com/iantrich/text-divider-row
+    # text-divider-row (HACS): https://github.com/iantrich/text-divider-row
     # Dependencies: Roomba
     - {type: module, url: '/local/community/text-divider-row/text-divider-row.js'}
 
-
+    # check-button card (HACS): https://github.com/custom-cards/check-button-card
+    # Dependencies: Roomba, MQTT
+    - {type: module, url: '/local/community/check-button-card/check-button-card.js'}
+                
 # Text to speech
 tts:
   - platform: google_translate
@@ -159,3 +164,10 @@ sonoff:
   #  1000c4ed2f:
   #    device_class: Power Outlet
   #    name: Humidifier
+
+# MQTT
+# https://www.home-assistant.io/integrations/mqtt/
+# https://www.home-assistant.io/docs/mqtt/discovery/
+# https://www.home-assistant.io/integrations/sensor.mqtt/
+mqtt:
+  discovery: true
