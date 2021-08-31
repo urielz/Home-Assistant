@@ -72,6 +72,9 @@ sensor: !include sensors.yaml
 utility_meter: !include utility_meters.yaml
 input_number: !include input_number.yaml
 
+homeassistant:
+  packages: !include_dir_named packages
+
 breaking_changes: # https://github.com/custom-components/breaking_changes
 
 # Recorder Integration - Configure which integrations should be included in recordings
