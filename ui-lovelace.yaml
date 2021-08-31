@@ -1,9 +1,10 @@
 title: Bellevue House
 views:
-  - !include 'ui-lovelace_main.yaml'        # main tab
-  - !include 'ui-lovelace_power.yaml'       # track energy consumption and cost of various appliances
-  - !include 'ui-lovelace_hardware.yaml'    # monitor hardware status
-  - !include 'ui-lovelace_stats.yaml'       # various graphics stats pulled from influxDB/Grafana
-  - !include 'ui-lovelace_weather.yaml'     # windy map (for now)
-  
-  #  - !include 'ui-lovelace_main_dev.yaml' # failed attempt to use grid layout (in order to have variable width columns)
+  - !include 'ui-lovelace_main.yaml'        # Main tab
+  - !include 'ui-lovelace_devices.yaml'     # Any device that can be control and/or automatize
+  - !include 'ui-lovelace_power.yaml'       # Track energy consumption and cost of various appliances
+  - !include 'ui-lovelace_hardware.yaml'    # Monitor hardware status
+  - !include 'ui-lovelace_stats.yaml'       # Various graphics stats pulled from influxDB/Grafana
+  - !include 'ui-lovelace_weather.yaml'     # Windy map
+ 
+ # - !include 'ui-lovelace_main_dev.yaml' # failed attempt to use grid layout (in order to have variable width columns)
