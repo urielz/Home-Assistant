@@ -12,7 +12,132 @@ cards:
     max_columns: 3 
     cards:
 
-### VERTICAL STACK CARD ###
+      # .......................................................................
+      # Column 1 
+      # .......................................................................    
+
+      # Grid Panel with Switches ----------------------------------------------
+      # https://www.home-assistant.io/lovelace/grid/
+      #
+      - type: grid 
+        columns: 3
+        square: false
+        cards:
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_frontdoor
+            icon: mdi:lightbulb 
+            color: rgb(255, 255, 102)
+            name: Front Door
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+            state:
+              - value: 'on' 
+                icon: bha:outdoor-lamp-variant
+              - value: 'off'
+                icon: bha:outdoor-lamp-variant
+
+          - type: 'custom:button-card'
+            entity: climate.heat_pump
+            icon: mdi:air-conditioner
+            color: rgb(255, 255, 102)
+            name: Heat Pump
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_humidifier
+            icon: mdi:air-humidifier
+            color: rgb(255, 255, 102)
+            name: Humidifier
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_freezer
+            icon: 'mdi:fridge'
+            color: rgb(255, 255, 102)
+            name: Freezer
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_fridge
+            icon: 'mdi:fridge'
+            color: rgb(255, 255, 102)
+            name: Fridge
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px              
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_washer
+            icon: mdi:washing-machine
+            color: rgb(255, 255, 102)
+            name: Washer
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+            hold_action:
+              action: more-info              
+
+      #     - type: 'custom:button-card'
+      #       entity: light.eb45e14e47084faddcsa7p
+      #       icon: mdi:floor-lamp
+      #       color: rgb(255, 255, 102)
+      #       name: Basement
+      #       show_state: true
+      #       show_name: true
+      #       styles:
+      #         card:
+      #         - font-size: 11px
+      #         - height: 80px
+      #       hold_action:
+      #         action: more-info
+
+      # Heat Pump Thermostat --------------------------------------------------
+      # https://github.com/nervetattoo/simple-thermostat
+      #
+      - type: custom:simple-thermostat
+        entity: climate.heat_pump
+        style: |
+          ha-card {
+            --st-font-size-xl: 22px;
+            --st-font-size-m: 22px;
+            --st-font-size-title: 22px;
+            --st-font-size-sensors: 16px;
+            --st-spacing: 4px;
+          }
+
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 2 
+      # .......................................................................      
+
+      # Roomba -----------------------------------------------------------------
       - type: vertical-stack
         cards:
           - entity: sensor.vacuum
@@ -233,8 +358,17 @@ cards:
                   label: Maintenance
                   type: section
                 type: custom:fold-entity-row
-     
-        ### PICTURE GLANCE CARD ###
+
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 3 
+      # .......................................................................      
+
+      - type: vertical-stack
+        cards:
+
+          ### PICTURE GLANCE CARD ###
           - type: picture-glance
             aspect_ratio: 0%
             camera_image: camera.roomba
