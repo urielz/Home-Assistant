@@ -153,8 +153,9 @@ cards:
                 type: custom:fold-entity-row
               - entities:
                   - input_boolean.vacuum_clean_study
+                  - input_boolean.vacuum_clean_kitchen
+                  - input_boolean.vacuum_clean_hall
                  #  - input_boolean.vacuum_clean_entry
-                 #  - input_boolean.vacuum_clean_hall
                  #  - input_boolean.vacuum_clean_living_room
                  #  - input_boolean.vacuum_clean_bathroom
                  #  - input_boolean.vacuum_clean_bedroom
@@ -176,7 +177,8 @@ cards:
                     name: Clean Rooms
                     styles:
                       card:
-                        - height: 50px
+                        - height: 45px
+                        - font-size: 15px
                     tap_action:
                       action: call-service
                       service: automation.trigger
