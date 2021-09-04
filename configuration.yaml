@@ -58,6 +58,10 @@ lovelace:
     # check-button card (HACS): https://github.com/custom-cards/check-button-card
     # Dependencies: Roomba, MQTT
     - {type: module, url: '/local/community/check-button-card/check-button-card.js'}
+
+    # RaspberryPi Monitor Card (HACS): https://github.com/ironsheep/lovelace-rpi-monitor-card
+    # Need the daemon installed as well: https://github.com/ironsheep/RPi-Reporter-MQTT2HA-Daemon
+    - {type: module, url: '/local/community/lovelace-rpi-monitor-card/rpi-monitor-card.js'}
                 
 # Text to speech
 tts:
