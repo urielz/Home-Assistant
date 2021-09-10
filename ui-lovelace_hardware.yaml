@@ -287,38 +287,87 @@ cards:
                     type: area
             type: horizontal-stack
 
-          # Row 5: Temp and Free Space
+          # CPU and HDD Temperature -------------------------------------------
           - cards:
               - type: custom:apexcharts-card
                 apex_config:
                   chart:
-                    height: 180
+                    height: 220
                   legend:
-                    position: top
-                    offsetY: 15
-                  xaxis:
-                    offsetY: 5
+                    show: 
+                      false
                   grid:
                     borderColor: '#90A4AE'
                     strokeDashArray: 2
-                    xaxis: {
-                      lines: {
-                        show: true
-                      }
-                    }  
-                graph_span: 3d
+                    # xaxis: {
+                    #   lines: {
+                    #     show: true
+                    #   }
+                    # }
+                header:
+                  show: true
+                  show_states: true
+                  colorize_states: true
+                  title: CPU and HDD Temperature
+                yaxis:
+                  - id: main
+                    apex_config:
+                      tickAmount: 3
+                      decimalsInFloat: 0
+                  - id: sec
+                    apex_config:
+                      tickAmount: 1
+                    show:
+                      false
+                graph_span: 7d
                 all_series_config:
-                  stroke_width: 1
+                  curve: smooth
+                  stroke_width: 1.5
+                  show:
+                    legend_value: false
+                  group_by:
+                    func: avg
+                    duration: 60min
                 series:
+                  - entity: binary_sensor.night
+                    transform: 'return x === "on" ? 1 : 0;'
+                    color: grey
+                    type: area
+                    curve: stepline
+                    opacity: 0.5
+                    stroke_width: 0
+                    yaxis_id: sec
+                    show:
+                      legend_value: false
+                      in_header: false
+                      name_in_header: false
                   - entity: sensor.kuroshio_temperature
                     name: CPU
-                    color: rgb(204,0,0)
+                    #color: rgb(204,0,0)
+                    yaxis_id: main
                   - entity: sensor.kuroshio_drive_1_temperature
                     name: Drive 1
-                    color: rgb(0,204,102) 
+                    #color: rgb(0,204,102)
+                    yaxis_id: main            
                   - entity: sensor.kuroshio_drive_2_temperature
                     name: Drive 2
-                    color: rgb(204,204,0)                    
+                    #color: rgb(204,204,0)
+                    yaxis_id: main
+                style: |
+                  ha-card {
+                       font-size: 12px;
+
+                       # leaving this here for reference:
+                       #--ha-card-background: rgba(0, 0, 0, 0);
+                       #box-shadow: none;
+                       #margin: 8px 8px 18px 8px;
+                       #text-align: center;
+                       #font-weight: 250;
+                       #font-family: Segoe Ui Light;
+                     }
+                     div#header__title {
+                       font-size: 16px;
+                     }                    
             type: horizontal-stack
 
       ######################################################################
