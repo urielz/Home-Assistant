@@ -244,50 +244,79 @@ cards:
                   yellow: 80
             type: horizontal-stack
 
-          # Row 4: Plot of NAS Traffic
+          # NAS Traffic -------------------------------------------------------
+          # https://github.com/RomRider/apexcharts-card
+          #
           - cards:
-              - type: custom:apexcharts-card # https://github.com/RomRider/apexcharts-card
+              - type: custom:apexcharts-card
                 apex_config: # see: https://apexcharts.com/docs
                   chart:
-                    height: 170
+                    height: 220
                   legend:
                     show: false
-                  xaxis:
-                    offsetY: 5
+                  # xaxis:
+                  #   offsetY: 5
                   grid:
                     borderColor: '#90A4AE'
                     strokeDashArray: 2
-                    xaxis: {
-                      lines: {
-                        show: true
-                      }
-                    }  
-                graph_span: 7d
+                yaxis:
+                  - id: main
+                    apex_config:
+                      tickAmount: 3
+                      decimalsInFloat: 0
+                  - id: sec
+                    apex_config:
+                      tickAmount: 1
+                    show:
+                      false
+                graph_span: 48hr
                 all_series_config:
-                  stroke_width: 1
+                  stroke_width: 1.5
                   opacity: 0.8
                   transform: return x / 1024;
                   unit: Mb/s
+                  curve: smooth
+                  show:
+                    legend_value: false
+                  group_by:
+                    func: avg
+                    duration: 30min
                 header:
                   title: NAS Local Network Traffic                  
                   show: true
                   show_states: true
                   colorize_states: true
                 series:
+                  - entity: binary_sensor.night
+                    transform: 'return x === "on" ? 1 : 0;'
+                    color: grey
+                    type: area
+                    curve: stepline
+                    opacity: 0.5
+                    stroke_width: 0
+                    yaxis_id: sec
+                    show:
+                      legend_value: false
+                      in_header: false
+                      name_in_header: false                
                   - entity: sensor.kuroshio_network_down
                     name: In
                     color: rgb(204,0,0)
                     curve: smooth
                     type: area
                     invert: true
+                    yaxis_id: main                    
                   - entity: sensor.kuroshio_network_up
                     name: Out
                     color: rgb(0,102,204)
                     curve: smooth
                     type: area
+                    yaxis_id: main
             type: horizontal-stack
 
           # CPU and HDD Temperature -------------------------------------------
+          # https://github.com/RomRider/apexcharts-card
+          #
           - cards:
               - type: custom:apexcharts-card
                 apex_config:
@@ -299,16 +328,11 @@ cards:
                   grid:
                     borderColor: '#90A4AE'
                     strokeDashArray: 2
-                    # xaxis: {
-                    #   lines: {
-                    #     show: true
-                    #   }
-                    # }
                 header:
                   show: true
                   show_states: true
                   colorize_states: true
-                  title: CPU and HDD Temperature
+                  title: NAS CPU and HDD Temperature
                 yaxis:
                   - id: main
                     apex_config:
@@ -319,7 +343,7 @@ cards:
                       tickAmount: 1
                     show:
                       false
-                graph_span: 7d
+                graph_span: 48h
                 all_series_config:
                   curve: smooth
                   stroke_width: 1.5
@@ -327,7 +351,7 @@ cards:
                     legend_value: false
                   group_by:
                     func: avg
-                    duration: 60min
+                    duration: 30min
                 series:
                   - entity: binary_sensor.night
                     transform: 'return x === "on" ? 1 : 0;'
@@ -343,19 +367,19 @@ cards:
                       name_in_header: false
                   - entity: sensor.kuroshio_temperature
                     name: CPU
-                    #color: rgb(204,0,0)
+                    color: rgb(255,255,255)
                     yaxis_id: main
                   - entity: sensor.kuroshio_drive_1_temperature
                     name: Drive 1
-                    #color: rgb(0,204,102)
+                    color: rgb(67,192,121) # green
                     yaxis_id: main            
                   - entity: sensor.kuroshio_drive_2_temperature
                     name: Drive 2
-                    #color: rgb(204,204,0)
+                    color: rgb(240,195,39,255) # yellow
                     yaxis_id: main
                 style: |
                   ha-card {
-                       font-size: 12px;
+                       font-size: 14px;
 
                        # leaving this here for reference:
                        #--ha-card-background: rgba(0, 0, 0, 0);
