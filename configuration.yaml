@@ -111,7 +111,15 @@ recorder:
       - sensor.kuroshio_drive_1_temperature
       - sensor.kuroshio_drive_2_temperature
       - sensor.kuroshio_temperature
-      - sensor.kuroshio_free_space      
+      - sensor.kuroshio_free_space
+      - sensor.atm90e32as_ct2_amps   # dishwasher
+      - sensor.atm90e32as_ct2_watts  #
+      - sensor.atm90e32as_ct4_amps   # Heat Pump
+      - sensor.atm90e32as_ct4_watts  #
+      - sensor.atm90e32as_ct5_amps   #
+      - sensor.atm90e32as_ct5_watts  #
+      - sensor.atm90e32as_wifi
+      - sensor.atm90e32as_total_kwh
 
 # InfluxDB database
 # Reference: https://www.home-assistant.io/integrations/influxdb/
@@ -149,6 +157,13 @@ influxdb:
       - sensor.kuroshio_drive_2_temperature      
       - sensor.kuroshio_temperature
       - sensor.kuroshio_free_space
+      - sensor.atm90e32as_ct2_amps   # dishwasher
+      - sensor.atm90e32as_ct2_watts  #
+      - sensor.atm90e32as_ct4_amps   # Heat Pump
+      - sensor.atm90e32as_ct4_watts  #
+      - sensor.atm90e32as_ct5_amps   #
+      - sensor.atm90e32as_ct5_watts        
+      - sensor.atm90e32as_total_kwh      
 
 # Climate Integration - Control and monitor HVAC devices and thermostats
 # Reference: https://www.home-assistant.io/integrations/climate/
