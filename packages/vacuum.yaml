@@ -303,6 +303,7 @@ rest_command:
 ###################################
 
 input_boolean:
+
   vacuum_clean_study:
     name: Study
     icon: mdi:desk
@@ -312,36 +313,13 @@ input_boolean:
   vacuum_clean_hall:
     name: Hall
     icon: mdi:ceiling-light
-  # vacuum_clean_zone_fridge:
-  #   name: Fridge Zone
-  #   icon: mdi:fridge
-  # vacuum_clean_entry:
-  #   name: Entry
-  #   icon: mdi:coat-rack
-  # vacuum_clean_living_room:
-  #   name: Living Room
-  #   icon: mdi:sofa
-  # vacuum_clean_bathroom:
-  #   name: Bathroom
-  #   icon: mdi:shower
-  # vacuum_clean_bedroom:
-  #   name: Bedroom
-  #   icon: mdi:bed-empty
-  # vacuum_clean_wardrobe:
-  #   name: Wardrobe
-  #   icon: mdi:wardrobe-outline
-  # vacuum_clean_master_ensuite:
-  #   name: Master Ensuite
-  #   icon: mdi:shower
-  # vacuum_clean_master_bedroom:
-  #   name: Master Bedroom
-  #   icon: mdi:bed-empty
-  # vacuum_clean_master_passage:
-  #   name: Master Passage
-  #   icon: mdi:ceiling-light
-  # vacuum_clean_table:
-  #   name: Table
-  #   icon: mdi:room-service
+  vacuum_clean_dinning_room:
+    name: Dinning Room
+    icon: mdi:food-turkey
+  vacuum_clean_bathroom:
+    name: Bathroom
+    icon: mdi:toilet
+
   vacuum_maint_due:
     name: Vacuum Maintenance
     icon: mdi:wrench
@@ -382,36 +360,12 @@ input_text:
   vacuum_clean_hall:
     name: Hall
     initial: !secret vacuum_hall
-  # vacuum_clean_zone_fridge:
-  #   name: Fridge Zone
-  #   initial: !secret vacuum_cz_fridge
-  # vacuum_clean_entry:
-  #   name: Entry
-  #   initial: !secret vacuum_entry
-  # vacuum_clean_living_room:
-  #   name: Living Room
-  #   initial: !secret vacuum_living_room
-  # vacuum_clean_bathroom:
-  #   name: Bathroom
-  #   initial: !secret vacuum_bathroom
-  # vacuum_clean_bedroom:
-  #   name: Bedroom
-  #   initial: !secret vacuum_bedroom
-  # vacuum_clean_wardrobe:
-  #   name: Wardrobe
-  #   initial: !secret vacuum_wardrobe
-  # vacuum_clean_master_ensuite:
-  #   name: Master Ensuite
-  #   initial: !secret vacuum_master_ensuite
-  # vacuum_clean_master_bedroom:
-  #   name: Master Bedroom
-  #   initial: !secret vacuum_master_bedroom
-  # vacuum_clean_master_passage:
-  #     name: Master Passage
-  #     initial: !secret vacuum_master_passage
-  # vacuum_clean_table:
-  #   name: Table
-  #   initial: !secret vacuum_table
+  vacuum_clean_dinning_room:
+    name: Dinning Room
+    initial: !secret vacuum_dinning_room
+  vacuum_clean_bathroom:
+    name: Bathroom
+    initial: !secret vacuum_bathroom  
 
 ###################################
 # Group
@@ -422,17 +376,9 @@ group:
     entities:
       - input_boolean.vacuum_clean_study
       - input_boolean.vacuum_clean_kitchen
-      - input_boolean.vacuum_clean_hall      
-      # - input_boolean.vacuum_clean_zone_fridge
-      # - input_boolean.vacuum_clean_entry
-      # - input_boolean.vacuum_clean_living_room
-      # - input_boolean.vacuum_clean_bathroom
-      # - input_boolean.vacuum_clean_bedroom
-      # - input_boolean.vacuum_clean_wardrobe
-      # - input_boolean.vacuum_clean_master_ensuite
-      # - input_boolean.vacuum_clean_master_bedroom
-      # - input_boolean.vacuum_clean_master_passage
-      # - input_boolean.vacuum_clean_table
+      - input_boolean.vacuum_clean_hall
+      - input_boolean.vacuum_clean_bathroom
+      - input_boolean.vacuum_clean_dinning_room
 
 ###################################
 # Automation
@@ -568,21 +514,6 @@ automation:
       - service: notify.vacuumfile
         data_template: 
           message: "Stuck"
-      # DELETE BELOW SECTION IF YOU DONT WANT NOTIFICATIONS
-      # - delay: 5
-      # - service: !secret vacuum_notify
-      #   data_template:
-      #     title: "{{ state_attr('sensor.rest980', 'name') }} requires your attention"
-      #     message: "{{ state_attr('sensor.rest980', 'name') }} is stuck."
-          # =============
-          # NOTICE THIS SECTION IS VALID FOR IOS USERS ONLY!
-          # data:
-          #   attachment:
-          #     content-type: jpeg
-          #   push:
-          #     category: camera
-          #   entity_id: camera.roomba
-          # =============
 
   # Generate Complete Vacuum Map
   - alias: Vacuum Generate Image after Cleaning
@@ -608,21 +539,6 @@ automation:
           seconds: 10
     action:
       - service: shell_command.vacuum_generate_image
-      # DELETE BELOW SECTION IF YOU DONT WANT NOTIFICATIONS
-      # - delay: 5
-      # - service: !secret vacuum_notify
-      #   data_template:
-      #     title: "{{ state_attr('sensor.rest980', 'name') }}"
-      #     message: "{{ state_attr('sensor.rest980', 'name') }} successfully completed a job!"
-          # =============
-          # NOTICE THIS SECTION IS VALID FOR IOS USERS ONLY!
-          # data:
-          #   attachment:
-          #     content-type: jpeg
-          #   push:
-          #     category: camera
-          #   entity_id: camera.roomba
-          # =============
 
   # Maintenance Check
   - alias: Vacuum Maintenance Check
@@ -662,7 +578,9 @@ automation:
       entity_id: [
         'input_boolean.vacuum_clean_study',
         'input_boolean.vacuum_clean_hall',
-        'input_boolean.vacuum_clean_kitchen'
+        'input_boolean.vacuum_clean_kitchen',
+        'input_boolean.vacuum_clean_dinning_room',
+        'input_boolean.vacuum_clean_bathroom' 
       ]
       to: 'on'
     action:
@@ -684,7 +602,11 @@ automation:
     trigger:
       platform: state
       entity_id: [
-        'input_boolean.vacuum_clean_study' 
+        'input_boolean.vacuum_clean_study',
+        'input_boolean.vacuum_clean_hall',
+        'input_boolean.vacuum_clean_kitchen',
+        'input_boolean.vacuum_clean_dinning_room',
+        'input_boolean.vacuum_clean_bathroom'
       ]
       to: 'off'
     action:
@@ -719,35 +641,6 @@ automation:
   #       data_template: 
   #         entity_id: input_text.vacuum_rooms
   #         value: "kitchen"
-  #     - service: automation.trigger
-  #       entity_id: automation.vacuum_clean_rooms
-
-  # # Vacuum Cleaning Schedule 2
-  # - alias: Vacuum Cleaning Schedule 2
-  #   initial_state: true
-  #   trigger:
-  #     platform: time_pattern
-  #     hours: "10"
-  #   condition: 
-  #     condition: and
-  #     conditions:
-  #       - condition: state
-  #         entity_id: input_boolean.vacuum_schedule_2
-  #         state: 'on'
-  #       - condition: state
-  #         entity_id: input_boolean.vacation
-  #         state: 'off'
-  #       - condition: time
-  #         weekday:
-  #           - mon
-  #           - wed
-  #           - fri
-  #   action:
-  #     - service: input_text.set_value
-  #       entity_id: input_text.vacuum_rooms
-  #       data_template: 
-  #         entity_id: input_text.vacuum_rooms
-  #         value: "kitchen,entry,hall,living_room,bathroom,bedroom,wardrobe,master_ensuite,master_passage"
   #     - service: automation.trigger
   #       entity_id: automation.vacuum_clean_rooms
 
