@@ -660,7 +660,9 @@ automation:
     trigger:
       platform: state
       entity_id: [
-        'input_boolean.vacuum_clean_study'
+        'input_boolean.vacuum_clean_study',
+        'input_boolean.vacuum_clean_hall',
+        'input_boolean.vacuum_clean_kitchen'
       ]
       to: 'on'
     action:
