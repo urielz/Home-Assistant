@@ -180,16 +180,8 @@ cards:
                   - input_boolean.vacuum_clean_study
                   - input_boolean.vacuum_clean_kitchen
                   - input_boolean.vacuum_clean_hall
-                 #  - input_boolean.vacuum_clean_entry
-                 #  - input_boolean.vacuum_clean_living_room
-                 #  - input_boolean.vacuum_clean_bathroom
-                 #  - input_boolean.vacuum_clean_bedroom
-                 #  - input_boolean.vacuum_clean_wardrobe
-                 #  - input_boolean.vacuum_clean_master_ensuite
-                 #  - input_boolean.vacuum_clean_master_passage
-                 #  - input_boolean.vacuum_clean_master_bedroom
-                 #  - input_boolean.vacuum_clean_table
-                 #  - input_boolean.vacuum_clean_zone_fridge
+                  - input_boolean.vacuum_clean_dinning_room
+                  - input_boolean.vacuum_clean_bathroom
                   - entity: automation.vacuum_clean_rooms
                     lock:
                       enabled: |-
