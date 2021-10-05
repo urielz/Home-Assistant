@@ -42,52 +42,77 @@ cards:
                 icon: bha:outdoor-lamp-variant
 
           - type: 'custom:button-card'
+            entity: switch.sonoff_patio
+            color: rgb(255, 255, 102)
+            name: Patio String Lights
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+            state:
+              - value: 'on'
+                icon: mdi:string-lights
+              - value: 'off'
+                icon: mdi:string-lights-off
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_humidifier
+            icon: mdi:lamp
+            color: rgb(255, 255, 102)
+            name: Tobi's Light
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+
+          - type: 'custom:button-card'
             entity: climate.heat_pump
             icon: mdi:air-conditioner
             color: rgb(255, 255, 102)
             name: Heat Pump
-            show_state: true
+            label: > 
+              [[[ return 'Power: ' + states['sensor.atm90e32as_ct5_watts'].state + 'W'; ]]]
+            show_state: false
             show_name: true
+            show_label: true
             styles:
               card:
               - font-size: 11px
-              - height: 75px
+              - height: 100px
 
           - type: 'custom:button-card'
-            entity: switch.sonoff_humidifier
-            icon: mdi:air-humidifier
+            entity: switch.sonoff_hvac
+            icon: 'mdi:hvac'
             color: rgb(255, 255, 102)
-            name: Humidifier
-            show_state: true
+            name: HVAC
+            label: >
+              [[[ return 'Power: ' + states['sensor.sonoff_hvac_power'].state + 'W'; ]]]
+            show_state: false
             show_name: true
+            show_label: true
             styles:
               card:
               - font-size: 11px
-              - height: 75px
-
-          - type: 'custom:button-card'
-            entity: switch.sonoff_freezer
-            icon: 'mdi:fridge'
-            color: rgb(255, 255, 102)
-            name: Freezer
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 75px
+              - height: 100px
 
           - type: 'custom:button-card'
             entity: switch.sonoff_fridge
             icon: 'mdi:fridge'
             color: rgb(255, 255, 102)
             name: Fridge
-            show_state: true
+            label: >
+              [[[ return 'Power: ' + states['sensor.sonoff_fridge_power'].state + 'W'; ]]]
+            show_state: false
             show_name: true
+            show_label: true
             styles:
               card:
               - font-size: 11px
-              - height: 75px              
+              - height: 100px              
 
           - type: 'custom:button-card'
             entity: switch.sonoff_washer
@@ -99,7 +124,7 @@ cards:
             styles:
               card:
               - font-size: 11px
-              - height: 75px
+              - height: 100px
             hold_action:
               action: more-info              
 
