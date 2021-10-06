@@ -2,6 +2,7 @@ title: Bellevue House
 views:
   - !include 'ui-lovelace_main.yaml'        # Main tab
   - !include 'ui-lovelace_devices.yaml'     # Any device that can be control and/or automatize
+  - !include 'ui-lovelace_vacuum.yaml'      # roomba vacuum tab
   - !include 'ui-lovelace_power.yaml'       # Track energy consumption and cost of various appliances
   - !include 'ui-lovelace_hardware.yaml'    # Monitor hardware status
   - !include 'ui-lovelace_stats.yaml'       # Various graphics stats pulled from influxDB/Grafana
