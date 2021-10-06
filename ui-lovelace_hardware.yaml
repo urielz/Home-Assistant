@@ -19,22 +19,22 @@ cards:
       - type: vertical-stack
         cards:
 
-          # RPI4
-          - type: 'custom:rpi-monitor-card'
-            entity: sensor.rpi_monitor_rpi4
-            name: Raspberry Pi 4
-            card_style: full
-            temp_scale: C
-            fs_severity:
-              - color: Green
-                from: 0
-                to: 25
-              - color: Orange
-                from: 26
-                to: 50
-              - color: Red
-                from: 51
-                to: 100
+          # # RPI4
+          # - type: 'custom:rpi-monitor-card'
+          #   entity: sensor.rpi_monitor_rpi4
+          #   name: Raspberry Pi 4
+          #   card_style: full
+          #   temp_scale: C
+          #   fs_severity:
+          #     - color: Green
+          #       from: 0
+          #       to: 25
+          #     - color: Orange
+          #       from: 26
+          #       to: 50
+          #     - color: Red
+          #       from: 51
+          #       to: 100
 
           # Printer Header
           - type: "custom:button-card" # https://github.com/custom-cards/button-card
@@ -50,14 +50,14 @@ cards:
                 icon: mdi:printer
                 name: Status
                 show_state: true
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
                       [[[
                         return states['sensor.hl_l2340d_status'].state != 'sleep';
                       ]]]
-                    color: rgb(46,204,64) # green
+                    color: rgb(67,192,121) # green
                   - operator: default
                     color: rgb(224, 224, 224) # gray
                 styles:
@@ -69,7 +69,7 @@ cards:
                 icon: mdi:stack-overflow
                 name: Pages 
                 show_state: true
-                size: 30%
+                size: 40%
                 state:
                   - operator: default
                     color: rgb(224, 224, 224) # gray
@@ -82,7 +82,7 @@ cards:
                 icon: mdi:printer-3d-nozzle
                 name: Black Toner
                 show_state: true
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
@@ -91,7 +91,7 @@ cards:
                       ]]]
                     color: rgb(255,65,54) # red                
                   - operator: default
-                    color: rgb(46, 204, 64) # green
+                    color: rgb(67, 192, 121) # green
                 styles:
                   card:
                     - font-size: 12px
@@ -101,7 +101,7 @@ cards:
                 icon: mdi:chart-donut
                 name: Drum Life
                 show_state: true
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
@@ -110,7 +110,7 @@ cards:
                       ]]]
                     color: rgb(255,65,54) # red                
                   - operator: default
-                    color: rgb(46, 204, 64) # green
+                    color: rgb(67, 192, 121) # green
                 styles:
                   card:
                     - font-size: 12px                       
@@ -140,16 +140,16 @@ cards:
                 entity: sensor.kuroshio_free_space
                 icon: mdi:harddisk-plus
                 show_state: true
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
                       [[[
                         return states['sensor.kuroshio_free_space'].state < 500;
                       ]]]
-                    color: rgb(255,65,54) # red
+                    color: rgb(221,79,65) # red
                   - operator: default
-                    color: rgb(46, 204, 64) # green
+                    color: rgb(67, 192, 121) # green
                 styles:
                   card:
                     - font-size: 12px
@@ -158,7 +158,7 @@ cards:
                 entity: sensor.kuroshio_drive_1_status
                 icon: mdi:harddisk
                 show_state: true
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
@@ -167,26 +167,25 @@ cards:
                       ]]]
                     color: rgb(255,65,54) # red
                   - operator: default
-                    color: rgb(46, 204, 64) # green
+                    color: rgb(67, 192, 121) # green
                 styles:
                   card:
                     - font-size: 12px
               - type: "custom:button-card" # https://github.com/custom-cards/button-card
-                entity: sensor.kuroshio_drive_2_status
                 name: HDD 2 Status
+                entity: sensor.kuroshio_drive_2_status
                 icon: mdi:harddisk
                 show_state: true
-                color: rgb(68,115,158)
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
                       [[[
                         return states['sensor.kuroshio_drive_2_status'].state != 'normal';
                       ]]]
-                    color: rgb(255,65,54)
+                    color: rgb(255,65,54) # red
                   - operator: default
-                    color: rgb(46, 204, 64)
+                    color: rgb(67, 192, 121) # green
                 styles:
                   card:
                     - font-size: 12px
@@ -196,202 +195,55 @@ cards:
                 icon: mdi:nas
                 show_state: false
                 show_label: true
-                color: rgb(68,115,158)
-                size: 30%
+                size: 40%
                 state:
                   - operator: template
                     value: >
                       [[[
                         return states['binary_sensor.kuroshio_update_available'].state == 'On';
                       ]]]
-                    color: rgb(46, 204, 64)
-                    label: update available
+                    color: rgb(255,65,54) # red
+                    label: update pending 
                   - operator: default
-                    color: rgb(46, 204, 64)
+                    color: rgb(67, 192, 121) # green
                     label: no updates
                 styles:
                   card:
                     - font-size: 12px
 
           # Row 3: Main Gauges
-          - cards:             
-              - type: gauge # https://www.home-assistant.io/lovelace/gauge/
-                name: CPU              
-                entity: sensor.kuroshio_cpu_utilization_total
-                min: 0
-                max: 100
-                severity:
-                  green: 0
-                  red: 80
-                  yellow: 50
-              - type: gauge # https://www.home-assistant.io/lovelace/gauge/
-                name: Memory
-                entity: sensor.kuroshio_memory_usage_real
-                min: 0
-                max: 100
-                severity:
-                  green: 0
-                  red: 90
-                  yellow: 70
-              - type: gauge # https://www.home-assistant.io/lovelace/gauge/
-                name: Storage
-                entity: sensor.kuroshio_volume_1_volume_used
-                min: 0
-                max: 100
-                severity:
-                  green: 0
-                  red: 90
-                  yellow: 80
+          - cards:
+              - type: iframe
+                url: >- 
+                  http://192.168.0.19:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1632912498372&to=1632934098372&panelId=4&refresh=1m
+                aspect_ratio: 80%
+              - type: iframe
+                url: >- 
+                  http://192.168.0.19:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1632913468237&to=1632935068238&panelId=5&refresh=1m
+                aspect_ratio: 80%
+              - type: iframe
+                url: >- 
+                  http://192.168.0.19:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1632913717993&to=1632935317993&panelId=6&refresh=1m
+                aspect_ratio: 80%
+
             type: horizontal-stack
 
           # NAS Traffic -------------------------------------------------------
-          # https://github.com/RomRider/apexcharts-card
-          #
           - cards:
-              - type: custom:apexcharts-card
-                apex_config: # see: https://apexcharts.com/docs
-                  chart:
-                    height: 220
-                  legend:
-                    show: false
-                  # xaxis:
-                  #   offsetY: 5
-                  grid:
-                    borderColor: '#90A4AE'
-                    strokeDashArray: 2
-                yaxis:
-                  - id: main
-                    apex_config:
-                      tickAmount: 3
-                      decimalsInFloat: 0
-                  - id: sec
-                    apex_config:
-                      tickAmount: 1
-                    show:
-                      false
-                graph_span: 48hr
-                all_series_config:
-                  stroke_width: 1.5
-                  opacity: 0.8
-                  transform: return x / 1024;
-                  unit: Mb/s
-                  curve: smooth
-                  show:
-                    legend_value: false
-                  group_by:
-                    func: avg
-                    duration: 30min
-                header:
-                  title: NAS Local Network Traffic                  
-                  show: true
-                  show_states: true
-                  colorize_states: true
-                series:
-                  - entity: binary_sensor.night
-                    transform: 'return x === "on" ? 1 : 0;'
-                    color: grey
-                    type: area
-                    curve: stepline
-                    opacity: 0.5
-                    stroke_width: 0
-                    yaxis_id: sec
-                    show:
-                      legend_value: false
-                      in_header: false
-                      name_in_header: false                
-                  - entity: sensor.kuroshio_network_down
-                    name: In
-                    color: rgb(204,0,0)
-                    curve: smooth
-                    type: area
-                    invert: true
-                    yaxis_id: main                    
-                  - entity: sensor.kuroshio_network_up
-                    name: Out
-                    color: rgb(0,102,204)
-                    curve: smooth
-                    type: area
-                    yaxis_id: main
+              - type: iframe
+                url: >- 
+                  http://192.168.0.19:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=now&to=now-30h&panelId=2&refresh=1m
+                aspect_ratio: 80%
+
             type: horizontal-stack
 
-          # CPU and HDD Temperature -------------------------------------------
-          # https://github.com/RomRider/apexcharts-card
-          #
+        # NAS Traffic -------------------------------------------------------
           - cards:
-              - type: custom:apexcharts-card
-                apex_config:
-                  chart:
-                    height: 220
-                  legend:
-                    show: 
-                      false
-                  grid:
-                    borderColor: '#90A4AE'
-                    strokeDashArray: 2
-                header:
-                  show: true
-                  show_states: true
-                  colorize_states: true
-                  title: NAS CPU and HDD Temperature
-                yaxis:
-                  - id: main
-                    apex_config:
-                      tickAmount: 3
-                      decimalsInFloat: 0
-                  - id: sec
-                    apex_config:
-                      tickAmount: 1
-                    show:
-                      false
-                graph_span: 48h
-                all_series_config:
-                  curve: smooth
-                  stroke_width: 1.5
-                  show:
-                    legend_value: false
-                  group_by:
-                    func: avg
-                    duration: 30min
-                series:
-                  - entity: binary_sensor.night
-                    transform: 'return x === "on" ? 1 : 0;'
-                    color: grey
-                    type: area
-                    curve: stepline
-                    opacity: 0.5
-                    stroke_width: 0
-                    yaxis_id: sec
-                    show:
-                      legend_value: false
-                      in_header: false
-                      name_in_header: false
-                  - entity: sensor.kuroshio_temperature
-                    name: CPU
-                    color: rgb(255,255,255)
-                    yaxis_id: main
-                  - entity: sensor.kuroshio_drive_1_temperature
-                    name: Drive 1
-                    color: rgb(67,192,121) # green
-                    yaxis_id: main            
-                  - entity: sensor.kuroshio_drive_2_temperature
-                    name: Drive 2
-                    color: rgb(240,195,39,255) # yellow
-                    yaxis_id: main
-                style: |
-                  ha-card {
-                       font-size: 14px;
+              - type: iframe
+                url: >- 
+                  http://192.168.0.19:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&panelId=12&refresh=1m
+                aspect_ratio: 80%
 
-                       # leaving this here for reference:
-                       #--ha-card-background: rgba(0, 0, 0, 0);
-                       #box-shadow: none;
-                       #margin: 8px 8px 18px 8px;
-                       #text-align: center;
-                       #font-weight: 250;
-                       #font-family: Segoe Ui Light;
-                     }
-                     div#header__title {
-                       font-size: 16px;
-                     }                    
             type: horizontal-stack
 
       ######################################################################
