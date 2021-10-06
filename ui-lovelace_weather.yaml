@@ -1,0 +1,11 @@
+title: Weather
+icon: 'mdi:weather-cloudy'
+panel: true
+badges: []
+cards:
+
+   # Webpage Card (Windy) --------------------------------------------------
+   # https://www.home-assistant.io/lovelace/iframe/
+   # windy widget: https://www.windy.com/-Embed-widget-on-page/widgets
+   - type: iframe
+     url: https://embed.windy.com/embed2.html?lat=44.634&lon=-63.582&detailLat=44.634&detailLon=-63.582&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"frameborder="0"
