@@ -1,0 +1,409 @@
+title: Home Current Conditions 
+icon: 'mdi:home-thermometer'
+panel: true
+badges: []
+cards:
+
+  # 
+  # https://github.com/thomasloven/lovelace-layout-card
+  # 
+  - type: 'custom:layout-card'
+    layout_type: vertical
+    max_columns: 3 
+    cards:
+
+      # .......................................................................
+      # Column 1
+      # .......................................................................
+
+      # Living Room chart (T,P,RH,AH,TD,HI) -----------------------------------
+      # https://github.com/custom-cards/button-card
+      #
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card" # Header
+            name: Living Room Current Conditions
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 1px 1px rgb(147,6,149,0.5)
+                - box-shadow: 0px 0px 1px 1px rgb(147,6,149,0.5)
+                - background-color: rgb(147,6,149,0.1)              
+                - font-size: 16px
+      - type: vertical-stack
+        cards:                
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Temperature
+                entity: sensor.living_room_temperature
+                icon: mdi:thermometer
+                name: Temperature
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Heat Index
+                entity: sensor.living_room_heatindex
+                icon: mdi:thermometer-plus
+                name: Heat Index
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Dew Point
+                entity: sensor.living_room_dewpoint
+                icon: mdi:thermometer-lines
+                name: Dew Point
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Relative Humidity
+                entity: sensor.living_room_humidity
+                icon: mdi:water-percent
+                name: Humidity
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Absolute Humidity
+                entity: sensor.living_room_absolutehumidity
+                icon: mdi:water
+                name: AH (ρv)
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Pressure
+                entity: sensor.gameroom_pressure
+                icon: mdi:gauge
+                name: Pressure
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+
+      # Game Room chart (T,P,RH,AH,TD,HI) -----------------------------------
+      # https://github.com/custom-cards/button-card
+      #
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card" # Header
+            name: Gameroom Current Conditions
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 1px 1px rgb(234,194,40,0.5)
+                - box-shadow: 0px 0px 1px 1px rgb(234,194,40,0.5)
+                - background-color: rgb(234,194,40,0.1)
+                - font-size: 16px
+      - type: vertical-stack
+        cards:                
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Temperature
+                entity: sensor.gameroom_temperature
+                icon: mdi:thermometer
+                name: Temperature
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Heat Index
+                entity: sensor.gameroom_heatindex
+                icon: mdi:thermometer-plus
+                name: Heat Index
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Dew Point
+                entity: sensor.gameroom_dewpoint
+                icon: mdi:thermometer-lines
+                name: Dew Point
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Relative Humidity
+                entity: sensor.gameroom_humidity
+                icon: mdi:water-percent
+                name: Humidity
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Absolute Humidity
+                entity: sensor.gameroom_absolutehumidity
+                icon: mdi:water
+                name: AH (ρv)
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Pressure
+                entity: sensor.gameroom_pressure
+                icon: mdi:gauge
+                name: Pressure
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px               
+
+      - type: custom:layout-break
+      
+      # .......................................................................
+      # Column 2 
+      # .......................................................................
+
+      # Tobi's Bedroom chart (T,P,RH,AH,TD,HI) --------------------------------
+      # https://github.com/custom-cards/button-card
+      #
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card" # Header
+            name: "Tobi's Bedroom Current Conditions"
+            styles:
+              card:
+                - font-size: 16px
+                - -webkit-box-shadow: 0px 0px 1px 1px rgb(54,152,220,0.5)
+                - box-shadow: 0px 0px 1px 1px rgb(54,152,220,0.5)
+                - background-color: rgb(54,152,220,0.1)
+      - type: vertical-stack
+        cards:                
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Temperature
+                entity: sensor.tobis_bedroom_temperature
+                icon: mdi:thermometer
+                name: Temperature
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Heat Index
+                entity: sensor.tobis_bedroom_heatindex
+                icon: mdi:thermometer-plus
+                name: Heat Index
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Dew Point
+                entity: sensor.tobis_bedroom_dewpoint
+                icon: mdi:thermometer-lines
+                name: Dew Point
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Relative Humidity
+                entity: sensor.tobis_bedroom_humidity
+                icon: mdi:water-percent
+                name: Humidity
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Absolute Humidity
+                entity: sensor.tobis_bedroom_absolutehumidity
+                icon: mdi:water
+                name: AH (ρv)
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Pressure
+                entity: sensor.tobis_bedroom_pressure
+                icon: mdi:gauge
+                name: Pressure
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+
+ # Laundry Room Chart (T,P,RH,AH,TD,HI) -----------------------------------
+      # https://github.com/custom-cards/button-card
+      #
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card" # Header
+            name: Laundry Room Current Conditions
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 1px 1px rgb(56,198,116,0.5)
+                - box-shadow: 0px 0px 1px 1px rgb(56,198,116,0.5)
+                - background-color: rgb(56,198,116,0.1)
+                - font-size: 16px
+      - type: vertical-stack
+        cards:                
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Temperature
+                entity: sensor.laundry_room_temperature
+                icon: mdi:thermometer
+                name: Temperature
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Heat Index
+                entity: sensor.laundry_room_heatindex
+                icon: mdi:thermometer-plus
+                name: Heat Index
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Dew Point
+                entity: sensor.laundry_room_dewpoint
+                icon: mdi:thermometer-lines
+                name: Dew Point
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Relative Humidity
+                entity: sensor.laundry_room_humidity
+                icon: mdi:water-percent
+                name: Humidity
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Absolute Humidity
+                entity: sensor.laundry_room_absolutehumidity
+                icon: mdi:water
+                name: AH (ρv)
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Pressure
+                entity: sensor.laundry_room_pressure
+                icon: mdi:gauge
+                name: Pressure
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px                         
+
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 3 
+      # .......................................................................
+
+      # Office Chart (T,P,RH,AH,TD,HI) -----------------------------------
+      # https://github.com/custom-cards/button-card
+      #
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card" # Header
+            name: Office Current Conditions
+            styles:
+              card:
+                - -webkit-box-shadow: 0px 0px 1px 1px rgb(224,78,65,0.5)
+                - box-shadow: 0px 0px 1px 1px rgb(224,78,65,0.5)
+                - background-color: rgb(224,78,65,0.1)
+                - font-size: 16px
+      - type: vertical-stack
+        cards:                
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Temperature
+                entity: sensor.office_temperature
+                icon: mdi:thermometer
+                name: Temperature
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Heat Index
+                entity: sensor.office_heatindex
+                icon: mdi:thermometer-plus
+                name: Heat Index
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Dew Point
+                entity: sensor.office_dewpoint
+                icon: mdi:thermometer-lines
+                name: Dew Point
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # Relative Humidity
+                entity: sensor.office_humidity
+                icon: mdi:water-percent
+                name: Humidity
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Absolute Humidity
+                entity: sensor.office_absolutehumidity
+                icon: mdi:water
+                name: AH (ρv)
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # Pressure
+                entity: sensor.office_pressure
+                icon: mdi:gauge
+                name: Pressure
+                show_state: true
+                size: 30%
+                styles:
+                  card:
+                    - font-size: 12px
