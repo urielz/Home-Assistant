@@ -4,9 +4,10 @@ views:
   - !include 'ui-lovelace_devices.yaml'     # Any device that can be control and/or automatize
   - !include 'ui-lovelace_vacuum.yaml'      # roomba vacuum tab
   - !include 'ui-lovelace_power.yaml'       # Track energy consumption and cost of various appliances
+  - !include 'ui-lovelace_cost.yaml'        # Cost tracking of various appliances  
   - !include 'ui-lovelace_hardware.yaml'    # Monitor hardware status
+  - !include 'ui-lovelace_sensors.yaml'     # Sensors - Current conditions
   - !include 'ui-lovelace_stats.yaml'       # Various graphics stats pulled from influxDB/Grafana
-  - !include 'ui-lovelace_cost.yaml'        # Cost tracking of various appliances
   - !include 'ui-lovelace_weather.yaml'     # Windy map
  
  # - !include 'ui-lovelace_main_dev.yaml' # failed attempt to use grid layout (in order to have variable width columns)
