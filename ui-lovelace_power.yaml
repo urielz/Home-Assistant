@@ -5,4 +5,4 @@ badges: []
 cards:
   - type: iframe
     url: >-
-      http://192.168.0.19:8123/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d/YZqQ71Hnk/energy?orgId=1&from=now-3d&to=now&kiosk=tv
+      http://192.168.0.19:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d/YZqQ71Hnk/energy?orgId=1&from=now-3d&to=now&kiosk=tv
