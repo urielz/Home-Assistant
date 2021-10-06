@@ -571,7 +571,7 @@ automation:
         entity_id: input_boolean.vacuum_maint_due
 
   # Add Rooms for Ordered Cleaning
-  - alias: Vacuum Add Rooms for Cleaning
+  - alias: Vacuum Add Rooms for Cleaning 
     initial_state: true
     trigger:
       platform: state
