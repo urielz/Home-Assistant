@@ -16,17 +16,29 @@ washer_yearly:
   source: sensor.washer_energy_spent
   cycle: yearly
 
-# fridge_daily:
-#   source: sensor.fridge_energy_spent
-#   cycle: daily
+fridge_monthly:
+  source: sensor.fridge_energy_spent
+  cycle: monthly
 
-# fridge_monthly:
-#   source: sensor.fridge_energy_spent
-#   cycle: monthly
+fridge_yearly:
+  source: sensor.fridge_energy_spent
+  cycle: yearly
 
-# fridge_yearly:
-#   source: sensor.fridge_energy_spent
-#   cycle: yearly
+hvac_monthly:
+  source: sensor.hvac_energy_spent
+  cycle: monthly
+
+hvac_yearly:
+  source: sensor.hvac_energy_spent
+  cycle: yearly
+
+dishwasher_monthly:
+  source: sensor.dishwasher_energy_spent
+  cycle: monthly
+
+dishwasher_yearly:
+  source: sensor.dishwasher_energy_spent
+  cycle: yearly  
 
 # av_daily:
 #   source: sensor.av_energy_spent
