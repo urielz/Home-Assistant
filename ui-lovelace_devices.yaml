@@ -58,6 +58,18 @@ cards:
                 icon: mdi:string-lights-off
 
           - type: 'custom:button-card'
+            entity: light.guestroom_bedside
+            icon: mdi:lamp
+            color: rgb(255, 255, 102)
+            name: Guestroom Bedside
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px                
+
+          - type: 'custom:button-card'
             entity: switch.sonoff_humidifier
             icon: mdi:lamp
             color: rgb(255, 255, 102)
@@ -67,7 +79,40 @@ cards:
             styles:
               card:
               - font-size: 11px
+              - height: 75px            
+
+          # placeholder
+          - type: 'custom:button-card'
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
               - height: 75px
+
+          # placeholder
+          - type: 'custom:button-card'
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px              
+
+          - type: 'custom:button-card'
+            entity: switch.sonoff_tv_plus
+            icon: mdi:television
+            color: rgb(255, 255, 102)
+            name: Entertainment System
+            label: > 
+              [[[ return 'Power: ' + states['sensor.sonoff_tv_plus_power'].state + 'W'; ]]]
+            show_state: false
+            show_name: true
+            show_label: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 100px
 
           - type: 'custom:button-card'
             entity: climate.heat_pump
