@@ -93,8 +93,11 @@ recorder:
       - sensor.gameroom_*
       - sensor.laundry_*
       - sensor.sonoff_freezer_*
+      - sensor.sonoff_hvac_*
       - sensor.sonoff_washer_*
       - sensor.sonoff_fridge_*
+      - sensor.sonoff_tv_plus_*
+      - sensor.sonoff_audio_*
       - sensor.airthings_*
     entities:
       - sensor.temperature_mean
@@ -105,6 +108,9 @@ recorder:
       - switch.sonoff_freezer
       - switch.sonoff_humidifier
       - switch.sonoff_fridge
+      - switch.sonoff_hvac
+      - switch.sonoff_tv_plus
+      - switch.sonoff_audio
       - sensor.kuroshio_network_down
       - sensor.kuroshio_network_up
       - sensor.kuroshio_volume_1_average_disk_temp
@@ -112,6 +118,9 @@ recorder:
       - sensor.kuroshio_drive_2_temperature
       - sensor.kuroshio_temperature
       - sensor.kuroshio_free_space
+      - sensor.kuroshio_cpu_utilization_total
+      - sensor.kuroshio_memory_usage_real
+      - sensor.kuroshio_volume_1_volume_used
       - sensor.atm90e32as_ct2_amps   # dishwasher
       - sensor.atm90e32as_ct2_watts  #
       - sensor.atm90e32as_ct4_amps   # Heat Pump
@@ -139,10 +148,14 @@ influxdb:
       - sensor.gameroom_*
       - sensor.laundry_*
       - sensor.sonoff_freezer_*
+      - sensor.sonoff_hvac_*
       - sensor.sonoff_washer_*
       - sensor.sonoff_fridge_*
+      - sensor.sonoff_tv_plus_*
+      - sensor.sonoff_audio_*
       - sensor.airthings_*
     entities:
+      - binary_sensor.night
       - sensor.temperature_mean
       - sensor.humidity_mean
       - sensor.total_power      
@@ -150,6 +163,9 @@ influxdb:
       - switch.sonoff_freezer
       - switch.sonoff_humidifier
       - switch.sonoff_fridge
+      - switch.sonoff_hvac
+      - switch.sonoff_tv_plus
+      - switch.sonoff_audio
       - sensor.kuroshio_network_down
       - sensor.kuroshio_network_up
       - sensor.kuroshio_volume_1_average_disk_temp
@@ -157,13 +173,16 @@ influxdb:
       - sensor.kuroshio_drive_2_temperature      
       - sensor.kuroshio_temperature
       - sensor.kuroshio_free_space
+      - sensor.kuroshio_cpu_utilization_total
+      - sensor.kuroshio_memory_usage_real
+      - sensor.kuroshio_volume_1_volume_used      
       - sensor.atm90e32as_ct2_amps   # dishwasher
       - sensor.atm90e32as_ct2_watts  #
       - sensor.atm90e32as_ct4_amps   # Heat Pump
       - sensor.atm90e32as_ct4_watts  #
       - sensor.atm90e32as_ct5_amps   #
       - sensor.atm90e32as_ct5_watts        
-      - sensor.atm90e32as_total_kwh      
+      - sensor.atm90e32as_total_kwh
 
 # Climate Integration - Control and monitor HVAC devices and thermostats
 # Reference: https://www.home-assistant.io/integrations/climate/
