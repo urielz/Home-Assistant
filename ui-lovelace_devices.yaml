@@ -115,6 +115,21 @@ cards:
               - height: 100px
 
           - type: 'custom:button-card'
+            entity: switch.sonoff_audio
+            icon: mdi:music-clef-treble
+            color: rgb(255, 255, 102)
+            name: Audio System
+            label: > 
+              [[[ return 'Power: ' + states['sensor.sonoff_audio_power'].state + 'W'; ]]]
+            show_state: false
+            show_name: true
+            show_label: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 100px              
+
+          - type: 'custom:button-card'
             entity: climate.heat_pump
             icon: mdi:air-conditioner
             color: rgb(255, 255, 102)
@@ -223,4 +238,3 @@ cards:
             #artwork: cover
             icon: mdi:music
             source: icon
-   
