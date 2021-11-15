@@ -32,6 +32,14 @@ hvac_yearly:
   source: sensor.hvac_energy_spent
   cycle: yearly
 
+hydro_monthly:
+  source: sensor.hydro_energy_spent
+  cycle: monthly
+
+hydro_yearly:
+  source: sensor.hydro_energy_spent
+  cycle: yearly  
+
 dishwasher_monthly:
   source: sensor.dishwasher_energy_spent
   cycle: monthly

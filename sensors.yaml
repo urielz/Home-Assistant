@@ -15,7 +15,7 @@
 
 # Riemann sum (Freezer)
 # https://www.home-assistant.io/integrations/integration/
-- platform: integration 
+- platform: integration
   source: sensor.sonoff_freezer_power # POWR2 hooked up to the freezer
   name: freezer_energy_spent
   unit_prefix: k
@@ -56,7 +56,16 @@
   name: dishwasher_energy_spent
   unit_prefix: k
   unit_time: h
-  round: 2  
+  round: 2
+
+# Riemann sum (Hydroponic Lights)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_hydroponic_power
+  name: hydro_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2    
 
 # MIN/MAX sensor to compute min/max/mean/median
 # https://www.home-assistant.io/integrations/min_max/
@@ -126,6 +135,18 @@
     hvac_cost_yearly:
       friendly_name: 'HVAC Yearly Cost'
       value_template: "{{ (states('sensor.hvac_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Hydroponics Cost
+- platform: template
+  sensors:
+    hydro_cost_monthly:
+      friendly_name: 'Hydroponic Monthly Cost'
+      value_template: "{{ (states('sensor.hydro_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    hydro_cost_yearly:
+      friendly_name: 'Hydroponic Yearly Cost'
+      value_template: "{{ (states('sensor.hydro_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
       unit_of_measurement: "$"
 
 # Dishwasher Cost
@@ -213,6 +234,9 @@
 # Note: Entities won't show up in HA unless they're added to Airthings dashboard
 #  https://github.com/Danielhiversen/home_assistant_airthings_cloud/issues/25
 #
+# Note (Nov-2021): The component is now in HA core. I need to figure out how to
+# migrate and keep the data (without having different variables created)...
+# 
 - platform: airthings_cloud
   username: !secret airthings_username
   password: !secret airthings_password
