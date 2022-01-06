@@ -4,7 +4,7 @@
 # 2021-Jan-26: Switch to YAML mode (lovelace GUI is a mess and lacks functionality)
 # 2021-May-16: Started from scratch, mayor changes: 
 #              - Improved speed and stability: migrate Debian to SSD
-#              - Variables to store in db need to be explicity add
+#              - Variables to store in db need to be explicity added
 #
 
 
@@ -66,7 +66,11 @@ lovelace:
     # Scheduler Card (HACS): https://github.com/nielsfaber/scheduler-card
     # Needs this component as well: https://github.com/nielsfaber/scheduler-component
     - {type: module, url: '/local/community/scheduler-card/scheduler-card.js'}
-                
+
+frontend:
+  extra_module_url:
+    - /local/community/lovelace-card-mod/card-mod.js
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -112,7 +116,7 @@ recorder:
       - switch.sonoff_frontdoor
       - switch.sonoff_freezer
       - switch.sonoff_humidifier
-      - switch.sonoff_fridge
+      - switch.sonoff_fridge_power 
       - switch.sonoff_hvac
       - switch.sonoff_tv_plus
       - switch.sonoff_audio
@@ -156,7 +160,7 @@ influxdb:
       - sensor.sonoff_freezer_*
       - sensor.sonoff_hvac_*
       - sensor.sonoff_washer_*
-      - sensor.sonoff_fridge_*
+      - sensor.sonoff_fridge_power # discarding current and voltage
       - sensor.sonoff_tv_plus_*
       - sensor.sonoff_audio_*
       - sensor.airthings_*
