@@ -58,10 +58,22 @@ cards:
                 icon: mdi:string-lights-off
 
           - type: 'custom:button-card'
-            entity: light.guestroom_bedside
+            entity: switch.sonoff_hydroponic
+            color: rgb(255, 255, 102)
+            icon: mdi:sprout
+            name: Hydroponic Lights
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+
+          - type: 'custom:button-card'
+            entity: light.lab_ambience_light 
             icon: mdi:lamp
             color: rgb(255, 255, 102)
-            name: Guestroom Bedside
+            name: Lab Mood Light
             show_state: true
             show_name: true
             styles:
@@ -69,8 +81,9 @@ cards:
               - font-size: 11px
               - height: 75px                
 
+
           - type: 'custom:button-card'
-            entity: switch.sonoff_humidifier
+            entity: light.tobis_light 
             icon: mdi:lamp
             color: rgb(255, 255, 102)
             name: Tobi's Light
@@ -81,17 +94,13 @@ cards:
               - font-size: 11px
               - height: 75px            
 
-          # placeholder
-          - type: 'custom:button-card'
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 75px
 
           # placeholder
           - type: 'custom:button-card'
+            entity: light.game_room
+            icon: mdi:floor-lamp-torchiere
+            color: rgb(255, 255, 102)
+            name: Gameroom Floorlamp
             show_state: true
             show_name: true
             styles:
@@ -115,12 +124,12 @@ cards:
               - height: 100px
 
           - type: 'custom:button-card'
-            entity: switch.sonoff_audio
+            entity: switch.s31_living_room_audio
             icon: mdi:music-clef-treble
             color: rgb(255, 255, 102)
             name: Audio System
             label: > 
-              [[[ return 'Power: ' + states['sensor.sonoff_audio_power'].state + 'W'; ]]]
+              [[[ return 'Power: ' + states['sensor.s31_power_living_room_audio'].state + 'W'; ]]]
             show_state: false
             show_name: true
             show_label: true
@@ -238,3 +247,11 @@ cards:
             #artwork: cover
             icon: mdi:music
             source: icon
+
+          # RGB control
+          # https://github.com/ljmerza/light-entity-card
+          - type: custom:light-entity-card
+            entity: light.lab_ambience_light
+            persist_features: true
+            shorten_cards: true
+            show_slider_percent: true
