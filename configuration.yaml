@@ -7,7 +7,6 @@
 #              - Variables to store in db need to be explicity added
 #
 
-
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
@@ -67,6 +66,21 @@ lovelace:
     # Needs this component as well: https://github.com/nielsfaber/scheduler-component
     - {type: module, url: '/local/community/scheduler-card/scheduler-card.js'}
 
+    # Browsermod (HACS): https://github.com/thomasloven/hass-browser_mod
+    - {type: module, url: '/browser_mod.js'} 
+
+    # Light Entity Card (HACS): https://github.com/ljmerza/light-entity-card
+    - {type: module, url: '/local/community/light-entity-card/light-entity-card.js'}
+                
+    
+    # testing....
+
+    - {type: module, url: 'local/community/config-template-card/config-template-card.js'}
+                
+    # Dirty Hack to make webrtc resource to load properly
+    - {type: module, url: '/local/community/webrtc/webrtc-camera.js'}
+                
+
 frontend:
   extra_module_url:
     - /local/community/lovelace-card-mod/card-mod.js
@@ -87,7 +101,7 @@ input_number: !include input_number.yaml
 homeassistant:
   packages: !include_dir_named packages
 
-breaking_changes: # https://github.com/custom-components/breaking_changes
+# breaking_changes: # https://github.com/custom-components/breaking_changes
 
 # Recorder Integration - Configure which integrations should be included in recordings
 # If set, all other entities not explicitly stated here are ignored
@@ -190,6 +204,9 @@ influxdb:
       - sensor.atm90e32as_ct5_amps   #
       - sensor.atm90e32as_ct5_watts        
       - sensor.atm90e32as_total_kwh
+  component_config:
+    sensor.atm90e32as_ct4_watts:
+      override_measurement: power
 
 # Climate Integration - Control and monitor HVAC devices and thermostats
 # Reference: https://www.home-assistant.io/integrations/climate/
@@ -219,3 +236,7 @@ sonoff:
 # https://www.home-assistant.io/integrations/sensor.mqtt/
 mqtt:
   discovery: true
+
+ffmpeg:
+
+browser_mod:
