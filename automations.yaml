@@ -1,0 +1,16 @@
+- id: eufy_stop
+  alias: "Eufy - Stop doorbell stream after 2.50 min"
+  trigger:
+   - platform: state
+     entity_id: binary_sensor.doorbell_streaming_sensor
+     to: 'True'
+     from: 'False'
+  condition: []
+  action:
+    - delay:
+        hours: 0
+        minutes: 2
+        seconds: 50
+        milliseconds: 0
+    - service: script.eufy_camera_off
+  mode: restart

@@ -1,0 +1,87 @@
+# https://www.home-assistant.io/integrations/utility_meter/
+
+freezer_monthly:
+  source: sensor.freezer_energy_spent
+  cycle: monthly
+
+freezer_yearly:
+  source: sensor.freezer_energy_spent
+  cycle: yearly
+
+washer_monthly:
+  source: sensor.washer_energy_spent
+  cycle: monthly
+
+washer_yearly:
+  source: sensor.washer_energy_spent
+  cycle: yearly
+
+fridge_monthly:
+  source: sensor.fridge_energy_spent
+  cycle: monthly
+
+fridge_yearly:
+  source: sensor.fridge_energy_spent
+  cycle: yearly
+
+hvac_monthly:
+  source: sensor.hvac_energy_spent
+  cycle: monthly
+
+hvac_yearly:
+  source: sensor.hvac_energy_spent
+  cycle: yearly
+
+hydro_monthly:
+  source: sensor.hydro_energy_spent
+  cycle: monthly
+
+hydro_yearly:
+  source: sensor.hydro_energy_spent
+  cycle: yearly  
+
+dishwasher_monthly:
+  source: sensor.dishwasher_energy_spent
+  cycle: monthly
+
+dishwasher_yearly:
+  source: sensor.dishwasher_energy_spent
+  cycle: yearly  
+
+# av_daily:
+#   source: sensor.av_energy_spent
+#   cycle: daily
+
+# av_monthly:
+#   source: sensor.av_energy_spent
+#   cycle: monthly
+
+# av_yearly:
+#   source: sensor.av_energy_spent
+#   cycle: yearly
+
+# # WIP: Internet bandwitdh is not quite right, I suspect it has to do with the way the Arris Router samples
+
+# internet_total_daily:
+#   source: sensor.arris_total
+#   cycle: daily
+
+# internet_up_daily:
+#   source: sensor.arris_up
+#   cycle: daily
+  
+# internet_down_daily:
+#   source: sensor.arris_down
+#   cycle: daily
+
+# internet_total_monthly:
+#   source: sensor.arris_total
+#   cycle: monthly
+    
+# internet_up_monthly:
+#   source: sensor.arris_up
+#   cycle: monthly
+      
+# internet_down_monthly:
+#   source: sensor.arris_down
+#   cycle: monthly    

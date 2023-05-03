@@ -1,0 +1,358 @@
+title: Hardware Status
+icon: 'mdi:chip'
+panel: true
+badges: []
+cards:
+
+  - type: 'custom:layout-card' # https://github.com/thomasloven/lovelace-layout-card
+    layout: vertical
+    max_columns: 3
+    column_width: 200
+    max_width: [40%, 40%, 20%]
+    cards:
+
+      ######################################################################
+      # 1st column
+      ######################################################################
+      # RPI4, Office Printer
+
+      - type: vertical-stack
+        cards:
+
+          # # RPI4
+          # - type: 'custom:rpi-monitor-card'
+          #   entity: sensor.rpi_monitor_rpi4
+          #   name: Raspberry Pi 4
+          #   card_style: full
+          #   temp_scale: C
+          #   fs_severity:
+          #     - color: Green
+          #       from: 0
+          #       to: 25
+          #     - color: Orange
+          #       from: 26
+          #       to: 50
+          #     - color: Red
+          #       from: 51
+          #       to: 100
+
+          - type: "custom:button-card" # https://github.com/custom-cards/button-card
+            name: RSSI WiFi devices   
+            styles:
+              card:
+                - font-size: 16px
+          - type: 'custom:config-template-card' # https://github.com/iantrich/config-template-card
+            variables:
+              - states['sensor.s31_rssi_lab'].state
+              - states['sensor.s31_rssi_living_room_multimedia'].state
+              - states['sensor.powr2_rssi_washer'].state
+            entities:
+              - sensor.s31_rssi_lab
+              - sensor.s31_rssi_living_room_multimedia
+              - sensor.powr2_rssi_washer
+            card:
+              type: 'custom:hui-entities-card'
+              show_header_toggle: false 
+              entities:
+                - entity: sensor.s31_rssi_lab
+                  name: "${'S31 Lab:' + '\xa0'.repeat(34) + (-vars[0] >= 70 ? 'Weak' : -vars[0] >= 67 ? 'Reliable' : -vars[0] >= 60 ? 'Strong' : 'Excellent' )}"
+                  icon: "${-vars[0] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"
+                - entity: sensor.s31_rssi_living_room_multimedia 
+                  name: "${'S31 Living Multimedia:' + '\xa0'.repeat(9) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
+                  icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
+                - entity: sensor.powr2_rssi_washer
+                  name: "${'POWR2 Laundry Washer:' + '\xa0'.repeat(5) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
+
+          # Printer Header
+          - type: "custom:button-card" # https://github.com/custom-cards/button-card
+            name: Office Printer 
+            styles:
+              card:
+                - font-size: 16px
+          - type: horizontal-stack
+            cards:
+              # Printer Status
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_status 
+                icon: mdi:printer
+                name: Status
+                show_state: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hl_l2340d_status'].state != 'sleep';
+                      ]]]
+                    color: rgb(67,192,121) # green
+                  - operator: default
+                    color: rgb(224, 224, 224) # gray
+                styles:
+                  card:
+                    - font-size: 12px
+              # Page Counter
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_page_counter 
+                icon: mdi:stack-overflow
+                name: Pages 
+                show_state: true
+                size: 40%
+                state:
+                  - operator: default
+                    color: rgb(224, 224, 224) # gray
+                styles:
+                  card:
+                    - font-size: 12px
+              # Black Toner remaining
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_black_toner_remaining 
+                icon: mdi:printer-3d-nozzle
+                name: Black Toner
+                show_state: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hl_l2340d_black_toner_remaining'].state < 20;
+                      ]]]
+                    color: rgb(255,65,54) # red                
+                  - operator: default
+                    color: rgb(67, 192, 121) # green
+                styles:
+                  card:
+                    - font-size: 12px
+              # Drum Remaining Life     
+              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                entity: sensor.hl_l2340d_drum_remaining_life 
+                icon: mdi:chart-donut
+                name: Drum Life
+                show_state: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hl_l2340d_drum_remaining_life'].state < 20;
+                      ]]]
+                    color: rgb(255,65,54) # red                
+                  - operator: default
+                    color: rgb(67, 192, 121) # green
+                styles:
+                  card:
+                    - font-size: 12px                       
+
+      ######################################################################
+      # 2nd column
+      ######################################################################
+      # Kuroshio NAS
+
+      - type: vertical-stack
+        cards:
+          # Row 1: NAS Header
+          - type: "custom:button-card" # https://github.com/custom-cards/button-card
+            name: Kuroshio NAS - Synology DS216se
+            entity: sensor.kuroshio_last_boot
+            show_icon: false
+            show_state: false 
+            styles:
+              card:
+                - font-size: 16px
+
+          # Row 2: Overall Status
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                name: Free Space
+                entity: sensor.kuroshio_free_space
+                icon: mdi:harddisk-plus
+                show_state: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.kuroshio_free_space'].state < 500;
+                      ]]]
+                    color: rgb(221,79,65) # red
+                  - operator: default
+                    color: rgb(67, 192, 121) # green
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                name: HDD 1 Status
+                entity: sensor.kuroshio_drive_1_status
+                icon: mdi:harddisk
+                show_state: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.kuroshio_drive_1_status'].state != 'normal';
+                      ]]]
+                    color: rgb(255,65,54) # red
+                  - operator: default
+                    color: rgb(67, 192, 121) # green
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                name: HDD 2 Status
+                entity: sensor.kuroshio_drive_2_status
+                icon: mdi:harddisk
+                show_state: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.kuroshio_drive_2_status'].state != 'normal';
+                      ]]]
+                    color: rgb(255,65,54) # red
+                  - operator: default
+                    color: rgb(67, 192, 121) # green
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                entity: binary_sensor.kuroshio_update_available
+                name: Op. System
+                icon: mdi:nas
+                show_state: false
+                show_label: true
+                size: 40%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['binary_sensor.kuroshio_update_available'].state == 'On';
+                      ]]]
+                    color: rgb(255,65,54) # red
+                    label: update pending 
+                  - operator: default
+                    color: rgb(67, 192, 121) # green
+                    label: no updates
+                styles:
+                  card:
+                    - font-size: 12px
+
+          # Row 3: Main Gauges
+          - cards:
+              - type: iframe
+                url: >- 
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1632912498372&to=1632934098372&panelId=4&refresh=1m
+                aspect_ratio: 80%
+              - type: iframe
+                url: >- 
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1632913468237&to=1632935068238&panelId=5&refresh=1m
+                aspect_ratio: 80%
+              - type: iframe
+                url: >- 
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1632913717993&to=1632935317993&panelId=6&refresh=1m
+                aspect_ratio: 80%
+
+            type: horizontal-stack
+
+          # NAS Traffic -------------------------------------------------------
+          - cards:
+              - type: iframe
+                url: >- 
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=now&to=now-30h&panelId=2&refresh=1m
+                aspect_ratio: 80%
+
+            type: horizontal-stack
+
+        # NAS Traffic -------------------------------------------------------
+          - cards:
+              - type: iframe
+                url: >- 
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&panelId=12&refresh=1m
+                aspect_ratio: 80%
+
+            type: horizontal-stack
+
+      ######################################################################
+      # 3rd column
+      ######################################################################
+      # HASS
+
+      - type: vertical-stack
+        cards:
+        # type: horizontal-stack        
+          # Row 1: Tag
+          - type: "custom:button-card" # https://github.com/custom-cards/button-card
+            name: HASS Container
+            styles:
+              card:
+                - font-size: 16px
+          - type: "custom:button-card"
+            name: HASS Service Restart
+            icon: mdi:restart
+            size: 20%
+            tap_action:
+              action: call-service
+              service: homeassistant.restart
+            styles:
+              card:
+                - font-size: 12px
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: sensor.local_version
+                icon: mdi:home-assistant
+                name: Local Version
+                show_state: true
+                color: rgb(68,115,158)
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.local_version'].state != states['sensor.latest_version'].state;
+                      ]]]
+                    color: rgb(255,65,54)
+                  - operator: default
+                    color: rgb(46, 204, 64)
+                styles:
+                  card:
+                    - font-size: 12px                
+              - type: "custom:button-card"
+                icon: mdi:git
+                entity: sensor.latest_version
+                name: Latest Version
+                show_state: true
+                color: rgb(68,115,158)
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states["sensor.latest_version"].state
+                      ]]]
+                    color: rgb(46, 204, 64)
+                styles:
+                  card:
+                    - font-size: 12px
+              - type: "custom:button-card"
+                entity: sensor.hacs
+                name: Updates
+                show_state: true
+                color: rgb(68,115,158)
+                size: 30%
+                state:
+                  - operator: template
+                    value: >
+                      [[[
+                        return states['sensor.hacs'].state > 0;
+                      ]]]
+                    color: rgb(255,65,54)
+                  - operator: default
+                    color: rgb(46, 204, 64)
+                styles:
+                  card:
+                    - font-size: 12px
+      
+

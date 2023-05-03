@@ -1,0 +1,53 @@
+camera1_left:
+  sequence:
+    - service: sonoff.send_command
+      data:
+        device: '119965'  # use quotes, this is important
+        cmd: left
+
+camera1_right:
+  sequence:
+    - service: sonoff.send_command
+      data:
+        device: '119965'  # use quotes, this is important
+        cmd: right
+
+camera1_up:
+  sequence:
+    - service: sonoff.send_command
+      data:
+        device: '119965'  # use quotes, this is important
+        cmd: up
+
+camera1_down:
+  sequence:
+    - service: sonoff.send_command
+      data:
+        device: '119965'  # use quotes, this is important
+        cmd: down
+
+eufy_doorbell_start_livestream:
+  sequence:
+    - service: eufy_security.start_livestream
+      target:
+        entity_id:
+          - camera.doorbell
+        #device_id: YOUR-DOORBELL-DEVICE-ID
+    - service: browser_mod.window_reload
+  mode: single
+
+
+eufy_camera_off:
+  sequence:
+    - service: eufy_security.stop_livestream
+      target:
+        entity_id: camera.doorbell
+        #device_id:
+        #  - YOUR-DOORBELL-DEVICE-ID
+    - service: homeassistant.reload_config_entry
+      target:
+        entity_id: camera.doorbell
+        #device_id:
+        #  - YOUR-DOORBELL-DEVICE-ID
+  mode: single
+  icon: mdi:video-off

@@ -1,0 +1,82 @@
+title: Schedule
+badges: []
+panel: true
+icon: 'mdi:calendar-clock'
+cards:
+
+  - type: 'custom:layout-card' # https://github.com/thomasloven/lovelace-layout-card
+    layout_type: vertical
+    max_columns: 3
+    cards:
+
+      # .......................................................................
+      # Column 1
+      # .......................................................................
+      - type: vertical-stack
+        cards:
+
+          - type: custom:scheduler-card
+            include:
+              - switch.sonoff_frontdoor
+            title: 'Front Door Lights'
+            discover_existing: false
+            style: |
+              ha-card {
+                   font-size: 12px;
+                 }            
+
+          - type: custom:scheduler-card
+            include:
+              - switch.sonoff_hydroponic
+            title: 'Hydroponic Grow Lights'
+            discover_existing: false
+            style: |
+              ha-card {
+                   font-size: 12px;
+                 }            
+
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 2
+      # .......................................................................
+      - type: vertical-stack
+        cards:
+
+          - type: custom:scheduler-card
+            include:
+              - switch.sonoff_patio
+            title: 'Patio Lights'
+            discover_existing: false
+            style: |
+              ha-card {
+                   font-size: 12px;
+                 }            
+
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 3
+      # .......................................................................
+      - type: vertical-stack
+        cards:
+
+          - type: custom:scheduler-card
+            include:
+              - switch.sonoff_humidifier
+            title: "Tobi's Light"
+            font-size: 8
+            discover_existing: false
+            style: |
+              ha-card {
+                   font-size: 12px;
+                 }
+            # ha-markdown:
+            #   $: |
+            #     h1 {
+            #       font-size: 20px;
+            #       font-weight: bold;
+            #       font-family: Helvetica;
+            #       letter-spacing: '-0.01em';
+            #     }
+            #   type: markdown                 

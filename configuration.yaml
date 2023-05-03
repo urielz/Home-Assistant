@@ -1,0 +1,279 @@
+#
+# Home Assistant Configuration - Uriel Zajaczkovski
+# 2020-Dec-03: Initial setup
+# 2021-Jan-26: Switch to YAML mode (lovelace GUI is a mess and lacks functionality)
+# 2021-May-16: Started from scratch, mayor changes: 
+#              - Improved speed and stability: migrate Debian to SSD
+#              - Variables to store in db need to be explicity added
+#
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+lovelace:
+  mode: yaml
+  resources:
+    
+    # BHA Icons (HACS): https://github.com/hulkhaugen/hass-bha-icons
+    - {type: module, url: 'local/community/hass-bha-icons/hass-bha-icons.js'}
+
+    # layout-card (HACS) - https://github.com/thomasloven/lovelace-layout-card
+    - {type: module, url: '/local/community/lovelace-layout-card/layout-card.js'}
+
+    # mini-graph-card (HACS): https://github.com/kalkih/mini-graph-card
+    - {type: module, url: '/local/community/mini-graph-card/mini-graph-card-bundle.js?v=0.10.0'}
+
+    # mini-media-player (HACS): https://github.com/kalkih/mini-media-player
+    - {type: module, url: '/local/community/mini-media-player/mini-media-player-bundle.js'}
+
+    # Apex Charts (HACS): https://github.com/RomRider/apexcharts-card
+    - {type: module, url: '/local/community/apexcharts-card/apexcharts-card.js?v=1.9.0'}
+
+    # Simple Thermostat Card (HACS): https://github.com/nervetattoo/simple-thermostat
+    - {type: module, url: '/local/community/simple-thermostat/simple-thermostat.js'}
+
+    # Weather Card (HACS): https://github.com/bramkragten/weather-card
+    - {type: module, url: ' /local/community/weather-card/weather-card.js'}
+                
+    # Roomba Card (HACS): https://github.com/jeremywillans/lovelace-roomba-vacuum-card
+    - {type: module, url: ' /local/community/lovelace-roomba-vacuum-card/roomba-vacuum-card.js'}
+  
+    # card-mod (HACS) - https://github.com/thomasloven/lovelace-card-mod
+    # Dependencies: Roomba
+    - {type: module, url: '/local/community/lovelace-card-mod/card-mod.js'}
+
+    # button-card (HACS): https://github.com/custom-cards/button-card
+    # Dependencies: Roomba
+    - {type: module, url: '/local/community/button-card/button-card.js'}
+
+    # lovelace-fold-entity-row (HACS): https://github.com/thomasloven/lovelace-fold-entity-row
+    # Dependencies: Roomba
+    - {type: module, url: '/local/community/lovelace-fold-entity-row/fold-entity-row.js'}
+
+    # lovelace-template-entity-row (Manual): https://github.com/thomasloven/lovelace-template-entity-row
+    # Dependencies: ReCollect
+    - {type: module, url: '/local/community/lovelace-template-entity-row/template-entity-row.js'}
+
+    # text-divider-row (HACS): https://github.com/iantrich/text-divider-row
+    # Dependencies: Roomba
+    - {type: module, url: '/local/community/text-divider-row/text-divider-row.js'}
+
+    # check-button card (HACS): https://github.com/custom-cards/check-button-card
+    # Dependencies: Roomba, MQTT
+    - {type: module, url: '/local/community/check-button-card/check-button-card.js'}
+
+    # RaspberryPi Monitor Card (HACS): https://github.com/ironsheep/lovelace-rpi-monitor-card
+    # Need the daemon installed as well: https://github.com/ironsheep/RPi-Reporter-MQTT2HA-Daemon
+    - {type: module, url: '/local/community/lovelace-rpi-monitor-card/rpi-monitor-card.js'}
+
+    # Scheduler Card (HACS): https://github.com/nielsfaber/scheduler-card
+    # Needs this component as well: https://github.com/nielsfaber/scheduler-component
+    - {type: module, url: '/local/community/scheduler-card/scheduler-card.js'}
+
+    # Browsermod (HACS): https://github.com/thomasloven/hass-browser_mod
+    - {type: module, url: '/browser_mod.js'} 
+
+    # Light Entity Card (HACS): https://github.com/ljmerza/light-entity-card
+    - {type: module, url: '/local/community/light-entity-card/light-entity-card.js'}
+                
+    
+    # testing....
+
+    - {type: module, url: 'local/community/config-template-card/config-template-card.js'}
+                
+    # Dirty Hack to make webrtc resource to load properly
+    - {type: module, url: '/local/community/webrtc/webrtc-camera.js'}
+                
+
+frontend:
+  extra_module_url:
+    - /local/community/lovelace-card-mod/card-mod.js
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+binary_sensor: !include binary_sensors.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+utility_meter: !include utility_meters.yaml
+input_number: !include input_number.yaml
+
+homeassistant:
+  packages: !include_dir_named packages
+
+# breaking_changes: # https://github.com/custom-components/breaking_changes
+
+# Recorder Integration - Configure which integrations should be included in recordings
+# If set, all other entities not explicitly stated here are ignored
+# Reference: https://www.home-assistant.io/integrations/recorder/
+recorder:
+  include:
+    entity_globs:
+      - sensor.office_*
+      - sensor.tobis_*
+      - sensor.living_*
+      - sensor.gameroom_*
+      - sensor.laundry_*
+      - sensor.sonoff_freezer_*
+      - sensor.sonoff_hvac_*
+      - sensor.sonoff_washer_*
+      - sensor.sonoff_fridge_*
+      - sensor.sonoff_tv_plus_*
+      - sensor.sonoff_audio_*
+      - sensor.sonoff_hydroponic_*
+      - sensor.airthings_*
+    entities:
+      - sensor.temperature_mean
+      - sensor.humidity_mean
+      - sensor.total_power
+      - binary_sensor.night
+      - switch.sonoff_frontdoor
+      - switch.sonoff_freezer
+      - switch.sonoff_humidifier
+      - switch.sonoff_fridge_power 
+      - switch.sonoff_hvac
+      - switch.sonoff_tv_plus
+      - switch.sonoff_audio
+      - switch.sonoff_hydroponic
+      - sensor.kuroshio_network_down
+      - sensor.kuroshio_network_up
+      - sensor.kuroshio_volume_1_average_disk_temp
+      - sensor.kuroshio_drive_1_temperature
+      - sensor.kuroshio_drive_2_temperature
+      - sensor.kuroshio_temperature
+      - sensor.kuroshio_free_space
+      - sensor.kuroshio_cpu_utilization_total
+      - sensor.kuroshio_memory_usage_real
+      - sensor.kuroshio_volume_1_volume_used
+      - sensor.atm90e32as_ct2_amps   # dishwasher
+      - sensor.atm90e32as_ct2_watts  #
+      - sensor.atm90e32as_ct4_amps   # Heat Pump
+      - sensor.atm90e32as_ct4_watts  #
+      - sensor.atm90e32as_ct5_amps   #
+      - sensor.atm90e32as_ct5_watts  #
+      - sensor.atm90e32as_wifi
+      - sensor.atm90e32as_total_kwh
+
+# InfluxDB database
+# Reference: https://www.home-assistant.io/integrations/influxdb/
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+  include:
+    entity_globs:
+      - sensor.office_*                # ESP32 + derived variables (thermal comfort)
+      - sensor.tobis_*                 #
+      - sensor.gameroom_*              #
+      - sensor.laundry_*               #
+      - sensor.living_*                #
+      - sensor.airthings_*             # Kitchen: T, RH, VOC, Battery; Basement: T, RH, Radon, Battery
+      - sensor.pfsense_*               # pfsense variables
+      - binary_sensor.pfsense_*        #
+      - switch.pfsense_*               #
+      - update.pfsense_*               #
+    entities:
+      - sensor.sonoff_freezer_power    #  Sonoff POWR2 (discontinued)
+      - sensor.sonoff_hvac_power       #  Sonoff POWR2
+      - sensor.sonoff_washer_power     #  Sonoff POWR2
+      - sensor.sonoff_fridge_power     #  Sonoff POWR2 
+      - sensor.sonoff_hydroponic_power #  Sonoff POWR2
+      - sensor.sonoff_tv_plus_power    #  Sonoff S31
+      - sensor.sonoff_audio_power      #  Sonoff S31
+      
+      - binary_sensor.night            # day/night cycle state (need to store this for graphs)
+      - sensor.temperature_mean
+      - sensor.humidity_mean
+
+      - sensor.total_power
+      - sensor.kuroshio_network_down
+      - sensor.kuroshio_network_up
+      - sensor.kuroshio_volume_1_average_disk_temp
+      - sensor.kuroshio_drive_1_temperature
+      - sensor.kuroshio_drive_2_temperature
+      - sensor.kuroshio_temperature
+      - sensor.kuroshio_free_space
+      - sensor.kuroshio_cpu_utilization_total
+      - sensor.kuroshio_memory_usage_real
+      - sensor.kuroshio_volume_1_volume_used
+
+      - sensor.atm90e32as_ct2_amps   # dishwasher
+      - sensor.atm90e32as_ct2_watts  #
+      - sensor.atm90e32as_ct4_amps   # Heat Pump
+      - sensor.atm90e32as_ct4_watts  #
+      - sensor.atm90e32as_ct5_amps   #
+      - sensor.atm90e32as_ct5_watts        
+      - sensor.atm90e32as_total_kwh
+  component_config:
+    sensor.atm90e32as_ct4_watts:
+      override_measurement: power
+
+# Climate Integration - Control and monitor HVAC devices and thermostats
+# Reference: https://www.home-assistant.io/integrations/climate/
+climate:
+  - platform: fujitsu_general_heatpump
+    username: !secret climate_username
+    password: !secret climate_password
+    tokenpath: 'token.txt'
+
+# sonoff devices local mode: https://github.com/AlexxIT/SonoffLAN
+sonoff:
+  username: !secret ewelink_username
+  password: !secret ewelink_password
+  # not sure if line below this is necessary, see: https://github.com/AlexxIT/SonoffLAN/issues/14
+  force_update: [power] 
+  scan_interval: '00:02:00'  # (optional) default 5 minutes
+  # Temperature and power sensors are not created by default:
+  sensors: [power, current, voltage]
+  #devices:
+  #  1000c4ed2f:
+  #    device_class: Power Outlet
+  #    name: Humidifier
+
+# MQTT
+# https://www.home-assistant.io/integrations/mqtt/
+# https://www.home-assistant.io/docs/mqtt/discovery/
+# https://www.home-assistant.io/integrations/sensor.mqtt/
+mqtt:
+  #  discovery: true
+
+ffmpeg:
+
+browser_mod:
+
+camera:
+  - platform: ffmpeg
+    name: mackay_bridge 
+    input: 'https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8'
+  - platform: ffmpeg
+    name: armdale_rotary
+    input: 'https://streaming-1.qvisto.net/live/armdale/playlist.m3u8'
+  - platform: ffmpeg
+    name: waterfront
+    input: 'https://streaming-1.qvisto.net/live/waterfront/playlist.m3u8'
+  - platform: ffmpeg
+    name: argyle
+    input: 'https://streaming-1.qvisto.net/live/argylestreet/playlist.m3u8'
+  - platform: ffmpeg
+    name: pier21
+    input: 'https://streaming-1.qvisto.net/live/westin_1152x720/playlist.m3u8'
+  - platform: ffmpeg
+    name: peggys_cove
+    input: 'https://streaming-1.qvisto.net/live/peggyscove/playlist.m3u8'
+  - platform: ffmpeg
+    name: lunenburg_harbor
+    input: 'https://streaming-1.qvisto.net/live/bluenose/playlist.m3u8'
+  - platform: ffmpeg
+    name: lockeport_crescent
+    input: 'https://streaming-1.qvisto.net/live/lockeport/playlist.m3u8'
+  - platform: ffmpeg
+    name: fundy_site
+    input: 'https://streaming-1.qvisto.net/live/fundydiscovery/playlist.m3u8'

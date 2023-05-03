@@ -1,0 +1,41 @@
+title: Home
+icon: 'mdi:home'
+panel: false 
+badges: []
+cards:
+
+  # - type: conditional
+  #   conditions:
+  #     - entity: binary_sensor.doorbell_streaming_sensor
+  #       state: 'False'
+  #   card:
+  #     type: custom:webrtc-camera
+  #     entity: camera.doorbell
+  - type: 'custom:layout-card'
+    layout_type: vertical
+    max_columns: 2 
+    cards:
+
+
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.doorbell_streaming_sensor
+            state: 'False'
+        card:
+          type: picture-glance
+          entities: []
+          camera_image: camera.doorbell
+          tap_action:
+            action: call-service
+            service: script.eufy_doorbell_start_livestream
+            service_data: {}
+            target: {}
+
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.doorbell_streaming_sensor
+            state: 'True'
+        card:
+          type: custom:webrtc-camera
+          entity: camera.doorbell
+          mse: false           

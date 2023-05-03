@@ -1,0 +1,169 @@
+title: CCTV
+icon: 'mdi:cctv'
+#panel: true
+# badges: []
+# cards:
+
+  # 
+  # https://github.com/thomasloven/lovelace-layout-card
+  # 
+  # - type: 'custom:layout-card'
+  #   layout_type: vertical
+  #   max_columns: 2 
+  #   cards:
+
+  #     - type: grid
+  #       columns: 1
+  #       square: false
+  #       cards:
+
+  #         - type: conditional
+  #           conditions:
+  #             - entity: binary_sensor.doorbell_streaming_sensor
+  #               state: 'False'
+  #           card:
+  #             type: vertical-stack
+  #             cards:            
+  #               - type: picture-entity
+  #                 entity: camera.doorbell
+  #               - type: button
+  #                 name: Start Streaming
+  #                 show_state: false
+  #                 show_icon: false
+  #               #  tap_action:
+                #action: call-service
+                 #   service: eufy_security.stop_p2p_livestream
+                  #  target: {}
+                   
+                   # service_data: {}
+
+          #     tap_action:
+          #       action: call-service
+          #       service: eufy_security.start_p2p_livestream
+          #       target:
+          #         entity_id: camera.doorbell
+          #     show_state: true
+          # - type: conditional
+          #   conditions:
+          #     - entity: binary_sensor.doorbell_streaming_sensor
+          #       state: 'True'
+          #   card:
+          #     type: vertical-stack
+          #     cards:
+          #       - type: custom:webrtc-camera
+          #         entity: camera.doorbell
+          #       - type: button
+          #         name: Stop Streaming
+          #         show_state: false
+          #         show_icon: false
+          #         tap_action:
+          #           action: call-service
+          #           service: eufy_security.stop_p2p_livestream
+          #           target: {}
+          #           service_data: {}
+
+      # .......................................................................
+      # Column 1 
+      # .......................................................................    
+
+ 
+      # - type: custom:webrtc-camera
+      #   url: rtsp://rtsp:dSMiBpYE@192.168.200.9:554/av_stream/ch0
+        
+      #   title: Lab  # optional card title
+      #   poster: https://ak.picdn.net/shutterstock/videos/16238317/thumb/1.jpg
+      #   intersection: 0.75  # auto pause stream when less than 75% of video element is in the screen, 50% by default
+      #   muted: false  # disable sound, default true
+      #   ui: true  # custom video controls, default false
+      #   background: true  # run stream when not displayed (ex. for quick video loading), default false
+        
+      #   ptz:  # check full examples in wiki
+      #     opacity: 0.4  # optional default contols opacity
+      #     service: sonoff.send_command  # service for control PTZ (check Hass docs to your camera)
+      #     data_left:  # service data for each direction
+      #       device: '119965'
+      #       cmd: left
+      #     data_right:
+      #       device: '119965'
+      #       cmd: right
+      #     data_up:
+      #       device: '119965'
+      #       cmd: up
+      #     data_down:
+      #       device: '119965'
+      #       cmd: down
+        
+      #   mse: true      # disable MSE mode, if you want save NabuCasa traffic 
+      #   webrtc: false  # disable WebRTC mode, if you want stream with AAC sound
+
+      # - type: custom:layout-break
+      # .......................................................................
+      # Column 2 
+      # .......................................................................    
+
+      # - type: vertical-stack
+      #   cards:
+
+      #     - type: conditional
+      #       conditions:
+      #         - entity: binary_sensor.doorbell_streaming_sensor
+      #           state: 'False'
+      #       card:
+      #         type: picture-glance
+      #         entities: []
+      #         camera_image: camera.doorbell
+      #         tap_action:
+      #           action: call-service
+      #           service: script.eufy_start_stream
+      #           service_data: {}
+      #           target: {}
+
+      #     - type: conditional
+      #       conditions:
+      #         - entity: binary_sensor.doorbell_streaming_sensor
+      #           state: 'True'
+      #       card:
+      #         type: custom:webrtc-camera
+      #         entity: camera.doorbell
+      #         mse: false
+
+#square: false
+#columns: 1
+#type: grid
+cards:
+  - type: conditional
+    conditions:
+      - entity: camera.doorbell_2
+        state: idle
+    card:
+      show_state: true
+      show_name: true
+      type: picture-entity
+      entity: camera.doorbell_2
+      camera_image: camera.doorbell_2
+      tap_action:
+        action: call-service
+        service: camera.turn_on
+        data: {}
+        target:
+          entity_id: camera.doorbell_2
+  - type: conditional
+    conditions:
+      - entity: camera.doorbell_2
+        state: streaming
+    card:
+      type: vertical-stack
+      cards:
+        - show_name: true
+          show_icon: false
+          type: button
+          tap_action:
+            action: call-service
+            service: camera.turn_off
+            data: {}
+            target:
+              entity_id: camera.doorbell_2
+          entity: camera.doorbell_2
+          name: Stop
+        - type: custom:webrtc-camera
+          entity: camera.doorbell_2

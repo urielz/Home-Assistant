@@ -1,0 +1,847 @@
+2023-04-30 10:27:19.422 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration airthings_cloud which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.424 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration scheduler which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.426 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration pfsense which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.427 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration eufy_security which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.429 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration thermal_comfort which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.431 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration sonoff which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.432 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration webrtc which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.434 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration browser_mod which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.436 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:19.437 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration fujitsu_general_heatpump which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-04-30 10:27:33.299 ERROR (MainThread) [homeassistant.components.sensor] The version platform for the sensor integration does not support platform setup. Please remove it from your config.
+2023-04-30 10:27:33.307 ERROR (MainThread) [homeassistant.components.sensor] The version platform for the sensor integration does not support platform setup. Please remove it from your config.
+2023-04-30 10:28:14.781 WARNING (MainThread) [homeassistant.components.climate] Setup of climate platform fujitsu_general_heatpump is taking over 10 seconds.
+2023-04-30 10:28:16.010 WARNING (MainThread) [homeassistant.components.sensor] Updating rest sensor took longer than the scheduled update interval 0:00:10
+2023-04-30 10:28:16.163 WARNING (MainThread) [homeassistant.helpers.entity] Update of sensor.rest980 is taking over 10 seconds
+2023-04-30 10:28:18.636 WARNING (MainThread) [homeassistant.components.generic.camera] Loading generic IP camera via configuration.yaml is deprecated, it will be automatically imported.  Once you have confirmed correct operation, please remove 'generic' (IP camera) section(s) from configuration.yaml
+2023-04-30 10:28:22.468 WARNING (MainThread) [homeassistant.components.mqtt.sensor] Invalid state message '{"timestamp":1641495175,"timestamp_friendly":"06/01/2022, 2:52:55 pm","timeout":"8 months","timeout_timestamp":1662533143,"timeout_seconds":21037968,"severity":[{"color":"#bf4060","value":"-4 months","seconds":-10518984},{"color":"#bfb540","value":"0 months","seconds":0}]}' from 'homeassistant/sensor/vacuum_maint_replace_brushes/state'
+2023-04-30 10:28:22.500 WARNING (MainThread) [homeassistant.components.mqtt.sensor] Invalid state message '{"timestamp":1641495176,"timestamp_friendly":"06/01/2022, 2:52:56 pm","timeout":"2 years","timeout_timestamp":1704609080,"timeout_seconds":63113904,"severity":[{"color":"#bf4060","value":"-4 months","seconds":-10518984},{"color":"#bfb540","value":"0 months","seconds":0}]}' from 'homeassistant/sensor/vacuum_maint_replace_wheel/state'
+2023-04-30 10:28:22.740 WARNING (MainThread) [aioesphomeapi.reconnect_logic] Can't connect to ESPHome API for tobi-esp32 @ 192.168.200.8: Error connecting to ('192.168.200.8', 6053): [Errno 113] Connect call failed ('192.168.200.8', 6053)
+2023-04-30 10:28:29.203 WARNING (MainThread) [homeassistant.components.device_tracker] Setup of device_tracker platform pfsense is taking over 10 seconds.
+2023-04-30 10:28:33.453 WARNING (MainThread) [homeassistant.bootstrap] Waiting on integrations to complete setup: brother, pfsense, synology_dsm, device_tracker.pfsense
+2023-04-30 10:28:58.510 WARNING (MainThread) [homeassistant.config_entries] Config entry 'HL-L2340D U63879H6N920900' for brother integration not ready yet; Retrying in background
+2023-04-30 10:29:33.536 WARNING (MainThread) [homeassistant.bootstrap] Waiting on integrations to complete setup: eufy_security
+2023-04-30 10:29:55.286 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template<template=({{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}) renders=2>
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1888, in forgiving_float_filter
+    return float(value)
+ValueError: could not convert string to float: 'unknown'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 539, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2130, in _render_with_context
+    return template.render(**kwargs)
+  File "/usr/local/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 1, in top-level template code
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1891, in forgiving_float_filter
+    raise_no_default("float", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1589, in raise_no_default
+    raise ValueError(
+ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 660, in async_render_to_info
+    render_info._result = self.async_render(variables, strict=strict, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 541, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}' but no default was specified
+2023-04-30 10:29:55.296 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unknown' when rendering template '{{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}) renders=4>' for attribute '_attr_native_value' in entity 'sensor.total_power'
+2023-04-30 10:29:55.329 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template<template=({{ (states('sensor.tobis_bedroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=2>
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1888, in forgiving_float_filter
+    return float(value)
+ValueError: could not convert string to float: 'unavailable'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 539, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2130, in _render_with_context
+    return template.render(**kwargs)
+  File "/usr/local/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 1, in top-level template code
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1891, in forgiving_float_filter
+    raise_no_default("float", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1589, in raise_no_default
+    raise ValueError(
+ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.tobis_bedroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 660, in async_render_to_info
+    render_info._result = self.async_render(variables, strict=strict, **kwargs)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 541, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.tobis_bedroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified
+2023-04-30 10:29:55.334 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.tobis_bedroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.tobis_bedroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=4>' for attribute '_attr_native_value' in entity 'sensor.tobis_bedroom_temperature_prime'
+2023-04-30 10:29:59.380 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.living_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.living_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.living_room_temperature_prime'
+2023-04-30 10:29:59.396 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.atm90e32as_ct4_amps') | float + states('sensor.atm90e32as_ct5_amps') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.atm90e32as_ct4_amps') | float + states('sensor.atm90e32as_ct5_amps') | float)|round(1) }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.heat_pump_amps'
+2023-04-30 10:29:59.412 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.atm90e32as_ct4_watts') | float - states('sensor.atm90e32as_ct5_watts') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.atm90e32as_ct4_watts') | float - states('sensor.atm90e32as_ct5_watts') | float)|round(1) }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.heat_pump_watts'
+2023-04-30 10:29:59.430 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.gameroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.gameroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.gameroom_temperature_prime'
+2023-04-30 10:29:59.457 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.laundry_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.laundry_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.laundry_room_temperature_prime'
+2023-04-30 10:29:59.489 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ ((states('sensor.office_temperature') | float) - (states('sensor.temperature_mean') | float))|round(1) }}' but no default was specified') while processing template 'Template<template=({{ ((states('sensor.office_temperature') | float) - (states('sensor.temperature_mean') | float))|round(1) }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.office_temperature_prime'
+2023-04-30 10:30:02.675 WARNING (MainThread) [aioesphomeapi.reconnect_logic] Can't connect to ESPHome API for tobi-esp32 @ 192.168.200.8: Error connecting to ('192.168.200.8', 6053): [Errno 113] Connect call failed ('192.168.200.8', 6053)
+2023-04-30 10:37:12.534 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.living_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.living_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=20>' for attribute '_attr_native_value' in entity 'sensor.living_room_temperature_prime'
+2023-04-30 11:35:58.281 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 11:35:58.303 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=6>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 12:25:31.305 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 12:25:31.323 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=10>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 12:50:25.304 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 12:50:25.325 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=14>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 13:25:59.557 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.atm90e32as_ct4_amps') | float + states('sensor.atm90e32as_ct5_amps') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.atm90e32as_ct4_amps') | float + states('sensor.atm90e32as_ct5_amps') | float)|round(1) }}) renders=386>' for attribute '_attr_native_value' in entity 'sensor.heat_pump_amps'
+2023-04-30 13:25:59.561 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.atm90e32as_ct4_watts') | float - states('sensor.atm90e32as_ct5_watts') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.atm90e32as_ct4_watts') | float - states('sensor.atm90e32as_ct5_watts') | float)|round(1) }}) renders=666>' for attribute '_attr_native_value' in entity 'sensor.heat_pump_watts'
+2023-04-30 13:28:44.699 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ ((states('sensor.office_temperature') | float) - (states('sensor.temperature_mean') | float))|round(1) }}' but no default was specified') while processing template 'Template<template=({{ ((states('sensor.office_temperature') | float) - (states('sensor.temperature_mean') | float))|round(1) }}) renders=70>' for attribute '_attr_native_value' in entity 'sensor.office_temperature_prime'
+2023-04-30 13:33:50.502 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 13:33:50.513 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=18>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 13:37:31.297 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.gameroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.gameroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=60>' for attribute '_attr_native_value' in entity 'sensor.gameroom_temperature_prime'
+2023-04-30 13:46:39.469 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (states('sensor.laundry_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}' but no default was specified') while processing template 'Template<template=({{ (states('sensor.laundry_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}) renders=80>' for attribute '_attr_native_value' in entity 'sensor.laundry_room_temperature_prime'
+2023-04-30 13:55:28.418 WARNING (stream_worker) [homeassistant.components.stream.worker] Audio stream not found
+2023-04-30 13:55:28.516 ERROR (stream_worker) [root] Uncaught thread exception
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 624, in stream_worker
+    muxer.mux_packet(packet)
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 264, in mux_packet
+    self._av_output.mux(packet)
+  File "av/container/output.pyx", line 212, in av.container.output.OutputContainer.mux
+  File "av/container/output.pyx", line 233, in av.container.output.OutputContainer.mux_one
+  File "av/container/core.pyx", line 292, in av.container.core.Container.err_check
+  File "av/error.pyx", line 336, in av.error.err_check
+av.error.PermissionError: [Errno 1] Operation not permitted: '<none>'; last error log: [mp4] Malformed AAC bitstream detected: use the audio bitstream filter 'aac_adtstoasc' to fix it ('-bsf:a aac_adtstoasc' option with ffmpeg)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/local/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/src/homeassistant/homeassistant/components/stream/__init__.py", line 424, in _run_worker
+    stream_worker(
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 613, in stream_worker
+    with contextlib.closing(container), contextlib.closing(muxer):
+  File "/usr/local/lib/python3.10/contextlib.py", line 340, in __exit__
+    self.thing.close()
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 385, in close
+    self._av_output.close()
+  File "av/container/output.pyx", line 205, in av.container.output.OutputContainer.close
+  File "av/container/output.pyx", line 27, in av.container.output.close_output
+  File "av/container/core.pyx", line 292, in av.container.core.Container.err_check
+  File "av/error.pyx", line 336, in av.error.err_check
+av.error.PermissionError: [Errno 1] Operation not permitted: '<none>'; last error log: [mp4] Malformed AAC bitstream detected: use the audio bitstream filter 'aac_adtstoasc' to fix it ('-bsf:a aac_adtstoasc' option with ffmpeg)
+2023-04-30 13:56:32.331 WARNING (stream_worker) [homeassistant.components.stream.worker] Audio stream not found
+2023-04-30 13:56:32.353 ERROR (stream_worker) [root] Uncaught thread exception
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 624, in stream_worker
+    muxer.mux_packet(packet)
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 264, in mux_packet
+    self._av_output.mux(packet)
+  File "av/container/output.pyx", line 212, in av.container.output.OutputContainer.mux
+  File "av/container/output.pyx", line 233, in av.container.output.OutputContainer.mux_one
+  File "av/container/core.pyx", line 292, in av.container.core.Container.err_check
+  File "av/error.pyx", line 336, in av.error.err_check
+av.error.PermissionError: [Errno 1] Operation not permitted: '<none>'; last error log: [mp4] Malformed AAC bitstream detected: use the audio bitstream filter 'aac_adtstoasc' to fix it ('-bsf:a aac_adtstoasc' option with ffmpeg)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/local/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/src/homeassistant/homeassistant/components/stream/__init__.py", line 424, in _run_worker
+    stream_worker(
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 613, in stream_worker
+    with contextlib.closing(container), contextlib.closing(muxer):
+  File "/usr/local/lib/python3.10/contextlib.py", line 340, in __exit__
+    self.thing.close()
+  File "/usr/src/homeassistant/homeassistant/components/stream/worker.py", line 385, in close
+    self._av_output.close()
+  File "av/container/output.pyx", line 205, in av.container.output.OutputContainer.close
+  File "av/container/output.pyx", line 27, in av.container.output.close_output
+  File "av/container/core.pyx", line 292, in av.container.core.Container.err_check
+  File "av/error.pyx", line 336, in av.error.err_check
+av.error.PermissionError: [Errno 1] Operation not permitted: '<none>'; last error log: [mp4] Malformed AAC bitstream detected: use the audio bitstream filter 'aac_adtstoasc' to fix it ('-bsf:a aac_adtstoasc' option with ffmpeg)
+2023-04-30 14:11:08.500 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 14:11:08.512 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=22>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 14:36:12.091 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 14:36:12.103 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=26>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 16:08:33.115 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 16:08:33.126 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=30>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 16:33:36.408 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 16:33:36.426 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=34>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 16:58:40.229 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 16:58:40.241 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=38>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 18:16:00.130 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/0:0:0 Uncaught 
+2023-04-30 18:49:21.164 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 18:49:21.184 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=42>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 21:16:49.424 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 21:16:49.435 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=46>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-04-30 22:23:59.966 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eed8b', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1682904233004'}
+2023-04-30 22:36:43.081 WARNING (MainThread) [homeassistant.components.http.ban] Login attempt or request with invalid authentication from 192.168.100.20 (192.168.100.20). Requested URL: '/api/websocket'. (Mozilla/5.0 (Linux; Android 11; Lenovo TB-J606F Build/RKQ1.210303.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/112.0.5615.135 Safari/537.36)
+2023-04-30 22:36:45.532 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/1:0:0 Uncaught 
+2023-04-30 23:44:22.181 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-04-30 23:44:22.200 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=50>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 00:46:09.237 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 00:46:09.258 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=54>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 01:35:43.267 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 01:35:43.278 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=58>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 02:24:00.120 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eed8b', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1682918634005'}
+2023-05-01 02:55:49.259 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 02:55:49.278 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=62>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 05:59:53.161 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 05:59:53.179 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=66>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 07:01:36.094 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 07:01:36.114 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=70>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 07:45:10.222 WARNING (Recorder) [homeassistant.components.sensor.recorder] Entity sensor.atm90e32as_total_kwh from integration esphome has state class total_increasing, but its state is not strictly increasing. Triggered by state 109.162 (109.163) with last_updated set to 2023-05-01T10:42:45.393477+00:00. Please create a bug report at https://github.com/home-assistant/core/issues?q=is%3Aopen+is%3Aissue+label%3A%22integration%3A+esphome%22
+2023-05-01 08:15:36.433 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 08:15:36.444 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=74>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 10:06:18.114 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 10:06:18.130 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=78>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 11:08:03.327 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 11:08:03.338 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=82>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 15:13:30.231 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 15:13:30.246 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=86>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 16:15:19.109 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 16:15:19.120 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=90>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 16:52:38.061 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 16:52:38.072 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=94>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 17:36:02.482 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 17:36:02.493 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=98>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 18:16:33.059 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eee3d', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1682975786002'}
+2023-05-01 18:17:03.347 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '1000cd8a67', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1682975817003'}
+2023-05-01 18:29:20.351 ERROR (MainThread) [metno] https://aa015h6buqvih86i1.api.met.no/weatherapi/locationforecast/2.0/complete returned 503
+2023-05-01 18:29:20.355 ERROR (MainThread) [homeassistant.components.met] Error fetching met data: Update failed: 
+2023-05-01 18:50:03.352 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 18:50:03.363 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=102>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 19:21:15.222 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-01 19:21:15.233 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=106>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-01 21:34:02.570 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eee3d', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1682987637003'}
+2023-05-02 00:40:01.191 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 00:40:01.202 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=110>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 01:24:02.585 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eed8b', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1683001437000'}
+2023-05-02 03:56:28.177 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 03:56:28.188 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=114>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 04:21:35.499 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 04:21:35.512 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=118>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 04:29:02.965 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eefa9', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1683012537000'}
+2023-05-02 04:46:39.193 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 04:46:39.211 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=122>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 05:48:22.206 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 05:48:22.217 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=126>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 06:29:03.847 WARNING (MainThread) [custom_components.sonoff.core.ewelink.cloud] Cloud ERROR: {'error': 504, 'reason': 'Request Timeout', 'deviceid': '10012eee6c', 'apikey': 'e1cf8a5d-342a-4d9f-8e8c-295bc182a88e', 'sequence': '1683019738001'}
+2023-05-02 06:48:27.550 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 06:49:17.550 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 06:50:16.173 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 06:50:27.551 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 06:51:17.552 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 06:52:16.064 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 06:52:27.554 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 06:53:17.554 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 06:54:17.555 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 06:54:48.042 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 06:55:27.559 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 06:56:17.557 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 06:57:16.280 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 06:57:27.560 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 06:58:17.558 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 06:58:32.980 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 06:59:27.560 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:00:17.561 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:00:18.022 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 07:01:27.563 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:02:17.562 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:03:17.275 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:03:27.564 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:04:17.563 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:05:17.565 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:05:17.838 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:06:27.567 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:07:17.566 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:08:17.432 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:08:27.569 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:09:17.568 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:10:02.849 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:10:27.570 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:11:17.569 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:12:27.573 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:13:17.571 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:14:17.572 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:14:17.672 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:14:34.160 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 07:14:34.171 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=130>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 07:15:27.573 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:16:17.573 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:17:02.629 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 07:17:27.578 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:18:17.576 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:19:27.579 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:20:17.579 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:21:10.353 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:21:27.581 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:22:17.581 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:22:53.728 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 07:23:27.583 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:25:27.585 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:26:17.584 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:27:06.240 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 07:27:27.588 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:28:27.588 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:29:27.590 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:30:17.590 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:30:52.751 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 07:31:27.591 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:32:17.591 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:33:17.591 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:34:27.593 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:35:27.596 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:36:27.597 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:37:17.597 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:38:11.016 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 07:38:18.097 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 755, in async_device_update
+    raise exc
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 68, in _get_device_properties
+    access_token = self._authenticate()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 105, in _authenticate
+    response = self._call_api("POST",
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Temporarily Unavailable for url: https://user-field.aylanetworks.com/users/sign_in.json
+2023-05-02 07:39:27.600 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 07:40:17.602 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:41:17.603 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-02 07:41:53.759 ERROR (MainThread) [homeassistant.helpers.entity] Update for climate.heat_pump fails
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 550, in async_update_ha_state
+    await self.async_device_update()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 763, in async_device_update
+    await task
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/config/custom_components/fujitsu_general_heatpump/climate.py", line 182, in update
+    self._fujitsu_device.refresh_properties()
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/splitAC.py", line 30, in refresh_properties
+    self._properties  = self._api._get_device_properties(self._dsn)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 70, in _get_device_properties
+    response = self._call_api("get",self._API_GET_PROPERTIES_URL.format(DSN=dsn),access_token=access_token)
+  File "/usr/local/lib/python3.10/site-packages/pyfujitseu/api.py", line 164, in _call_api
+    response.raise_for_status()
+  File "/usr/local/lib/python3.10/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Time-out for url: https://ads-field.aylanetworks.com/apiv1/dsns/AC000W003093357/properties.json
+2023-05-02 08:10:06.353 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 08:10:06.366 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=134>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 08:53:30.329 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 08:53:30.343 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=138>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 09:30:48.331 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 09:30:48.344 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=142>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 09:33:30.447 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/0:0:0 Uncaught 
+2023-05-02 14:47:11.651 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/0:0:0 Uncaught 
+2023-05-02 21:57:52.278 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 21:57:52.289 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=146>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-02 23:19:28.461 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-02 23:30:08.417 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-02 23:30:08.431 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=150>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-03 00:04:28.504 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:13:33.113 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-03 00:13:33.128 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=154>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-03 00:14:28.514 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:46:28.543 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:48:28.545 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:50:28.548 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:57:28.553 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:58:28.554 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 00:59:28.555 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:00:28.555 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:04:28.558 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:05:28.559 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:06:18.559 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-03 01:07:28.563 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:08:28.564 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:10:28.565 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:11:18.565 WARNING (MainThread) [homeassistant.components.climate] Updating fujitsu_general_heatpump climate took longer than the scheduled update interval 0:01:00
+2023-05-03 01:12:28.567 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:13:28.568 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:14:28.569 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:15:20.199 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-03 01:15:20.212 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=158>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-03 01:15:28.571 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:16:28.572 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:17:28.573 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:18:28.574 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 01:19:28.575 WARNING (MainThread) [homeassistant.helpers.entity] Update of climate.heat_pump is taking over 10 seconds
+2023-05-03 04:01:06.198 WARNING (MainThread) [homeassistant.components.synology_dsm.common] Connection error during update, fallback by reloading the entry
+2023-05-03 04:01:06.210 ERROR (MainThread) [homeassistant.helpers.template_entity] TemplateError('ValueError: Template error: float got invalid input 'unavailable' when rendering template '{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}' but no default was specified') while processing template 'Template<template=({{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}) renders=162>' for attribute '_attr_native_value' in entity 'sensor.kuroshio_free_space'
+2023-05-03 09:52:20.084 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:20.092 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:52:21.052 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:21.356 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:21.657 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:22.188 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:22.507 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:22.859 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:23.162 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:23.463 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:23.822 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:24.127 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:24.431 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:24.721 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:25.009 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:25.294 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:25.564 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:25.808 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:26.072 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:26.340 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:26.609 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:26.858 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:27.134 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:27.391 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:27.649 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:27.695 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:27.949 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:28.226 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:30.378 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:30.411 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:30.420 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:52:30.661 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:30.939 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:30.955 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.peggys_cove] Error from stream worker: Stream ended; no additional packets
+2023-05-03 09:52:41.221 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:41.227 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.peggys_cove] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/peggyscove/playlist.m3u8
+2023-05-03 09:52:50.709 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:52:50.716 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:53:01.490 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:53:01.496 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.peggys_cove] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/peggyscove/playlist.m3u8
+2023-05-03 09:53:20.976 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:53:20.982 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:53:40.236 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:53:40.245 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.peggys_cove] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/peggyscove/playlist.m3u8
+2023-05-03 09:54:01.245 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:54:01.250 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:54:51.503 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:54:51.509 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:55:14.768 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:55:16.364 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.waterfront] Error from stream worker: Timestamp discontinuity detected: last dts = 25599420, dts = 8589942512
+2023-05-03 09:55:17.188 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.peggys_cove] Error from stream worker: Timestamp discontinuity detected: last dts = 7272810, dts = 0
+2023-05-03 09:55:17.441 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.argyle] Error from stream worker: Timestamp discontinuity detected: last dts = 26174070, dts = 8589950792
+2023-05-03 09:55:51.784 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:55:51.789 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:56:10.988 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/1:0:0 Uncaught 
+2023-05-03 09:57:02.040 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:57:02.046 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:58:22.306 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:58:22.312 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 09:59:52.587 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 09:59:52.592 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:01:00.036 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/0:0:0 Uncaught 
+2023-05-03 10:01:32.845 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:01:32.851 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:03:23.221 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:03:23.227 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:05:23.505 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:05:23.510 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:07:33.818 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:07:33.824 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:09:54.149 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:09:54.155 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:12:24.417 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:12:24.423 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:15:04.788 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:15:04.794 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:17:55.058 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:17:55.063 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:20:55.425 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:20:55.431 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:24:05.741 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:24:05.747 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:27:26.087 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:27:26.093 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:30:56.367 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:30:56.372 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:34:36.708 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:34:36.713 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:37:17.496 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/1:0:0 Uncaught 
+2023-05-03 10:38:26.973 WARNING (stream_worker) [libav.https] HTTP error 404 Not Found
+2023-05-03 10:38:26.980 ERROR (stream_worker) [homeassistant.components.stream.stream.camera.mackay_bridge] Error from stream worker: Error opening stream (HTTP_NOT_FOUND, Server returned 404 Not Found) https://streaming-1.qvisto.net/live/mackaybridge/playlist.m3u8
+2023-05-03 10:39:08.143 ERROR (MainThread) [frontend.js.latest.202304111] http://192.168.10.10:8123/lovelace/1:0:0 Uncaught 
+2023-05-03 10:41:10.291 WARNING (MainThread) [custom_components.hacs] A timeout of 60! seconds was encountered while downloading https://raw.githubusercontent.com/travisghansen/hass-pfsense/v0.6.1/custom_components/pfsense/device_tracker.py, using over 60 seconds to download a single file is not normal. This is not a problem with HACS but how your host communicates with GitHub. Retrying up to 5 times to mask/hide your host/network problems to stop the flow of issues opened about it. Tries left 4
+2023-05-03 10:41:10.296 WARNING (MainThread) [custom_components.hacs] A timeout of 60! seconds was encountered while downloading https://raw.githubusercontent.com/travisghansen/hass-pfsense/v0.6.1/custom_components/pfsense/pypfsense/__init__.py, using over 60 seconds to download a single file is not normal. This is not a problem with HACS but how your host communicates with GitHub. Retrying up to 5 times to mask/hide your host/network problems to stop the flow of issues opened about it. Tries left 4
+2023-05-03 10:41:10.299 WARNING (MainThread) [custom_components.hacs] A timeout of 60! seconds was encountered while downloading https://raw.githubusercontent.com/travisghansen/hass-pfsense/v0.6.1/custom_components/pfsense/sensor.py, using over 60 seconds to download a single file is not normal. This is not a problem with HACS but how your host communicates with GitHub. Retrying up to 5 times to mask/hide your host/network problems to stop the flow of issues opened about it. Tries left 4
+2023-05-03 10:41:10.301 WARNING (MainThread) [custom_components.hacs] A timeout of 60! seconds was encountered while downloading https://raw.githubusercontent.com/travisghansen/hass-pfsense/v0.6.1/custom_components/pfsense/manifest.json, using over 60 seconds to download a single file is not normal. This is not a problem with HACS but how your host communicates with GitHub. Retrying up to 5 times to mask/hide your host/network problems to stop the flow of issues opened about it. Tries left 4
+2023-05-03 10:41:13.045 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration airthings_cloud which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.048 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration scheduler which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.050 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration pfsense which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.053 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration eufy_security which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.055 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration thermal_comfort which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.058 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration sonoff which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.060 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration webrtc which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.063 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration browser_mod which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.066 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:13.068 WARNING (SyncWorker_6) [homeassistant.loader] We found a custom integration fujitsu_general_heatpump which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2023-05-03 10:41:24.353 WARNING (MainThread) [homeassistant.core] Task <Task pending name='call_later 80.327905' coro=<ConfigEntry.async_setup.<locals>.setup_again() running at /usr/src/homeassistant/homeassistant/config_entries.py:453> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[set.remove()]> was still running after stage 2 shutdown; Integrations should cancel non-critical tasks when receiving the stop event to prevent delaying shutdown
+2023-05-03 10:41:24.359 ERROR (MainThread) [homeassistant.config_entries] Error setting up entry HL-L2340D U63879H6N920900 for brother
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/config_entries.py", line 383, in async_setup
+    result = await component.async_setup_entry(hass, self)
+  File "/usr/src/homeassistant/homeassistant/components/brother/__init__.py", line 40, in async_setup_entry
+    await coordinator.async_config_entry_first_refresh()
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 215, in async_config_entry_first_refresh
+    await self._async_refresh(
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 250, in _async_refresh
+    self.data = await self._async_update_data()
+  File "/usr/src/homeassistant/homeassistant/components/brother/__init__.py", line 83, in _async_update_data
+    data = await self.brother.async_update()
+  File "/usr/local/lib/python3.10/site-packages/brother/__init__.py", line 140, in async_update
+    if not (raw_data := await self._get_data()):
+  File "/usr/local/lib/python3.10/site-packages/brother/__init__.py", line 277, in _get_data
+    get_result = await hlapi.getCmd(*request_args, *self._oids)
+  File "/usr/local/lib/python3.10/site-packages/pysnmp/hlapi/asyncio/cmdgen.py", line 156, in getCmd
+    return await future
+asyncio.exceptions.CancelledError
+2023-05-03 10:41:24.366 WARNING (MainThread) [homeassistant.core] Task <Task pending name='track time interval 0:10:00' coro=<async_setup_entry.<locals>.update() running at /config/custom_components/eufy_security/__init__.py:56> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[set.remove()]> was still running after stage 2 shutdown; Integrations should cancel non-critical tasks when receiving the stop event to prevent delaying shutdown

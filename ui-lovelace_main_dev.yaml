@@ -1,0 +1,209 @@
+type: custom:grid-layout
+title: Grid layout test
+layout:
+  grid-template-columns: 1fr 1fr 1fr
+  grid-template-rows: auto
+  grid-template-areas: |
+    "c11 c12 c13"
+    "c21 c22 c23"
+
+cards:
+
+  # C11 ####################################################################
+  - type: custom:mini-media-player
+    view_layout:
+      grid-area: c11  
+    name: SONOS
+    entity: media_player.speaker
+    artwork: cover
+    icon: mdi:music
+    source: icon                   
+
+  # C21 ####################################################################
+  - type: custom:mod-card
+    card:
+      type: weather-forecast
+      name: Halifax
+      entity: weather.bellevue
+      secondary_info_attribute: wind_speed
+      style: |
+        .card-header {
+          font-size: 9px;
+          text-align: center;
+          line-height: 0px;
+        }
+    card_mod:
+      style: |
+        ha-card {
+          color: white;
+          font-size: 11px;              
+        }
+    view_layout:
+      grid-area: c21
+
+  # C12 #################################################################### 
+  - type: custom:apexcharts-card
+    apex_config:
+      chart:
+        height: 200
+        zoom:
+          enabled: true
+        toolbar:
+          show: true
+      legend:
+        show: false
+      xaxis:
+        offsetY: 5
+      grid:
+        borderColor: '#90A4AE'
+        strokeDashArray: 2
+    graph_span: 7d
+    header:
+      show: true
+      show_states: true
+    series:         
+      - entity: binary_sensor.night
+        transform: 'return x === "on" ? 80 : 0;'
+        color: grey
+        type: area
+        curve: stepline
+        opacity: 0.5
+        stroke_width: 0
+        show:
+          legend_value: false
+          in_header: false
+          name_in_header: false
+      - entity: sensor.airthings_basement_radonshorttermavg
+        name: 'Radon Gas (Rn) :: Gameroom'
+        stroke_width: 1.5
+        color: rgb(241,196,15)
+        type: area
+        opacity: 0.1
+    view_layout:
+       grid-area: c12
+
+  # C13 ####################################################################
+  - type: custom:apexcharts-card
+    apex_config:
+      chart:
+        height: 200
+        zoom:
+          enabled: true
+        toolbar:
+          show: true
+      legend:
+        show: false
+      xaxis:
+        offsetY: 5
+      grid:
+        borderColor: '#90A4AE'
+        strokeDashArray: 2
+    graph_span: 7d
+    header:
+      show: true
+      show_states: true
+    series:         
+      - entity: binary_sensor.night
+        transform: 'return x === "on" ? 2000 : 0;'
+        color: grey
+        type: area
+        curve: stepline
+        opacity: 0.5
+        stroke_width: 0
+        show:
+          legend_value: false
+          in_header: false
+          name_in_header: false
+      - entity: sensor.airthings_kitchen_voc
+        name: 'Volatile Organic Compounds (VOC) :: Kitchen'
+        stroke_width: 1.5
+        color: rgb(255,166,77)
+        type: area
+        opacity: 0.1
+    view_layout:
+      grid-area: c13
+
+  # C22 - C23 ####################################################################
+  - type: custom:apexcharts-card
+    apex_config:
+      chart:
+        height: 280
+      legend:
+        show: true
+        fontSize: '10px'
+        offsetY: 7
+        horizontalAlign: left
+      grid:
+        borderColor: '#90A4AE'
+        strokeDashArray: 2
+    graph_span: 3d
+    header:
+      title: Temperature
+      show: true
+      show_states: true
+      colorize_states: true
+    all_series_config:
+      curve: smooth
+      stroke_width: 1.5
+      show:
+        legend_value: false
+      group_by:
+        func: avg
+        duration: 20min
+    yaxis:
+      - id: main
+        apex_config:
+          tickAmount: 4
+          decimalsInFloat: 0
+      - id: sec
+        apex_config:
+          tickAmount: 1
+        show: 
+          false
+    series:         
+      - entity: binary_sensor.night
+        transform: 'return x === "on" ? 1 : 0;'
+        yaxis_id: sec
+        color: grey
+        type: area
+        curve: stepline
+        opacity: 0.5
+        stroke_width: 0
+        show:
+          in_header: false
+          name_in_header: false
+        group_by:
+          func: raw
+      - entity: sensor.tobis_bedroom_temperature
+        name: "Tobi's Bedroom"
+        yaxis_id: main                  
+      - entity: sensor.office_temperature
+        name: 'Office'
+        yaxis_id: main
+      - entity: sensor.living_room_temperature
+        name: 'Living Room'
+        yaxis_id: main
+        color: rgb(153,0,153) # purple
+      - entity: sensor.gameroom_temperature
+        name: 'Game Room'
+        yaxis_id: main                
+      - entity: sensor.laundry_room_temperature
+        name: 'Laundry Room'
+        yaxis_id: main                
+      - entity: sensor.temperature_mean
+        name: 'Average'
+        yaxis_id: main                
+        color: rgb(255,255,255) # white
+        stroke_width: 0.5
+        type: area
+        opacity: 0.25
+    style: |
+      ha-card {
+           font-size: 12px;
+         }
+         div#header__title {
+           font-size: 16px;
+         }
+    view_layout:          
+      grid-column: 2 / span 2
+      grid-row: 2

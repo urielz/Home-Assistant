@@ -1,0 +1,21 @@
+# Ignore folders
+.cloud
+.storage
+.vscode
+blueprints
+custom_components
+deps
+esphome
+image
+packages
+tts
+vacuum
+www
+
+# Ignore files
+.sonoff.json
+home-assistant.log
+home-assistant_v2*
+secrets.yaml
+token.txt
+go2rtc-1.2.0

@@ -1,0 +1,78 @@
+title: Nova Scotia Webcams 
+icon: 'mdi:webcam'
+panel: true
+badges: []
+cards:
+  - type: 'custom:layout-card'
+    layout_type: vertical
+    max_columns: 3 
+    cards:
+
+      # .......................................................................
+      # Column 1
+      # .......................................................................
+      - type: picture-entity
+        entity: camera.peggys_cove
+        camera_view: live
+        name: "Peggy's Cove"
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.lunenburg_harbor
+        camera_view: live
+        name: "Lunenburg Harbor"
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.pier21
+        camera_view: live
+        name: "Pier 21"
+        show_state: false
+          
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 2 
+      # .......................................................................
+
+      - type: picture-entity
+        entity: camera.lockeport_crescent
+        camera_view: live
+        name: "Lockeport Crescent Beach"
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.waterfront
+        camera_view: live
+        name: "Waterfront"
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.argyle
+        camera_view: live
+        name: "Argyle Street"
+        show_state: false
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 3 
+      # .......................................................................
+        
+      - type: picture-entity
+        entity: camera.fundy_site
+        camera_view: live
+        name: "Fundy Discovery Site"
+        show_state: false
+
+
+      - type: picture-entity
+        entity: camera.mackay_bridge
+        camera_view: live
+        name: "Mackay Bridge"
+        show_state: false
+
+      - type: picture-entity
+        entity: camera.armdale_rotary
+        camera_view: live
+        name: "Armdale Rotary"
+        show_state: false

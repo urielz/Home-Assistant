@@ -1,0 +1,8 @@
+title: Long-term statistics 
+icon: 'mdi:chart-bell-curve'
+panel: true
+badges: []
+cards:
+  - type: iframe
+    url: >-
+      http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d/on0eT2R7k/temperature-monitor?orgId=1&from=now-4w&to=now&kiosk=tv

@@ -1,0 +1,6 @@
+# Time of Day:
+# https://www.home-assistant.io/integrations/tod/
+- platform: tod
+  name: Night
+  after: sunset
+  before: sunrise

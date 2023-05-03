@@ -1,0 +1,17 @@
+# - name: Full Brighness
+#   entities:
+#     input_select.full_brightness:
+#       option: Full Brighness
+#     light.lab_ambience_light:
+#       #state: on
+#       transition: 2
+#       brightness: 254
+
+# - name: Dim to 50
+#   entities:
+#     input_select.dim_50:
+#       option: Dim to 50
+#     light.lab_ambience_light:
+#       #state: on
+#       transition: 2
+#       brightness: 127

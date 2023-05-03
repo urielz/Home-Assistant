@@ -1,0 +1,399 @@
+###############################################################################
+# Sensors                                                                     #
+###############################################################################
+#
+# Some notes and links relevant to the code found in this document:
+#
+# > For a general explanation of the template feature look here:
+#   https://www.home-assistant.io/docs/configuration/templating/
+#
+# > Templating in Home Assistant is powered by the Jinja2 templating engine.
+#   This means that HA uses its syntax and make some custom HA variables
+#   available to templates during rendering. Jinja documentation:
+#   https://jinja.palletsprojects.com/en/latest/templates/
+#
+
+# Riemann sum (Freezer)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_freezer_power # POWR2 hooked up to the freezer
+  name: freezer_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+# Riemann sum (For Washer Energy)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_washer_power # POWR2 hooked up to the Washer
+  name: washer_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+# Riemann sum (For Fridge Energy)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_fridge_power # POWR2 hooked up to the fridge
+  name: fridge_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+# Riemann sum (HVAC)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_hvac_power # POWR2 hooked up to the freezer
+  name: hvac_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+# Riemann sum (Dishwasher)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.atm90e32as_ct2_watts # CT#2
+  name: dishwasher_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+# Riemann sum (Hydroponic Lights)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_hydroponic_power
+  name: hydro_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2    
+
+# MIN/MAX sensor to compute min/max/mean/median
+# https://www.home-assistant.io/integrations/min_max/
+- platform: min_max
+  type: mean
+  round_digits: 1
+  name: temperature_mean
+  entity_ids:
+    - sensor.office_temperature
+    - sensor.gameroom_temperature
+    - sensor.tobis_bedroom_temperature
+    - sensor.laundry_room_temperature
+    - sensor.living_room_temperature
+- platform: min_max
+  type: mean
+  name: humidity_mean
+  round_digits: 0
+  entity_ids:
+    - sensor.office_humidity
+    - sensor.gameroom_humidity
+    - sensor.tobis_bedroom_humidity
+    - sensor.laundry_room_humidity
+    - sensor.living_room_humidity
+
+# Home Assistant local and latest version
+# https://www.home-assistant.io/integrations/version/
+- platform: version
+  name: local_version
+  source: local
+- platform: version
+  name: latest_version
+  source: supervisor
+
+
+################################################################################
+# Templates (entity derived sensors)                                           #
+# https://www.home-assistant.io/integrations/template/                         # 
+################################################################################
+
+# Total Power consumption (as measured by POWR2s) - this will eventually be 
+# replaced by main CT clamps
+- platform: template
+  sensors:
+    total_power:
+      unit_of_measurement: "W"
+      value_template: "{{ (states('sensor.sonoff_freezer_power') | float) + (states('sensor.sonoff_washer_power') | float) + (states('sensor.sonoff_fridge_power') | float) }}"
+
+# Freezer Cost
+- platform: template
+  sensors:
+    freezer_cost_monthly:
+      friendly_name: 'Freezer Monthly Cost'
+      value_template: "{{ (states('sensor.freezer_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    freezer_cost_yearly:
+      friendly_name: 'Freezer Yearly Cost'
+      value_template: "{{ (states('sensor.freezer_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# HVAC Cost
+- platform: template
+  sensors:
+    hvac_cost_monthly:
+      friendly_name: 'HVAC Monthly Cost'
+      value_template: "{{ (states('sensor.hvac_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    hvac_cost_yearly:
+      friendly_name: 'HVAC Yearly Cost'
+      value_template: "{{ (states('sensor.hvac_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Hydroponics Cost
+- platform: template
+  sensors:
+    hydro_cost_monthly:
+      friendly_name: 'Hydroponic Monthly Cost'
+      value_template: "{{ (states('sensor.hydro_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    hydro_cost_yearly:
+      friendly_name: 'Hydroponic Yearly Cost'
+      value_template: "{{ (states('sensor.hydro_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Dishwasher Cost
+- platform: template
+  sensors:
+    dishwasher_cost_monthly:
+      friendly_name: 'Dishwasher Monthly Cost'
+      value_template: "{{ (states('sensor.dishwasher_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    dishwasher_cost_yearly:
+      friendly_name: 'Dishwasher Yearly Cost'
+      value_template: "{{ (states('sensor.dishwasher_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"            
+
+# Washing Machine Cost
+- platform: template
+  sensors:
+    washer_cost_monthly:
+      friendly_name: 'Washer Monthly Cost'
+      value_template: "{{ (states('sensor.washer_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    washer_cost_yearly:
+      friendly_name: 'Washer Yearly Cost'
+      value_template: "{{ (states('sensor.washer_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Fridge Cost
+- platform: template
+  sensors:
+    fridge_cost_monthly:
+      friendly_name: 'Fridge Monthly Cost'
+      value_template: "{{ (states('sensor.fridge_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    fridge_cost_yearly:
+      friendly_name: 'Fridge Yearly Cost'
+      value_template: "{{ (states('sensor.fridge_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Temperature Anomalies
+- platform: template
+  sensors:
+    office_temperature_prime:
+      unit_of_measurement: "°C"
+      value_template: "{{ ((states('sensor.office_temperature') | float) - (states('sensor.temperature_mean') | float))|round(1) }}"
+    tobis_bedroom_temperature_prime:
+      unit_of_measurement: "°C"
+      value_template: "{{ (states('sensor.tobis_bedroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}"
+    living_room_temperature_prime:
+      unit_of_measurement: "°C"
+      value_template: "{{ (states('sensor.living_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}"
+    gameroom_temperature_prime:
+      unit_of_measurement: "°C"
+      value_template: "{{ (states('sensor.gameroom_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}"
+    laundry_room_temperature_prime:
+      unit_of_measurement: "°C"
+      value_template: "{{ (states('sensor.laundry_room_temperature') | float - states('sensor.temperature_mean') | float)|round(1) }}"
+
+# Energy Monitor - Heat Pump Watts and Amperage
+# CT5 reads negative Watts (CT should be flipped at electrix box) hence the minus here
+- platform: template
+  sensors:
+    heat_pump_amps:
+      unit_of_measurement: "A"
+      value_template: "{{ (states('sensor.atm90e32as_ct4_amps') | float + states('sensor.atm90e32as_ct5_amps') | float)|round(1) }}"
+    heat_pump_watts:
+      unit_of_measurement: "W"
+      value_template: "{{ (states('sensor.atm90e32as_ct4_watts') | float - states('sensor.atm90e32as_ct5_watts') | float)|round(1) }}"
+
+# Kuroshio NAS - Free Space
+- platform: template
+  sensors:
+    kuroshio_free_space:
+      unit_of_measurement: "GB"
+      value_template: "{{ (2.7 - (states('sensor.kuroshio_volume_1_used_space') | float))|round(2) * 1000 }}" 
+
+
+################################################################################
+# Custom sensors                                                               #
+################################################################################
+
+# Airthings Cloud
+# Not in HACS - Location: ./custom_components/airthings_cloud
+# Source: https://github.com/Danielhiversen/home_assistant_airthings_cloud
+#
+# Note: Entities won't show up in HA unless they're added to Airthings dashboard
+#  https://github.com/Danielhiversen/home_assistant_airthings_cloud/issues/25
+#
+# Note (Nov-2021): The component is now in HA core. I need to figure out how to
+# migrate and keep the data (without having different variables created)...
+# 
+- platform: airthings_cloud
+  username: !secret airthings_username
+  password: !secret airthings_password
+
+# Thermal Comfort
+# Not in HACS - Location: ./custom_components/thermal_comfort
+# source: https://github.com/dolezsa/thermal_comfort
+#
+# References:
+#  Heat index: https://www.wpc.ncep.noaa.gov/html/heatindex_equation.shtml
+#  Absolute Humidity: https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/
+#  Dew Point: https://wahiduddin.net/calc/density_algorithms.htm
+#  Thermal Perception: https://en.wikipedia.org/wiki/Dew_point
+#
+- platform: thermal_comfort
+  sensors:
+    office:
+      friendly_name: Office
+      temperature_sensor: sensor.office_temperature
+      humidity_sensor: sensor.office_humidity
+    tobis_bedroom:
+      friendly_name: Tobi's Room
+      temperature_sensor: sensor.tobis_bedroom_temperature
+      humidity_sensor: sensor.tobis_bedroom_humidity
+    gameroom:
+      friendly_name: Game Room
+      temperature_sensor: sensor.gameroom_temperature
+      humidity_sensor: sensor.gameroom_humidity
+    living_room:
+      friendly_name: Living Room
+      temperature_sensor: sensor.living_room_temperature
+      humidity_sensor: sensor.living_room_humidity
+    laundry_room:
+      friendly_name: Laundry Room
+      temperature_sensor: sensor.laundry_room_temperature
+      humidity_sensor: sensor.laundry_room_humidity
+
+
+# =============================================================================
+# From legacy configuration - pending review to add/scratch
+# =============================================================================
+
+# #############################################################################
+# # Rest (Sensors derived from RESTful API endpoints                          #
+# # https://www.home-assistant.io/integrations/rest/                          # 
+# #############################################################################
+
+# # Internet IP
+# - platform: rest
+#   resource: http://ip.jsontest.com
+#   name: External IP
+#   value_template: '{{ value_json.ip }}'
+
+# - platform: rest
+#   resource: http://192.168.0.19:61208/api/3/mem/used
+#   name: mem_used 
+#   method: GET
+#   headers:
+#     Accept-encoding: gzip
+#     Content-Type: application/json
+#   value_template: '{{ value_json.used| multiply(0.000000954) | round(0) }}'
+#   unit_of_measurement: MB
+
+# - platform: rest
+#   resource: http://192.168.0.19/61208/api/3/docker
+#   name: containers_list
+#   method: GET
+#   headers:
+#     Accept-encoding: gzip
+#     Content-Type: application/json
+#   value_template: '{{ value_json.used}}'
+
+# # Roomba
+# - platform: template
+#   sensors:
+#     roomba_bin:
+#       value_template: '{% if is_state("binary_sensor.roomba_bin_full", "on") %}Yes{% else %}No{% endif %}'
+#       friendly_name: 'Bin Full'
+
+# # Tides
+# - platform: template
+#   sensors: 
+#     tide_next_high:
+#       value_template: '{{ as_timestamp(states.sensor.halifax_tides.attributes.high_tide_time_utc) | timestamp_custom("%H:%M") }}'
+#       friendly_name: "High Tide"
+#       icon_template: 'mdi:flag-variant'
+#     tide_next_low:
+#       value_template: '{{ as_timestamp(states.sensor.halifax_tides.attributes.low_tide_time_utc) | timestamp_custom("%H:%M") }}'
+#       friendly_name: "Low Tide"
+#       icon_template: 'mdi:flag-variant-outline'
+#     tide_next_high_height:
+#       value_template: "{{ state_attr('sensor.halifax_tides','high_tide_height')  }}"
+#       friendly_name: "High Tide Height"
+#       unit_of_measurement: m
+#     tide_next_low_height:
+#       value_template: "{{ state_attr('sensor.halifax_tides','low_tide_height')  }}"
+#       friendly_name: "Low Tide Height"
+#       unit_of_measurement: m
+#     tide_credit:
+#       value_template: "{{ state_attr('sensor.halifax_tides','CreditCallUsed')  }}"
+#       friendly_name: "Tide Credit"
+#       unit_of_measurement: credit
+#     tide_current_height:
+#       value_template: "{{ state_attr('sensor.halifax_tides','current_height')  }}"
+#       friendly_name: "Current Height"
+#       unit_of_measurement: m
+
+# # Pixel 2 Battery      
+# - platform: template
+#   sensors:
+#      battery_phone:
+#        friendly_name: AndroidPhone Battery
+#        unit_of_measurement: '%'
+#        value_template: >-
+#            {%- if state_attr('device_tracker.pixel_2', 'battery_level') %}
+#                {{ state_attr('device_tracker.pixel_2', 'battery_level')|round }}
+#            {% else %}
+#                {{ states('device_tracker.pixel_2') }}
+#            {%- endif %}
+#        device_class: battery
+
+# # Internet Speed      
+# - platform: template
+#   sensors:
+#     speedtest_last_updated:
+#       friendly_name: "Last Updated"
+#       value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_updated) | timestamp_custom('%I:%M %p %Z') }}"
+
+# # Internet Traffic      
+# - platform: template
+#   sensors:
+#     arris_total:
+#       friendly_name: 'Total Bandwidth'
+#       unit_of_measurement: 'GBs'
+#       value_template: "{{((states('sensor.arris_dg2470a_router_b_received') | float / 1000000000) + (states('sensor.arris_dg2470a_router_b_sent') | float / 1000000000))| round(2)}}"
+#     arris_up:
+#       friendly_name: 'Upload Bandwidth'
+#       unit_of_measurement: 'GBs'
+#       value_template: "{{((states('sensor.arris_dg2470a_router_b_sent') | float / 1000000000))| round(2)}}"
+#     arris_down:
+#       friendly_name: 'Download Bandwidth'
+#       unit_of_measurement: 'GBs'
+#       value_template: "{{((states('sensor.arris_dg2470a_router_b_received') | float / 1000000000))| round(2)}}"
+
+# # Tides
+# # https://www.worldtides.info/ - using custom code to use API v2, see link below:
+# # https://github.com/jugla/worldtidesinfocustom
+# # https://www.home-assistant.io/integrations/worldtidesinfo
+# - platform: worldtidesinfocustom
+#   name: halifax_tides
+#   api_key: !secret tides_api_key
+#   latitude: !secret tides_lat 
+#   longitude: !secret tides_lon 
+#   vertical_ref : LAT # see: https://www.worldtides.info/datums 
+#   scan_interval: 900
+#   worldtides_request_interval: 43200
+
+# # Environment Canada  
+# # https://www.home-assistant.io/integrations/environment_canada/ 
+# - platform: environment_canada

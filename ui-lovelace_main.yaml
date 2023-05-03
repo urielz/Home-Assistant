@@ -1,0 +1,379 @@
+title: Home
+icon: 'mdi:home'
+panel: true
+badges: []
+cards:
+
+  # 
+  # https://github.com/thomasloven/lovelace-layout-card
+  # 
+  - type: 'custom:layout-card'
+    layout_type: vertical
+    max_columns: 3 
+    cards:
+
+      # .......................................................................
+      # Column 1
+      # .......................................................................
+
+      # Weather Forecast Card -------------------------------------------------
+      # https://github.com/bramkragten/weather-card
+      #
+      - type: custom:weather-card 
+        entity: weather.bellevue
+
+      # SONOS Media Player ----------------------------------------------------
+      # https://github.com/kalkih/mini-media-player
+      #
+      - type: custom:mini-media-player
+        name: SONOS
+        entity: media_player.speaker
+        #artwork: cover
+        icon: mdi:music
+        source: icon
+      
+      # Waste Collection Reminder ---------------------------------------------
+      # PLACE_ID: 836B8358-3AAA-11E5-8EAF-2E3C47A8A7C0
+      # SERVICE_ID: 330
+      - type: entities
+        show_header_toggle: false
+        title: Garbage Pickup
+        entities:
+          - type: 'custom:template-entity-row'
+            entity: sensor.current_pickup
+            name: |
+              {%- for item in state_attr('sensor.current_pickup','pickup_types') -%}
+              {%- if loop.first == false %}, {% endif -%}
+              {{ item | title }}
+              {%- endfor -%}
+            icon: |
+              {%- set items = state_attr('sensor.current_pickup','pickup_types') -%}
+              {%- if 'Recyclables' in items -%}mdi:newspaper
+              {%- else -%}mdi:trash-can-outline
+              {%- endif -%}
+            active: |
+              {%- set next = as_timestamp(states('sensor.current_pickup')) -%}
+              {%- set days = (next - as_timestamp(now())) / 86400 -%}
+              {{ days < 1 }}
+            state: |
+              {%- set next = as_timestamp(states('sensor.current_pickup')) -%}
+              {%- set days = (next - as_timestamp(now())) / 86400 -%}
+              {%- if days < 0 -%} Yesterday
+              {%- elif days < 1.0 -%}Today
+              {%- elif days < 2.0 -%}Tomorrow
+              {%- else -%}{{ days | round(0,'ceil') }} days
+              {%- endif -%}
+            secondary: >
+              {%- set next = as_timestamp(states('sensor.current_pickup')) -%} {%- if
+              next | timestamp_custom('%a',false) != 'Mon' -%}⚠️ {%- endif -%} {{ next |
+              timestamp_custom('%A, %B %-d',false) }}
+
+        style: |
+          ha-card {
+               font-size: 14px;
+               box-shadow: none;               
+             }              
+             .card-header {
+               font-size: 20px;
+               margin: -8px 0px
+             }
+            #states > * {
+               margin: -4px 0px !important;              
+          }             
+
+      - type: custom:layout-break
+      
+      # .......................................................................
+      # Column 2 
+      # .......................................................................
+
+      # AirThings Radon Sensor ------------------------------------------------
+      # https://github.com/RomRider/apexcharts-card
+      #
+      - type: custom:apexcharts-card
+        apex_config:
+          chart:
+            height: 217
+            zoom:
+              enabled: true
+            toolbar:
+              show: true
+          legend:
+            show: false
+          grid:
+            borderColor: '#90A4AE'
+            strokeDashArray: 2
+        graph_span: 7d
+        header:
+          show: true
+          show_states: true
+        yaxis:
+          - id: main
+            apex_config:
+              tickAmount: 4
+              decimalsInFloat: 0
+          - id: sec
+            apex_config:
+              tickAmount: 1
+            show: 
+              false          
+        series:         
+          - entity: binary_sensor.night
+            transform: 'return x === "on" ? 1 : 0;'
+            color: grey
+            type: area
+            curve: stepline
+            opacity: 0.5
+            stroke_width: 0
+            yaxis_id: sec            
+            show:
+              legend_value: false
+              in_header: false
+              name_in_header: false
+          - entity: sensor.airthings_basement_radonshorttermavg
+            name: 'Radon Gas (Rn) :: Gameroom'
+            yaxis_id: main
+            stroke_width: 1.5
+            color: rgb(241,196,15)
+            type: area
+            opacity: 0.1
+
+      # Temperature Sensors ---------------------------------------------------
+      # https://github.com/RomRider/apexcharts-card
+      #            
+      - type: custom:apexcharts-card
+        apex_config:
+          chart:
+            height: 280
+          legend:
+            show: true
+            fontSize: '10px'
+            offsetY: 7
+            horizontalAlign: left
+          grid:
+            borderColor: '#90A4AE'
+            strokeDashArray: 2
+        graph_span: 3d
+        header:
+          title: Temperature
+          show: true
+          show_states: true
+          colorize_states: true
+        all_series_config:
+          curve: smooth
+          stroke_width: 1.5
+          show:
+            legend_value: false
+          group_by:
+            func: avg
+            duration: 20min
+        yaxis:
+          - id: main
+            apex_config:
+              tickAmount: 4
+              decimalsInFloat: 0
+          - id: sec
+            apex_config:
+              tickAmount: 1
+            show: 
+              false
+        series:         
+          - entity: binary_sensor.night
+            transform: 'return x === "on" ? 1 : 0;'
+            yaxis_id: sec
+            color: grey
+            type: area
+            curve: stepline
+            opacity: 0.5
+            stroke_width: 0
+            show:
+              in_header: false
+              name_in_header: false
+            group_by:
+              func: raw
+          - entity: sensor.tobis_bedroom_temperature
+            name: "Tobi's Bedroom" # blue - rgba(66,147,204,255)
+            yaxis_id: main                  
+          - entity: sensor.office_temperature
+            name: 'Office' # red - rgba(221,79,65,255)
+            yaxis_id: main
+          - entity: sensor.living_room_temperature
+            name: 'Living Room'
+            yaxis_id: main
+            color: rgb(153,0,153) # purple
+          - entity: sensor.gameroom_temperature
+            name: 'Game Room' # yellow - rgba(240,195,39,255)
+            yaxis_id: main                
+          - entity: sensor.laundry_room_temperature
+            name: 'Laundry Room' # green - rgba(67,192,121,255)
+            yaxis_id: main                
+          - entity: sensor.temperature_mean
+            name: 'Average'
+            yaxis_id: main                
+            color: rgb(255,255,255) # white
+            stroke_width: 0.5
+            type: area
+            opacity: 0.25
+        style: |
+          ha-card {
+               font-size: 12px;
+
+               # leaving this here for reference:
+               #--ha-card-background: rgba(0, 0, 0, 0);
+               #box-shadow: none;
+               #margin: 8px 8px 18px 8px;
+               #text-align: center;
+               #font-weight: 250;
+               #font-family: Segoe Ui Light;
+             }
+             div#header__title {
+               font-size: 16px;
+             }
+
+      - type: custom:layout-break
+
+      # .......................................................................
+      # Column 3 
+      # .......................................................................
+
+      # AirThings Volatile Organic Compounds (VOC) ----------------------------
+      # https://github.com/RomRider/apexcharts-card
+      #            
+      - type: custom:apexcharts-card
+        apex_config:
+          chart:
+            height: 217
+            zoom:
+              enabled: true
+            toolbar:
+              show: true
+          legend:
+            show: false
+          grid:
+            borderColor: '#90A4AE'
+            strokeDashArray: 2
+        yaxis:
+          - id: main
+            apex_config:
+              tickAmount: 4
+              decimalsInFloat: 0
+          - id: sec
+            apex_config:
+              tickAmount: 1
+            show: 
+              false                       
+        graph_span: 7d
+        header:
+          show: true
+          show_states: true
+        series:         
+          - entity: binary_sensor.night
+            transform: 'return x === "on" ? 1 : 0;'
+            color: grey
+            type: area
+            curve: stepline
+            opacity: 0.5
+            stroke_width: 0
+            yaxis_id: sec
+            show:
+              legend_value: false
+              in_header: false
+              name_in_header: false
+          - entity: sensor.airthings_kitchen_voc
+            name: 'Volatile Organic Compounds (VOC) :: Kitchen'
+            yaxis_id: main
+            stroke_width: 1.5
+            color: rgb(255,166,77)
+            type: area
+            opacity: 0.1
+
+      # Relative Humidity Sensors -------------------------------------
+      - type: custom:apexcharts-card
+        apex_config:
+          chart:
+            height: 280
+          legend:
+            show: true
+            fontSize: '10px'
+            offsetY: 7
+            horizontalAlign: left
+          grid:
+            borderColor: '#90A4AE'
+            strokeDashArray: 2
+        graph_span: 3d
+        header:
+          title: Relative Humidity
+          show: true
+          show_states: true
+          colorize_states: true
+        all_series_config:
+          curve: smooth
+          stroke_width: 1.5
+          show:
+            legend_value: false
+          group_by:
+            func: avg
+            duration: 20min
+        yaxis:
+          - id: main
+            apex_config:
+              tickAmount: 4
+              decimalsInFloat: 0
+          - id: sec
+            apex_config:
+              tickAmount: 1
+            show: 
+              false
+        series:         
+          - entity: binary_sensor.night
+            transform: 'return x === "on" ? 1 : 0;'
+            yaxis_id: sec
+            color: grey
+            type: area
+            curve: stepline
+            opacity: 0.5
+            stroke_width: 0
+            show:
+              in_header: false
+              name_in_header: false
+            group_by:
+              func: raw
+          - entity: sensor.tobis_bedroom_humidity
+            name: "Tobi's Bedroom"
+            color: rgb(54,152,220) # blue
+            yaxis_id: main                  
+          - entity: sensor.office_humidity
+            name: 'Office'
+            yaxis_id: main
+          - entity: sensor.living_room_humidity
+            name: 'Living Room'
+            yaxis_id: main
+            color: rgb(153,0,153) # purple
+          - entity: sensor.gameroom_humidity
+            name: 'Game Room'
+            yaxis_id: main                
+          - entity: sensor.laundry_room_humidity
+            name: 'Laundry Room'
+            yaxis_id: main                
+          - entity: sensor.humidity_mean
+            name: 'Average'
+            yaxis_id: main                
+            color: rgb(255,255,255) # white
+            stroke_width: 0.5
+            type: area
+            opacity: 0.25
+        style: |
+          ha-card {
+               font-size: 12px;
+
+               # leaving this here for reference:
+               #--ha-card-background: rgba(0, 0, 0, 0);
+               #box-shadow: none;
+               #margin: 8px 8px 18px 8px;
+               #text-align: center;
+               #font-weight: 250;
+               #font-family: Segoe Ui Light;
+             }
+             div#header__title {
+               font-size: 16px;
+             }
