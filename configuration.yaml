@@ -101,6 +101,7 @@ scene: !include scenes.yaml
 sensor: !include sensors.yaml
 utility_meter: !include utility_meters.yaml
 input_number: !include input_number.yaml
+input_select: !include input_select.yaml
 
 homeassistant:
   packages: !include_dir_named packages
