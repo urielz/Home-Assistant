@@ -20,7 +20,7 @@ cards:
       # https://www.home-assistant.io/lovelace/grid/
       #
       - type: grid 
-        columns: 3
+        columns: 3 
         square: false
         cards:
 
@@ -108,6 +108,12 @@ cards:
               - font-size: 11px
               - height: 75px              
 
+                
+      - type: grid 
+        columns: 2 
+        square: false
+        cards:
+
           - type: 'custom:button-card'
             entity: switch.sonoff_multimedia
             icon: mdi:television
@@ -123,36 +129,106 @@ cards:
               - font-size: 11px
               - height: 100px
 
-          - type: 'custom:button-card'
-            entity: switch.sonoff_audio
+          # Audio System --------------------------------------------------------------------------
+          - type: custom:button-card # https://github.com/custom-cards/button-card
+            entity: switch.sonoff_audio 
             icon: mdi:music-clef-treble
-            color: rgb(255, 255, 102)
             name: Audio System
-            label: > 
-              [[[ return 'Power: ' + states['sensor.sonoff_audio_power'].state + 'W'; ]]]
-            show_state: false
-            show_name: true
-            show_label: true
+            aspect_ratio: 2.2/1
             styles:
               card:
-              - font-size: 11px
-              - height: 100px              
-
-
-          - type: 'custom:button-card'
-            entity: switch.sonoff_audio
-            icon: mdi:music-clef-treble
-            color: rgb(255, 255, 102)
-            name: Audio System
-            label: > 
-              [[[ return 'Power: ' + states['sensor.sonoff_audio_power'].state + 'W'; ]]]
-            show_state: false
-            show_name: true
-            show_label: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 100px         
+                - border-radius: 10%
+                - padding: 5%
+                - color: ivory
+                - font-size: 10px
+                - text-shadow: 0px 0px 5px black
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
+                - grid-template-columns: 20% 20% 30% 30% 
+                - grid-template-rows: 1fr 2fr min-content min-content
+              name:
+                - font-weight: bold
+                - font-size: 13px
+                - color: white
+                - align-self: middle
+                - justify-self: start 
+                - padding-bottom: 4px
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+              icon:
+                - color: '#FFFF66'
+                - width: 100%
+                - margin-top: -2%
+              custom_fields:
+                status:
+                  - font-weight: bold
+                  - font-size: 13px
+                  - color: white
+                  - align-self: middle
+                  - justify-self: start
+                  - padding-bottom: 4px
+                cost:
+                  - padding-bottom: 3px
+                  - padding-top: 3px
+                  - align-self: middle
+                  - justify-self: start
+                power:
+                  - padding-bottom: 3px
+                  - padding-top: 3px
+                  - align-self: middle
+                  - justify-self: end
+                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_power"].state > 150) return "red"; ]]]'
+                current:
+                  - padding-bottom: 3px
+                  - padding-top: 3px
+                  - align-self: middle
+                  - justify-self: start
+                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_current"].state > 2) return "red"; ]]]'
+                voltage:
+                  - padding-bottom: 3px
+                  - padding-top: 3px
+                  - align-self: middle
+                  - justify-self: end 
+                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_voltage"].state < 100) return "red"; ]]]'
+            custom_fields:
+              status: >
+                [[[
+                  if (states["switch.sonoff_audio"].state == 'off') return `<span>status: off<\span>`
+                  if (states["sensor.sonoff_audio_power"].state > 10) return `<span>status: on</span>`
+                  if (states["sensor.sonoff_audio_power"].state < 10) return `<span>status: idle</span>`
+                ]]]
+              cost: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:currency-usd"
+                    style="width: 12px; height: 12px; color: white;">
+                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hvac_cost_yearly'].state}CAD</span>`
+                ]]]
+              power: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:lightning-bolt"
+                    style="width: 12px; height: 12px; color: white;">
+                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_power'].state}W</span></span>`
+                ]]]
+                
+              current: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:speedometer"
+                    style="width: 12px; height: 12px; color: white;">
+                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_current'].state}A</span></span>`
+                ]]]
+              voltage: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:sine-wave"
+                    style="width: 12px; height: 12px; color: white;">
+                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_voltage'].state}V</span></span>`
+                ]]]                  
 
           # Heat Pump --------------------------------------------------------------------------
           - type: custom:button-card # https://github.com/custom-cards/button-card
