@@ -65,7 +65,25 @@
   name: hydro_energy_spent
   unit_prefix: k
   unit_time: h
-  round: 2    
+  round: 2
+
+# Riemann sum (Audio System)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_audio_power
+  name: audio_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2 
+
+# Riemann sum (Entertainment System)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.sonoff_multimedia_power
+  name: multimedia_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2 
 
 # MIN/MAX sensor to compute min/max/mean/median
 # https://www.home-assistant.io/integrations/min_max/
@@ -183,6 +201,30 @@
     fridge_cost_yearly:
       friendly_name: 'Fridge Yearly Cost'
       value_template: "{{ (states('sensor.fridge_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Audio System Cost
+- platform: template
+  sensors:
+    audio_cost_monthly:
+      friendly_name: 'Audio System Monthly Cost'
+      value_template: "{{ (states('sensor.audio_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    audio_cost_yearly:
+      friendly_name: 'Audio System Yearly Cost'
+      value_template: "{{ (states('sensor.audio_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+
+# Entertainment System Cost
+- platform: template
+  sensors:
+    multimedia_cost_monthly:
+      friendly_name: 'Entertainment System Monthly Cost'
+      value_template: "{{ (states('sensor.multimedia_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    multimedia_cost_yearly:
+      friendly_name: 'Entertainment System Yearly Cost'
+      value_template: "{{ (states('sensor.multimedia_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
       unit_of_measurement: "$"
 
 # Temperature Anomalies
