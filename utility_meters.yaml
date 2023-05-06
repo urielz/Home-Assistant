@@ -48,6 +48,14 @@ dishwasher_yearly:
   source: sensor.dishwasher_energy_spent
   cycle: yearly  
 
+heatpump_monthly:
+  source: sensor.heatpump_energy_spent
+  cycle: monthly
+
+heatpump_yearly:
+  source: sensor.heatpump_energy_spent
+  cycle: yearly  
+
 audio_monthly:
   source: sensor.audio_energy_spent
   cycle: monthly
