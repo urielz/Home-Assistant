@@ -48,6 +48,21 @@ dishwasher_yearly:
   source: sensor.dishwasher_energy_spent
   cycle: yearly  
 
+audio_monthly:
+  source: sensor.audio_energy_spent
+  cycle: monthly
+
+audio_yearly:
+  source: sensor.audio_energy_spent
+  cycle: yearly  
+
+multimedia_monthly:
+  source: sensor.multimedia_energy_spent
+  cycle: monthly
+
+multimedia_yearly:
+  source: sensor.multimedia_energy_spent
+  cycle: yearly  
 # av_daily:
 #   source: sensor.av_energy_spent
 #   cycle: daily
