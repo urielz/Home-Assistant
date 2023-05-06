@@ -58,6 +58,15 @@
   unit_time: h
   round: 2
 
+# Riemann sum (Heat Pump)
+# https://www.home-assistant.io/integrations/integration/
+- platform: integration
+  source: sensor.atm90e32as_ct5_watts # CT#2
+  name: heatpump_energy_spent
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
 # Riemann sum (Hydroponic Lights)
 # https://www.home-assistant.io/integrations/integration/
 - platform: integration
@@ -177,6 +186,18 @@
     dishwasher_cost_yearly:
       friendly_name: 'Dishwasher Yearly Cost'
       value_template: "{{ (states('sensor.dishwasher_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"            
+
+# Heat Pump Cost
+- platform: template
+  sensors:
+    heatpump_cost_monthly:
+      friendly_name: 'Heat Pump Monthly Cost'
+      value_template: "{{ (states('sensor.heatpump_monthly')|float * states('input_number.energy_cost')|float)|round(1) }}"
+      unit_of_measurement: "$"
+    heatpump_cost_yearly:
+      friendly_name: 'Heat Pump Yearly Cost'
+      value_template: "{{ (states('sensor.heatpump_yearly')|float * states('input_number.energy_cost')|float)|round(1) }}"
       unit_of_measurement: "$"            
 
 # Washing Machine Cost
