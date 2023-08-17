@@ -4,7 +4,7 @@ panel: true
 badges: []
 cards:
   - type: iframe
-    url: 'http://www.youtube.com/embed/86YLFOog4GM?autoplay=1&vq=hd1080&mute=1'
+    url: 'http://www.youtube.com/embed/KG6SL6Mf7ak?autoplay=1&vq=hd1080&mute=1'
     aspect_ratio: 75%
       
   # - type: 'custom:layout-card'
