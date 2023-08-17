@@ -19,23 +19,24 @@ cards:
       - type: vertical-stack
         cards:
 
-          # # RPI4
-          # - type: 'custom:rpi-monitor-card'
-          #   entity: sensor.rpi_monitor_rpi4
-          #   name: Raspberry Pi 4
-          #   card_style: full
-          #   temp_scale: C
-          #   fs_severity:
-          #     - color: Green
-          #       from: 0
-          #       to: 25
-          #     - color: Orange
-          #       from: 26
-          #       to: 50
-          #     - color: Red
-          #       from: 51
-          #       to: 100
+          # RPI4
+          - type: 'custom:rpi-monitor-card'
+            entity: sensor.rpi_monitor_rpi4
+            name: Raspberry Pi 4
+            card_style: full
+            temp_scale: C
+            fs_severity:
+              - color: Green
+                from: 0
+                to: 25
+              - color: Orange
+                from: 26
+                to: 50
+              - color: Red
+                from: 51
+                to: 100
 
+          # RSS WiFi
           - type: "custom:button-card" # https://github.com/custom-cards/button-card
             name: RSSI WiFi devices   
             styles:
@@ -44,12 +45,16 @@ cards:
           - type: 'custom:config-template-card' # https://github.com/iantrich/config-template-card
             variables:
               - states['sensor.s31_rssi_lab'].state
-              - states['sensor.s31_rssi_living_room_multimedia'].state
+              - states['sensor.s31_rssi_multimedia'].state
+              - states['sensor.rssi_s31_patio'].state
               - states['sensor.powr2_rssi_washer'].state
+              - states['sensor.rssi_eufy_doorbell'].state
             entities:
               - sensor.s31_rssi_lab
-              - sensor.s31_rssi_living_room_multimedia
+              - sensor.s31_rssi_multimedia
+              - sensor.rssi_s31_patio
               - sensor.powr2_rssi_washer
+              - sensor.rss2_eufy_doorbell
             card:
               type: 'custom:hui-entities-card'
               show_header_toggle: false 
@@ -57,91 +62,99 @@ cards:
                 - entity: sensor.s31_rssi_lab
                   name: "${'S31 Lab:' + '\xa0'.repeat(34) + (-vars[0] >= 70 ? 'Weak' : -vars[0] >= 67 ? 'Reliable' : -vars[0] >= 60 ? 'Strong' : 'Excellent' )}"
                   icon: "${-vars[0] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"
-                - entity: sensor.s31_rssi_living_room_multimedia 
+                - entity: sensor.s31_rssi_multimedia 
                   name: "${'S31 Living Multimedia:' + '\xa0'.repeat(9) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
+                  icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
+                - entity: sensor.rssi_s31_patio 
+                  name: "${'S31 Patio String Lights:' + '\xa0'.repeat(8) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
                   icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
                 - entity: sensor.powr2_rssi_washer
                   name: "${'POWR2 Laundry Washer:' + '\xa0'.repeat(5) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
                   icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
 
-          # Printer Header
-          - type: "custom:button-card" # https://github.com/custom-cards/button-card
-            name: Office Printer 
-            styles:
-              card:
-                - font-size: 16px
-          - type: horizontal-stack
-            cards:
-              # Printer Status
-              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
-                entity: sensor.hl_l2340d_status 
-                icon: mdi:printer
-                name: Status
-                show_state: true
-                size: 40%
-                state:
-                  - operator: template
-                    value: >
-                      [[[
-                        return states['sensor.hl_l2340d_status'].state != 'sleep';
-                      ]]]
-                    color: rgb(67,192,121) # green
-                  - operator: default
-                    color: rgb(224, 224, 224) # gray
-                styles:
-                  card:
-                    - font-size: 12px
-              # Page Counter
-              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
-                entity: sensor.hl_l2340d_page_counter 
-                icon: mdi:stack-overflow
-                name: Pages 
-                show_state: true
-                size: 40%
-                state:
-                  - operator: default
-                    color: rgb(224, 224, 224) # gray
-                styles:
-                  card:
-                    - font-size: 12px
-              # Black Toner remaining
-              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
-                entity: sensor.hl_l2340d_black_toner_remaining 
-                icon: mdi:printer-3d-nozzle
-                name: Black Toner
-                show_state: true
-                size: 40%
-                state:
-                  - operator: template
-                    value: >
-                      [[[
-                        return states['sensor.hl_l2340d_black_toner_remaining'].state < 20;
-                      ]]]
-                    color: rgb(255,65,54) # red                
-                  - operator: default
-                    color: rgb(67, 192, 121) # green
-                styles:
-                  card:
-                    - font-size: 12px
-              # Drum Remaining Life     
-              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
-                entity: sensor.hl_l2340d_drum_remaining_life 
-                icon: mdi:chart-donut
-                name: Drum Life
-                show_state: true
-                size: 40%
-                state:
-                  - operator: template
-                    value: >
-                      [[[
-                        return states['sensor.hl_l2340d_drum_remaining_life'].state < 20;
-                      ]]]
-                    color: rgb(255,65,54) # red                
-                  - operator: default
-                    color: rgb(67, 192, 121) # green
-                styles:
-                  card:
-                    - font-size: 12px                       
+                - entity: sensor.rssi_eufy_doorbell
+                  name: "${'Eufy Doorbell:' + '\xa0'.repeat(25) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
+
+          #          # Printer Header
+          #          - type: "custom:button-card" # https://github.com/custom-cards/button-card
+                    #            name: Office Printer 
+                    #            styles:
+                    #              card:
+                    #                - font-size: 16px
+                    #          - type: horizontal-stack
+                    #            cards:
+                    #              # Printer Status
+                    #              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                    #                entity: sensor.hl_l2340d_status 
+                    #                icon: mdi:printer
+                    #                name: Status
+                    #                show_state: true
+                    #                size: 40%
+                    #                state:
+                    #                  - operator: template
+                    #                    value: >
+                    #                      [[[
+                    #                        return states['sensor.hl_l2340d_status'].state != 'sleep';
+                    #                      ]]]
+                    #                    color: rgb(67,192,121) # green
+                    #                  - operator: default
+                    #                    color: rgb(224, 224, 224) # gray
+                    #                styles:
+                    #                  card:
+                    #                    - font-size: 12px
+                    #              # Page Counter
+                    #              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                    #                entity: sensor.hl_l2340d_page_counter 
+                    #                icon: mdi:stack-overflow
+                    #                name: Pages 
+                    #                show_state: true
+                    #                size: 40%
+                    #                state:
+                    #                  - operator: default
+                    #                    color: rgb(224, 224, 224) # gray
+                    #                styles:
+                    #                  card:
+                    #                    - font-size: 12px
+                    #              # Black Toner remaining
+                    #              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                    #                entity: sensor.hl_l2340d_black_toner_remaining 
+                    #                icon: mdi:printer-3d-nozzle
+                    #                name: Black Toner
+                    #                show_state: true
+                    #                size: 40%
+                    #                state:
+                    #                  - operator: template
+                    #                    value: >
+                    #                      [[[
+                    #                        return states['sensor.hl_l2340d_black_toner_remaining'].state < 20;
+                    #                      ]]]
+                    #                    color: rgb(255,65,54) # red                
+                    #                  - operator: default
+                    #                    color: rgb(67, 192, 121) # green
+                    #                styles:
+                    #                  card:
+                    #                    - font-size: 12px
+                    #              # Drum Remaining Life     
+                    #              - type: "custom:button-card" #  https://github.com/custom-cards/button-card
+                    #                entity: sensor.hl_l2340d_drum_remaining_life 
+                    #                icon: mdi:chart-donut
+                    #                name: Drum Life
+                    #                show_state: true
+                    #                size: 40%
+                    #                state:
+                    #                  - operator: template
+                    #                    value: >
+                    #                      [[[
+                    #                        return states['sensor.hl_l2340d_drum_remaining_life'].state < 20;
+                    #                      ]]]
+                    #                    color: rgb(255,65,54) # red                
+                    #                  - operator: default
+                    #                    color: rgb(67, 192, 121) # green
+                    #                styles:
+                    #                  card:
+                    #                    - font-size: 12px                       
+                    #
 
       ######################################################################
       # 2nd column
@@ -277,8 +290,8 @@ cards:
       ######################################################################
       # 3rd column
       ######################################################################
-      # HASS
 
+      # HASS
       - type: vertical-stack
         cards:
         # type: horizontal-stack        
