@@ -2,7 +2,7 @@ title: Bellevue House
 views:
   - !include 'ui-lovelace_main.yaml'        # Main tab
   - !include 'ui-lovelace_devices.yaml'     # Any device that can be control and/or automatize
-  - !include 'ui-lovelace_hydroponics.yaml'
+  - !include 'ui-lovelace_hydroponics.yaml' # Hydroponics dashboard - currently not setup
   - !include 'ui-lovelace_cameras.yaml'     # Outdoor and indoor cameras 
   - !include 'ui-lovelace_vacuum.yaml'      # Roomba Vacuum tab
   - !include 'ui-lovelace_power.yaml'       # Track energy consumption and cost of various appliances
@@ -13,7 +13,7 @@ views:
   - !include 'ui-lovelace_schedule.yaml'    # Automatic Schedule for various devices  
   - !include 'ui-lovelace_weather.yaml'     # Windy map
   - !include 'ui-lovelace_iss.yaml'         # ISS live stream
-  - !include 'ui-lovelace_ns_webcams.yaml'         # ISS live stream
+  - !include 'ui-lovelace_ns_webcams.yaml'  # Nova Scotia webcams live stream
 #  - !include 'ui-lovelace_test2.yaml'
 #  - !include 'ui-lovelace_test.yaml'
 #  - !include 'ui-lovelace_main_dev.yaml' # failed attempt to use grid layout (in order to have variable width columns)
