@@ -133,23 +133,23 @@ icon: 'mdi:cctv'
 cards:
   - type: conditional
     conditions:
-      - entity: camera.doorbell_2
+      - entity: camera.doorbell
         state: idle
     card:
       show_state: true
       show_name: true
       type: picture-entity
-      entity: camera.doorbell_2
-      camera_image: camera.doorbell_2
+      entity: camera.doorbell
+      camera_image: camera.doorbell
       tap_action:
         action: call-service
         service: camera.turn_on
         data: {}
         target:
-          entity_id: camera.doorbell_2
+          entity_id: camera.doorbell
   - type: conditional
     conditions:
-      - entity: camera.doorbell_2
+      - entity: camera.doorbell
         state: streaming
     card:
       type: vertical-stack
@@ -162,8 +162,8 @@ cards:
             service: camera.turn_off
             data: {}
             target:
-              entity_id: camera.doorbell_2
-          entity: camera.doorbell_2
+              entity_id: camera.doorbell
+          entity: camera.doorbell
           name: Stop
         - type: custom:webrtc-camera
-          entity: camera.doorbell_2
+          entity: camera.doorbell
