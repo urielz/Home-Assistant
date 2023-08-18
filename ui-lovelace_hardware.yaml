@@ -44,39 +44,59 @@ cards:
                 - font-size: 16px
           - type: 'custom:config-template-card' # https://github.com/iantrich/config-template-card
             variables:
-              - states['sensor.s31_rssi_lab'].state
-              - states['sensor.s31_rssi_multimedia'].state
+              - states['sensor.rssi_s31_lab'].state
+              - states['sensor.rssi_s31_multimedia'].state
               - states['sensor.rssi_s31_patio'].state
-              - states['sensor.powr2_rssi_washer'].state
+              - states['sensor.rssi_powr2_washer'].state
               - states['sensor.rssi_eufy_doorbell'].state
+              - states['sensor.rssi_cs_energymeter'].state
+              - states['sensor.rssi_esp32_gameroom'].state
             entities:
-              - sensor.s31_rssi_lab
-              - sensor.s31_rssi_multimedia
+              - sensor.rssi_s31_lab
+              - sensor.rssi_s31_multimedia
               - sensor.rssi_s31_patio
-              - sensor.powr2_rssi_washer
-              - sensor.rss2_eufy_doorbell
+              - sensor.rssi_powr2_washer
+              - sensor.rssi_eufy_doorbell
+              - sensor.rssi_cs_energymeter
+              - sensor.rssi_esp32_gameroom
             card:
               type: 'custom:hui-entities-card'
               show_header_toggle: false 
               entities:
-                - entity: sensor.s31_rssi_lab
+                - entity: sensor.rssi_s31_lab
                   name: "${'S31 Lab:' + '\xa0'.repeat(34) + (-vars[0] >= 70 ? 'Weak' : -vars[0] >= 67 ? 'Reliable' : -vars[0] >= 60 ? 'Strong' : 'Excellent' )}"
                   icon: "${-vars[0] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"
-                - entity: sensor.s31_rssi_multimedia 
+                - entity: sensor.rssi_s31_multimedia 
                   name: "${'S31 Living Multimedia:' + '\xa0'.repeat(9) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
                   icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
                 - entity: sensor.rssi_s31_patio 
                   name: "${'S31 Patio String Lights:' + '\xa0'.repeat(8) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
                   icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
-                - entity: sensor.powr2_rssi_washer
+                - entity: sensor.rssi_powr2_washer
                   name: "${'POWR2 Laundry Washer:' + '\xa0'.repeat(5) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
                   icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
 
                 - entity: sensor.rssi_eufy_doorbell
                   name: "${'Eufy Doorbell:' + '\xa0'.repeat(25) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
                   icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
+                - entity: sensor.rssi_cs_energymeter
+                  name: "${'CS Energy Meter:' + '\xa0'.repeat(19) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
+                - entity: sensor.rssi_esp32_gameroom
+                  name: "${'ESP32 Gameroom:' + '\xa0'.repeat(16) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
 
-          #          # Printer Header
+          - cards:
+              - type: iframe
+                url: >-
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&panelId=14 
+                  aspect_ratio: 80%
+            type: horizontal-stack
+
+
+              #     url: >- 
+              #    http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&panelId=12&refresh=1m
+                  #          # Printer Header
           #          - type: "custom:button-card" # https://github.com/custom-cards/button-card
                     #            name: Office Printer 
                     #            styles:
