@@ -59,6 +59,7 @@ cards:
               - sensor.rssi_eufy_doorbell
               - sensor.rssi_cs_energymeter
               - sensor.rssi_esp32_gameroom
+              - '${vars[0].entity_id}'
             card:
               type: 'custom:hui-entities-card'
               show_header_toggle: false 
@@ -68,24 +69,22 @@ cards:
                   icon: "${-vars[0] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"
                 - entity: sensor.rssi_s31_multimedia 
                   name: "${'S31 Living Multimedia:' + '\xa0'.repeat(9) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
-                  icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
+                  icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[1] >= 67 ? 'mdi:wifi-strength-2' : -vars[1] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
                 - entity: sensor.rssi_s31_patio 
-                  name: "${'S31 Patio String Lights:' + '\xa0'.repeat(8) + (-vars[1] >= 70 ? 'Weak' : -vars[1] >=  67 ? 'Reliable' : -vars[1] >= 60 ? 'Strong' : 'Excellent')}"
-                  icon: "${-vars[1] >= 70 ? 'mdi:wifi-strength-1' : -vars[0] >= 67 ? 'mdi:wifi-strength-2' : -vars[0] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
+                  name: "${'S31 Patio String Lights:' + '\xa0'.repeat(8) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >=  67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"
+                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"                  
                 - entity: sensor.rssi_powr2_washer
-                  name: "${'POWR2 Laundry Washer:' + '\xa0'.repeat(5) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
-                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
-
+                  name: "${'POWR2 Laundry Washer:' + '\xa0'.repeat(5) + (-vars[3] >= 70 ? 'Weak' : -vars[3] >= 67 ? 'Reliable' : -vars[3] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[3] >= 70 ? 'mdi:wifi-strength-1' : -vars[3] >= 67 ? 'mdi:wifi-strength-2' : -vars[3] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
                 - entity: sensor.rssi_eufy_doorbell
-                  name: "${'Eufy Doorbell:' + '\xa0'.repeat(25) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
-                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
+                  name: "${'Eufy Doorbell:' + '\xa0'.repeat(25) + (-vars[4] >= 70 ? 'Weak' : -vars[4] >= 67 ? 'Reliable' : -vars[4] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[4] >= 70 ? 'mdi:wifi-strength-1' : -vars[4] >= 67 ? 'mdi:wifi-strength-2' : -vars[4] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
                 - entity: sensor.rssi_cs_energymeter
-                  name: "${'CS Energy Meter:' + '\xa0'.repeat(19) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
-                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
+                  name: "${'CS Energy Meter:' + '\xa0'.repeat(19) + (-vars[5] >= 70 ? 'Weak' : -vars[5] >= 67 ? 'Reliable' : -vars[5] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[5] >= 70 ? 'mdi:wifi-strength-1' : -vars[5] >= 67 ? 'mdi:wifi-strength-2' : -vars[5] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
                 - entity: sensor.rssi_esp32_gameroom
-                  name: "${'ESP32 Gameroom:' + '\xa0'.repeat(16) + (-vars[2] >= 70 ? 'Weak' : -vars[2] >= 67 ? 'Reliable' : -vars[2] >= 60 ? 'Strong' : 'Excellent')}"                  
-                  icon: "${-vars[2] >= 70 ? 'mdi:wifi-strength-1' : -vars[2] >= 67 ? 'mdi:wifi-strength-2' : -vars[2] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
-
+                  name: "${'ESP32 Gameroom:' + '\xa0'.repeat(16) + (-vars[6] >= 70 ? 'Weak' : -vars[6] >= 67 ? 'Reliable' : -vars[6] >= 60 ? 'Strong' : 'Excellent')}"                  
+                  icon: "${-vars[6] >= 70 ? 'mdi:wifi-strength-1' : -vars[6] >= 67 ? 'mdi:wifi-strength-2' : -vars[6] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
           - cards:
               - type: iframe
                 url: >-
