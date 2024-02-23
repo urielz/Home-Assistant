@@ -130,7 +130,7 @@ cards:
               legend_value: false
               in_header: false
               name_in_header: false
-          - entity: sensor.airthings_basement_radonshorttermavg
+          - entity: sensor.basement_radon
             name: 'Radon Gas (Rn) :: Gameroom'
             yaxis_id: main
             stroke_width: 1.5
@@ -197,6 +197,10 @@ cards:
           - entity: sensor.office_temperature
             name: 'Office' # red - rgba(221,79,65,255)
             yaxis_id: main
+          - entity: sensor.kitchen_temperature
+            name: 'Kitchen'
+            yaxis_id: main
+            color: rgb(14,47,115) # dark blue
           - entity: sensor.living_room_temperature
             name: 'Living Room'
             yaxis_id: main
@@ -279,7 +283,7 @@ cards:
               legend_value: false
               in_header: false
               name_in_header: false
-          - entity: sensor.airthings_kitchen_voc
+          - entity: sensor.kitchen_vocs
             name: 'Volatile Organic Compounds (VOC) :: Kitchen'
             yaxis_id: main
             stroke_width: 1.5
