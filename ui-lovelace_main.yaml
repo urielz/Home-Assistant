@@ -155,13 +155,14 @@ cards:
             strokeDashArray: 2
         graph_span: 3d
         header:
-          title: Temperature
+          title: Temperature (°C)
           show: true
           show_states: true
           colorize_states: true
         all_series_config:
           curve: smooth
           stroke_width: 1.5
+          unit: ' '
           show:
             legend_value: false
           group_by:
@@ -191,6 +192,13 @@ cards:
               name_in_header: false
             group_by:
               func: raw
+          - entity: sensor.temperature_mean
+            name: 'Average'
+            yaxis_id: main                
+            color: rgb(255,255,255) # white
+            stroke_width: 0.5
+            type: area
+            opacity: 0.25
           - entity: sensor.tobis_bedroom_temperature
             name: "Tobi's Bedroom" # blue - rgba(66,147,204,255)
             yaxis_id: main                  
@@ -200,7 +208,7 @@ cards:
           - entity: sensor.kitchen_temperature
             name: 'Kitchen'
             yaxis_id: main
-            color: rgb(14,47,115) # dark blue
+            color: rgb(23,60,135) # dark blue
           - entity: sensor.living_room_temperature
             name: 'Living Room'
             yaxis_id: main
@@ -211,13 +219,6 @@ cards:
           - entity: sensor.laundry_room_temperature
             name: 'Laundry Room' # green - rgba(67,192,121,255)
             yaxis_id: main                
-          - entity: sensor.temperature_mean
-            name: 'Average'
-            yaxis_id: main                
-            color: rgb(255,255,255) # white
-            stroke_width: 0.5
-            type: area
-            opacity: 0.25
         style: |
           ha-card {
                font-size: 12px;
@@ -306,13 +307,14 @@ cards:
             strokeDashArray: 2
         graph_span: 3d
         header:
-          title: Relative Humidity
+          title: Relative Humidity (%)
           show: true
           show_states: true
           colorize_states: true
         all_series_config:
           curve: smooth
           stroke_width: 1.5
+          unit: ' '
           show:
             legend_value: false
           group_by:
@@ -342,13 +344,24 @@ cards:
               name_in_header: false
             group_by:
               func: raw
-          - entity: sensor.tobis_bedroom_humidity
+          - entity: sensor.humidity_mean
+            name: 'Average'
+            yaxis_id: main                
+            color: rgb(255,255,255) # white
+            stroke_width: 0.5
+            type: area
+            opacity: 0.25
+          - entity: sensor.tobis_bedroom_humidity  
             name: "Tobi's Bedroom"
             color: rgb(54,152,220) # blue
             yaxis_id: main                  
           - entity: sensor.office_humidity
             name: 'Office'
             yaxis_id: main
+          - entity: sensor.kitchen_humidity
+            name: 'Kitchen'
+            yaxis_id: main
+            color: rgb(23,60,135) # dark blue
           - entity: sensor.living_room_humidity
             name: 'Living Room'
             yaxis_id: main
@@ -359,13 +372,6 @@ cards:
           - entity: sensor.laundry_room_humidity
             name: 'Laundry Room'
             yaxis_id: main                
-          - entity: sensor.humidity_mean
-            name: 'Average'
-            yaxis_id: main                
-            color: rgb(255,255,255) # white
-            stroke_width: 0.5
-            type: area
-            opacity: 0.25
         style: |
           ha-card {
                font-size: 12px;
