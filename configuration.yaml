@@ -118,28 +118,24 @@ recorder:
       - sensor.tobis_*
       - sensor.living_*
       - sensor.gameroom_*
+      - sensor.basement_*
       - sensor.laundry_*
-      - sensor.sonoff_freezer_*
+      - sensor.kitchen_*
+      - sensor.sonoff_fridge_*
       - sensor.sonoff_hvac_*
       - sensor.sonoff_washer_*
       - sensor.sonoff_fridge_*
-      - sensor.sonoff_tv_plus_*
+      - sensor.sonoff_multimedia_*
       - sensor.sonoff_audio_*
       - sensor.sonoff_hydroponic_*
+      - switch.sonoff_*
       - sensor.airthings_*
+      - sensor.rssi_*
     entities:
       - sensor.temperature_mean
       - sensor.humidity_mean
       - sensor.total_power
       - binary_sensor.night
-      - switch.sonoff_frontdoor
-      - switch.sonoff_freezer
-      - switch.sonoff_humidifier
-      - switch.sonoff_fridge_power 
-      - switch.sonoff_hvac
-      - switch.sonoff_tv_plus
-      - switch.sonoff_audio
-      - switch.sonoff_hydroponic
       - sensor.kuroshio_network_down
       - sensor.kuroshio_network_up
       - sensor.kuroshio_volume_1_average_disk_temp
@@ -181,6 +177,7 @@ influxdb:
       - binary_sensor.pfsense_*        #
       - switch.pfsense_*               #
       - update.pfsense_*               #
+      - sensor.rssi_*
     entities:
       - sensor.sonoff_freezer_power    #  Sonoff POWR2 (discontinued)
       - sensor.sonoff_hvac_power       #  Sonoff POWR2
