@@ -194,8 +194,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card" # https://github.com/custom-cards/button-card
-                name: Free Space
-                entity: sensor.kuroshio_free_space
+                numeric_precision: 2 # for an explanation: https://github.com/custom-cards/button-card/issues/662 
+                name: Data (TB) 
+                entity: sensor.kuroshio_volume_1_used_space
                 icon: mdi:harddisk-plus
                 show_state: true
                 size: 40%
@@ -203,11 +204,15 @@ cards:
                   - operator: template
                     value: >
                       [[[
-                        return states['sensor.kuroshio_free_space'].state < 500;
+                        return helpers.localize(states['sensor.kuroshio_volume_1_used_space'], undefined, 'card') > 2;
                       ]]]
                     color: rgb(221,79,65) # red
                   - operator: default
                     color: rgb(67, 192, 121) # green
+                    value: >
+                      [[[
+                        return helpers.localize(states['sensor.kuroshio_volume_1_used_space'], undefined, 'card');
+                      ]]]
                 styles:
                   card:
                     - font-size: 12px
