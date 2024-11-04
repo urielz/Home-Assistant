@@ -86,7 +86,7 @@ cards:
                   name: "${'ESP32 Gameroom:' + '\xa0'.repeat(16) + (-vars[6] >= 70 ? 'Weak' : -vars[6] >= 67 ? 'Reliable' : -vars[6] >= 60 ? 'Strong' : 'Excellent')}"                  
                   icon: "${-vars[6] >= 70 ? 'mdi:wifi-strength-1' : -vars[6] >= 67 ? 'mdi:wifi-strength-2' : -vars[6] >= 60 ? 'mdi:wifi-strength-3' : 'mdi:wifi'}"  
           - cards:
-              - type: iframe
+              - type: iframe # make sure to use Grafana port (3000) instead of 8213
                 url: >-
                   http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1692304693235&to=1692326293235&panelId=14&refresh=1m
                   aspect_ratio: 80%
