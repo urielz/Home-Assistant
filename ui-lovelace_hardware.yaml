@@ -88,7 +88,7 @@ cards:
           - cards:
               - type: iframe
                 url: >-
-                  http://192.168.10.10:8123/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1692304693235&to=1692326293235&panelId=14&refresh=1m
+                  http://192.168.10.10:3000/api/hassio_ingress/YnhIkXc5So6z73Qu-x5T6y7ebCTVXw10eNGxhg9idbM/d-solo/FvehN5H7k/hardware?orgId=1&from=1692304693235&to=1692326293235&panelId=14&refresh=1m
                   aspect_ratio: 80%
             type: horizontal-stack
 
