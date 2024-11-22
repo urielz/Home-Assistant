@@ -179,7 +179,7 @@ cards:
                   return `<ha-icon
                     icon="mdi:currency-usd"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hvac_cost_yearly'].state}CAD</span>`
+                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.multimedia_cost_yearly'].state}CAD</span>`
                 ]]]
               power: >
                 [[[
@@ -280,7 +280,7 @@ cards:
                   return `<ha-icon
                     icon="mdi:currency-usd"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hvac_cost_yearly'].state}CAD</span>`
+                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.audio_cost_yearly'].state}CAD</span>`
                 ]]]
               power: >
                 [[[
@@ -382,7 +382,7 @@ cards:
                   return `<ha-icon
                     icon="mdi:currency-usd"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hvac_cost_yearly'].state}CAD</span>`
+                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.heatpump_cost_yearly'].state}CAD</span>`
                 ]]]
               power: >
                 [[[
@@ -790,7 +790,7 @@ cards:
                   return `<ha-icon
                     icon="mdi:currency-usd"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.washer_cost_yearly'].state}CAD</span>`
+                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hydro_cost_yearly'].state}CAD</span>`
                 ]]]
               power: >
                 [[[
@@ -870,7 +870,7 @@ cards:
                 sd:
                   - align-self: middle
                   - justify-self: start
-                  - --text-color-sensor: '[[[ if (states["sensor.kuroshio_free_space"].state < 100) return "red"; ]]]'
+                  - --text-color-sensor: '[[[ if (states["sensor.kuroshio_volume_1_used_space"].state > 10) return "red"; ]]]'
             custom_fields:
               temp: >
                 [[[
@@ -898,7 +898,7 @@ cards:
                   return `<ha-icon
                     icon="mdi:harddisk"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;&nbsp;HDD: <span style="color: var(--text-color-sensor);">${states['sensor.kuroshio_free_space'].state}GB</span></span>`
+                    </ha-icon><span>&nbsp;&nbsp;&nbsp;HDD: <span style="color: var(--text-color-sensor);">${states['sensor.kuroshio_volume_1_used_space'].state}TB</span></span>`
                 ]]]  
 
       #     - type: 'custom:button-card'
