@@ -56,31 +56,50 @@ cards:
                 icon: mdi:string-lights
               - value: 'off'
                 icon: mdi:string-lights-off
+          
+          - type: 'custom:button-card'
+            entity: switch.sonoff_fence_lights
+            color: rgb(255, 255, 102)
+            name: Backyard Fence Lights
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+            state:
+              - value: 'on'
+                icon: mdi:fence-electric
+              - value: 'off'
+                icon: mdi:fence
+          
+          - type: 'custom:button-card'
+            entity: switch.sonoff_pics
+            color: rgb(255, 255, 102)
+            name: Pics String Lights
+            show_state: true
+            show_name: true
+            styles:
+              card:
+              - font-size: 11px
+              - height: 75px
+            state:
+              - value: 'on'
+                icon: mdi:camera-iris
+              - value: 'off'
+                icon: mdi:camera-iris
 
           - type: 'custom:button-card'
-            entity: light.lab_ambience_light 
+            entity: light.dinning_room_ambience_light 
             icon: mdi:lamp
             color: rgb(255, 255, 102)
-            name: Lab Mood Light
+            name: Dinning Room mood Light
             show_state: true
             show_name: true
             styles:
               card:
               - font-size: 11px
               - height: 75px                
-
-
-          - type: 'custom:button-card'
-            entity: light.tobis_light 
-            icon: mdi:lamp
-            color: rgb(255, 255, 102)
-            name: Tobi's Light
-            show_state: true
-            show_name: true
-            styles:
-              card:
-              - font-size: 11px
-              - height: 75px            
 
 
           # placeholder
@@ -105,9 +124,9 @@ cards:
 
           # Entertainment System --------------------------------------------------------------------------
           - type: custom:button-card # https://github.com/custom-cards/button-card
-            entity: switch.sonoff_multimedia 
+            entity: switch.powr2_multimedia 
             icon: mdi:television
-            name: Entertainment System
+            name: Multimedia 
             aspect_ratio: 2.2/1
             styles:
               card:
@@ -154,25 +173,25 @@ cards:
                   - padding-top: 3px
                   - align-self: middle
                   - justify-self: end
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_multimedia_power"].state > 150) return "red"; ]]]'
+                  - --text-color-sensor: '[[[ if (states["sensor.powr2_multimedia_power"].state > 150) return "red"; ]]]'
                 current:
                   - padding-bottom: 3px
                   - padding-top: 3px
                   - align-self: middle
                   - justify-self: start
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_multimedia_current"].state > 2) return "red"; ]]]'
+                  - --text-color-sensor: '[[[ if (states["sensor.powr2_multimedia_current"].state > 2) return "red"; ]]]'
                 voltage:
                   - padding-bottom: 3px
                   - padding-top: 3px
                   - align-self: middle
                   - justify-self: end 
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_multimedia_voltage"].state < 100) return "red"; ]]]'
+                  - --text-color-sensor: '[[[ if (states["sensor.powr2_multimedia_voltage"].state < 100) return "red"; ]]]'
             custom_fields:
               status: >
                 [[[
-                  if (states["switch.sonoff_multimedia"].state == 'off') return `<span>status: off<\span>`
-                  if (states["sensor.sonoff_multimedia_power"].state > 10) return `<span>status: on</span>`
-                  if (states["sensor.sonoff_multimedia_power"].state < 10) return `<span>status: idle</span>`
+                  if (states["switch.powr2_multimedia"].state == 'off') return `<span>status: off<\span>`
+                  if (states["sensor.powr2_multimedia_power"].state > 10) return `<span>status: on</span>`
+                  if (states["sensor.powr2_multimedia_power"].state < 10) return `<span>status: idle</span>`
                 ]]]
               cost: >
                 [[[
@@ -186,7 +205,7 @@ cards:
                   return `<ha-icon
                     icon="mdi:lightning-bolt"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_multimedia_power'].state}W</span></span>`
+                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.powr2_multimedia_power'].state}W</span></span>`
                 ]]]
                 
               current: >
@@ -194,219 +213,219 @@ cards:
                   return `<ha-icon
                     icon="mdi:speedometer"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_multimedia_current'].state}A</span></span>`
+                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.powr2_multimedia_current'].state}A</span></span>`
                 ]]]
               voltage: >
                 [[[
                   return `<ha-icon
                     icon="mdi:sine-wave"
                     style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_multimedia_voltage'].state}V</span></span>`
+                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.powr2_multimedia_voltage'].state}V</span></span>`
                 ]]]                  
        
-          # Audio System --------------------------------------------------------------------------
-          - type: custom:button-card # https://github.com/custom-cards/button-card
-            entity: switch.sonoff_audio 
-            icon: mdi:music-clef-treble
-            name: Audio System
-            aspect_ratio: 2.2/1
-            styles:
-              card:
-                - border-radius: 10%
-                - padding: 5%
-                - color: ivory
-                - font-size: 10px
-                - text-shadow: 0px 0px 5px black
-                - text-transform: capitalize
-              grid:
-                - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
-                - grid-template-columns: 20% 20% 30% 30% 
-                - grid-template-rows: 1fr 2fr min-content min-content
-              name:
-                - font-weight: bold
-                - font-size: 13px
-                - color: white
-                - align-self: middle
-                - justify-self: start 
-                - padding-bottom: 4px
-              img_cell:
-                - justify-content: start
-                - align-items: start
-                - margin: none
-              icon:
-                - color: '#FFFF66'
-                - width: 100%
-                - margin-top: -2%
-              custom_fields:
-                status:
-                  - font-weight: bold
-                  - font-size: 13px
-                  - color: white
-                  - align-self: middle
-                  - justify-self: start
-                  - padding-bottom: 4px
-                cost:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: start
-                power:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: end
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_power"].state > 150) return "red"; ]]]'
-                current:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: start
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_current"].state > 2) return "red"; ]]]'
-                voltage:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: end 
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_voltage"].state < 100) return "red"; ]]]'
-            custom_fields:
-              status: >
-                [[[
-                  if (states["switch.sonoff_audio"].state == 'off') return `<span>status: off<\span>`
-                  if (states["sensor.sonoff_audio_power"].state > 10) return `<span>status: on</span>`
-                  if (states["sensor.sonoff_audio_power"].state < 10) return `<span>status: idle</span>`
-                ]]]
-              cost: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:currency-usd"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.audio_cost_yearly'].state}CAD</span>`
-                ]]]
-              power: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:lightning-bolt"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_power'].state}W</span></span>`
-                ]]]
-                
-              current: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:speedometer"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_current'].state}A</span></span>`
-                ]]]
-              voltage: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:sine-wave"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_voltage'].state}V</span></span>`
-                ]]]                  
+              #   # Audio System --------------------------------------------------------------------------
+              #   - type: custom:button-card # https://github.com/custom-cards/button-card
+              #     entity: switch.sonoff_audio 
+              #     icon: mdi:music-clef-treble
+              #     name: Audio System
+              #     aspect_ratio: 2.2/1
+              #     styles:
+              #       card:
+              #         - border-radius: 10%
+              #         - padding: 5%
+              #         - color: ivory
+              #         - font-size: 10px
+              #         - text-shadow: 0px 0px 5px black
+              #         - text-transform: capitalize
+              #       grid:
+              #         - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
+              #         - grid-template-columns: 20% 20% 30% 30% 
+              #         - grid-template-rows: 1fr 2fr min-content min-content
+              #       name:
+              #         - font-weight: bold
+              #         - font-size: 13px
+              #         - color: white
+              #         - align-self: middle
+              #         - justify-self: start 
+              #         - padding-bottom: 4px
+              #       img_cell:
+              #         - justify-content: start
+              #         - align-items: start
+              #         - margin: none
+              #       icon:
+              #         - color: '#FFFF66'
+              #         - width: 100%
+              #         - margin-top: -2%
+              #       custom_fields:
+              #         status:
+              #           - font-weight: bold
+              #           - font-size: 13px
+              #           - color: white
+              #           - align-self: middle
+              #           - justify-self: start
+              #           - padding-bottom: 4px
+              #         cost:
+              #           - padding-bottom: 3px
+              #           - padding-top: 3px
+              #           - align-self: middle
+              #           - justify-self: start
+              #         power:
+              #           - padding-bottom: 3px
+              #           - padding-top: 3px
+              #           - align-self: middle
+              #           - justify-self: end
+              #           - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_power"].state > 150) return "red"; ]]]'
+              #         current:
+              #           - padding-bottom: 3px
+              #           - padding-top: 3px
+              #           - align-self: middle
+              #           - justify-self: start
+              #           - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_current"].state > 2) return "red"; ]]]'
+              #         voltage:
+              #           - padding-bottom: 3px
+              #           - padding-top: 3px
+              #           - align-self: middle
+              #           - justify-self: end 
+              #           - --text-color-sensor: '[[[ if (states["sensor.sonoff_audio_voltage"].state < 100) return "red"; ]]]'
+              #     custom_fields:
+              #       status: >
+              #         [[[
+              #           if (states["switch.sonoff_audio"].state == 'off') return `<span>status: off<\span>`
+              #           if (states["sensor.sonoff_audio_power"].state > 10) return `<span>status: on</span>`
+              #           if (states["sensor.sonoff_audio_power"].state < 10) return `<span>status: idle</span>`
+              #         ]]]
+              #       cost: >
+              #         [[[
+              #           return `<ha-icon
+              #             icon="mdi:currency-usd"
+              #             style="width: 12px; height: 12px; color: white;">
+              #             </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.audio_cost_yearly'].state}CAD</span>`
+              #         ]]]
+              #       power: >
+              #         [[[
+              #           return `<ha-icon
+              #             icon="mdi:lightning-bolt"
+              #             style="width: 12px; height: 12px; color: white;">
+              #             </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_power'].state}W</span></span>`
+              #         ]]]
+              #         
+              #       current: >
+              #         [[[
+              #           return `<ha-icon
+              #             icon="mdi:speedometer"
+              #             style="width: 12px; height: 12px; color: white;">
+              #             </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_current'].state}A</span></span>`
+              #         ]]]
+              #       voltage: >
+              #         [[[
+              #           return `<ha-icon
+              #             icon="mdi:sine-wave"
+              #             style="width: 12px; height: 12px; color: white;">
+              #             </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_audio_voltage'].state}V</span></span>`
+              #         ]]]                  
 
 
-          # Heat Pump --------------------------------------------------------------------------
-          - type: custom:button-card # https://github.com/custom-cards/button-card
-            entity: switch.sonoff_audio 
-            icon: mdi:air-conditioner
-            name: Heat Pump
-            aspect_ratio: 2.2/1
-            styles:
-              card:
-                - border-radius: 10%
-                - padding: 5%
-                - color: ivory
-                - font-size: 10px
-                - text-shadow: 0px 0px 5px black
-                - text-transform: capitalize
-              grid:
-                - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
-                - grid-template-columns: 20% 20% 30% 30% 
-                - grid-template-rows: 1fr 2fr min-content min-content
-              name:
-                - font-weight: bold
-                - font-size: 13px
-                - color: white
-                - align-self: middle
-                - justify-self: start 
-                - padding-bottom: 4px
-              img_cell:
-                - justify-content: start
-                - align-items: start
-                - margin: none
-              icon:
-                - color: '#FFFF66'
-                - width: 100%
-                - margin-top: 0%
-              custom_fields:
-                status:
-                  - font-weight: bold
-                  - font-size: 13px
-                  - color: white
-                  - align-self: middle
-                  - justify-self: start
-                  - padding-bottom: 4px
-                cost:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: start
-                power:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: end
-                  - --text-color-sensor: '[[[ if (states["sensor.atm90e32as_ct5_watts"].state > 150) return "red"; ]]]'
-                current:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: start
-                  - --text-color-sensor: '[[[ if (states["sensor.atm90e32as_ct5_amps"].state > 2) return "red"; ]]]'
-                voltage:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: end 
-                  - --text-color-sensor: '[[[ if (states["sensor.atm90e32as_volts_a"].state < 100) return "red"; ]]]'
-            custom_fields:
-              status: >
-                [[[
-                  if (states["switch.sonoff_multimedia"].state == 'off') return `<span>status: off<\span>`
-                  if (states["sensor.atm90e32as_ct5_watts"].state > 10) return `<span>status: on</span>`
-                  if (states["sensor.atm90e32as_ct5_watts"].state < 10) return `<span>status: idle</span>`
-                ]]]
-              cost: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:currency-usd"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.heatpump_cost_yearly'].state}CAD</span>`
-                ]]]
-              power: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:lightning-bolt"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.atm90e32as_ct5_watts'].state}W</span></span>`
-                ]]]
-                
-              current: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:speedometer"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.atm90e32as_ct5_amps'].state}A</span></span>`
-                ]]]
-              voltage: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:sine-wave"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.atm90e32as_volts_a'].state}V</span></span>`
-                ]]]       
-
+              #          # Heat Pump --------------------------------------------------------------------------
+              #          - type: custom:button-card # https://github.com/custom-cards/button-card
+              #            entity: switch.sonoff_audio 
+              #            icon: mdi:air-conditioner
+              #            name: Heat Pump
+              #            aspect_ratio: 2.2/1
+              #            styles:
+              #              card:
+              #                - border-radius: 10%
+              #                - padding: 5%
+              #                - color: ivory
+              #                - font-size: 10px
+              #                - text-shadow: 0px 0px 5px black
+              #                - text-transform: capitalize
+              #              grid:
+              #                - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
+              #                - grid-template-columns: 20% 20% 30% 30% 
+              #                - grid-template-rows: 1fr 2fr min-content min-content
+              #              name:
+              #                - font-weight: bold
+              #                - font-size: 13px
+              #                - color: white
+              #                - align-self: middle
+              #                - justify-self: start 
+              #                - padding-bottom: 4px
+              #              img_cell:
+              #                - justify-content: start
+              #                - align-items: start
+              #                - margin: none
+              #              icon:
+              #                - color: '#FFFF66'
+              #                - width: 100%
+              #                - margin-top: 0%
+              #              custom_fields:
+              #                status:
+              #                  - font-weight: bold
+              #                  - font-size: 13px
+              #                  - color: white
+              #                  - align-self: middle
+              #                  - justify-self: start
+              #                  - padding-bottom: 4px
+              #                cost:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: start
+              #                power:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: end
+              #                  - --text-color-sensor: '[[[ if (states["sensor.atm90e32as_ct5_watts"].state > 150) return "red"; ]]]'
+              #                current:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: start
+              #                  - --text-color-sensor: '[[[ if (states["sensor.atm90e32as_ct5_amps"].state > 2) return "red"; ]]]'
+              #                voltage:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: end 
+              #                  - --text-color-sensor: '[[[ if (states["sensor.atm90e32as_volts_a"].state < 100) return "red"; ]]]'
+              #            custom_fields:
+              #              status: >
+              #                [[[
+              #                  if (states["switch.sonoff_multimedia"].state == 'off') return `<span>status: off<\span>`
+              #                  if (states["sensor.atm90e32as_ct5_watts"].state > 10) return `<span>status: on</span>`
+              #                  if (states["sensor.atm90e32as_ct5_watts"].state < 10) return `<span>status: idle</span>`
+              #                ]]]
+              #              cost: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:currency-usd"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.heatpump_cost_yearly'].state}CAD</span>`
+              #                ]]]
+              #              power: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:lightning-bolt"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.atm90e32as_ct5_watts'].state}W</span></span>`
+              #                ]]]
+              #                
+              #              current: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:speedometer"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.atm90e32as_ct5_amps'].state}A</span></span>`
+              #                ]]]
+              #              voltage: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:sine-wave"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.atm90e32as_volts_a'].state}V</span></span>`
+              #                ]]]       
+              #
 
           # HVAC -------------------------------------------------------------------------------
           - type: custom:button-card # https://github.com/custom-cards/button-card
@@ -714,107 +733,107 @@ cards:
                 ]]]                  
 
 
-          # Hydroponic System -------------------------------------------------------------------------------
-          - type: custom:button-card # https://github.com/custom-cards/button-card
-            entity: switch.sonoff_hydroponic
-            icon: mdi:sprout
-            name: Hydroponic
-            aspect_ratio: 2.2/1
-            styles:
-              card:
-                - border-radius: 10%
-                - padding: 5%
-                - color: ivory
-                - font-size: 10px
-                - text-shadow: 0px 0px 5px black
-                - text-transform: capitalize
-              grid:
-                - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
-                - grid-template-columns: 20% 20% 30% 30% 
-                - grid-template-rows: 1fr 2fr min-content min-content
-              name:
-                - font-weight: bold
-                - font-size: 13px
-                - color: white
-                - align-self: middle
-                - justify-self: start 
-                - padding-bottom: 4px
-              img_cell:
-                - justify-content: start
-                - align-items: start
-                - margin: none
-              icon:
-                - color: '#FFFF66'
-                - width: 100%
-                - margin-top: -2%
-              custom_fields:
-                status:
-                  - font-weight: bold
-                  - font-size: 13px
-                  - color: white
-                  - align-self: middle
-                  - justify-self: start
-                  - padding-bottom: 4px
-                cost:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: start
-                power:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: end
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_hydroponic_power"].state > 150) return "red"; ]]]'
-                current:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: start
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_hydroponic_current"].state > 2) return "red"; ]]]'
-                voltage:
-                  - padding-bottom: 3px
-                  - padding-top: 3px
-                  - align-self: middle
-                  - justify-self: end 
-                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_hydroponic_voltage"].state < 100) return "red"; ]]]'
-            custom_fields:
-              status: >
-                [[[
-                  if (states["switch.sonoff_hydroponic"].state == 'off') return `<span>status: off<\span>`
-                  if (states["sensor.sonoff_hydroponic_power"].state > 40) return `<span>status: Pump & C</span>`
-                  if (states["sensor.sonoff_hydroponic_power"].state < 40) return `<span>status: Pump</span>`
-                ]]]
-              cost: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:currency-usd"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hydro_cost_yearly'].state}CAD</span>`
-                ]]]
-              power: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:lightning-bolt"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_hydroponic_power'].state}W</span></span>`
-                ]]]
-                
-              current: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:speedometer"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_hydroponic_current'].state}A</span></span>`
-                ]]]
-              voltage: >
-                [[[
-                  return `<ha-icon
-                    icon="mdi:sine-wave"
-                    style="width: 12px; height: 12px; color: white;">
-                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_hydroponic_voltage'].state}V</span></span>`
-                ]]]                  
-          
+              #          # Hydroponic System -------------------------------------------------------------------------------
+              #          - type: custom:button-card # https://github.com/custom-cards/button-card
+              #            entity: switch.sonoff_hydroponic
+              #            icon: mdi:sprout
+              #            name: Hydroponic
+              #            aspect_ratio: 2.2/1
+              #            styles:
+              #              card:
+              #                - border-radius: 10%
+              #                - padding: 5%
+              #                - color: ivory
+              #                - font-size: 10px
+              #                - text-shadow: 0px 0px 5px black
+              #                - text-transform: capitalize
+              #              grid:
+              #                - grid-template-areas: '"i i n n " "i i status status" "cost cost power power" "current current voltage voltage"'
+              #                - grid-template-columns: 20% 20% 30% 30% 
+              #                - grid-template-rows: 1fr 2fr min-content min-content
+              #              name:
+              #                - font-weight: bold
+              #                - font-size: 13px
+              #                - color: white
+              #                - align-self: middle
+              #                - justify-self: start 
+              #                - padding-bottom: 4px
+              #              img_cell:
+              #                - justify-content: start
+              #                - align-items: start
+              #                - margin: none
+              #              icon:
+              #                - color: '#FFFF66'
+              #                - width: 100%
+              #                - margin-top: -2%
+              #              custom_fields:
+              #                status:
+              #                  - font-weight: bold
+              #                  - font-size: 13px
+              #                  - color: white
+              #                  - align-self: middle
+              #                  - justify-self: start
+              #                  - padding-bottom: 4px
+              #                cost:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: start
+              #                power:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: end
+              #                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_hydroponic_power"].state > 150) return "red"; ]]]'
+              #                current:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: start
+              #                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_hydroponic_current"].state > 2) return "red"; ]]]'
+              #                voltage:
+              #                  - padding-bottom: 3px
+              #                  - padding-top: 3px
+              #                  - align-self: middle
+              #                  - justify-self: end 
+              #                  - --text-color-sensor: '[[[ if (states["sensor.sonoff_hydroponic_voltage"].state < 100) return "red"; ]]]'
+              #            custom_fields:
+              #              status: >
+              #                [[[
+              #                  if (states["switch.sonoff_hydroponic"].state == 'off') return `<span>status: off<\span>`
+              #                  if (states["sensor.sonoff_hydroponic_power"].state > 40) return `<span>status: Pump & C</span>`
+              #                  if (states["sensor.sonoff_hydroponic_power"].state < 40) return `<span>status: Pump</span>`
+              #                ]]]
+              #              cost: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:currency-usd"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Cost: ${states['sensor.hydro_cost_yearly'].state}CAD</span>`
+              #                ]]]
+              #              power: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:lightning-bolt"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Power: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_hydroponic_power'].state}W</span></span>`
+              #                ]]]
+              #                
+              #              current: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:speedometer"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Current: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_hydroponic_current'].state}A</span></span>`
+              #                ]]]
+              #              voltage: >
+              #                [[[
+              #                  return `<ha-icon
+              #                    icon="mdi:sine-wave"
+              #                    style="width: 12px; height: 12px; color: white;">
+              #                    </ha-icon><span>&nbsp;&nbsp;Volt.: <span style="color: var(--text-color-sensor);">${states['sensor.sonoff_hydroponic_voltage'].state}V</span></span>`
+              #                ]]]                  
+              #          
           # Synology NAS --------------------------------------------------------------------------
           - type: custom:button-card
             entity: 'binary_sensor.kuroshio_security_status'
@@ -942,27 +961,27 @@ cards:
       - type: vertical-stack
         cards:
 
-          # RGB control
-          # https://github.com/ljmerza/light-entity-card
-          - type: custom:light-entity-card
-            header: Lab Mood Light
-            entity: light.lab_ambience_light
-            persist_features: false 
-            shorten_cards: true 
-            show_slider_percent: true
-            full_width_sliders: true
-            effect_list: input_select.dim_50             
+             # RGB control
+             # https://github.com/ljmerza/light-entity-card
+             - type: custom:light-entity-card
+               header: Dinning Room mood Light
+               entity: light.dinning_room_ambience_light
+               persist_features: false 
+               shorten_cards: true 
+               show_slider_percent: true
+               full_width_sliders: true
+               effect_list: input_select.dim_50             
 
-          # RGB control
-          # https://github.com/ljmerza/light-entity-card
-          - type: custom:light-entity-card
-            header: Tobi's Light
-            entity: light.tobis_light
-            persist_features: true
-            shorten_cards: true
-            show_slider_percent: true
-            full_width_sliders: true
-            persitent_features: true      
-            effect_list:
-              - "play"
-              - "bedtime"
+          ## RGB control
+          ## https://github.com/ljmerza/light-entity-card
+          #- type: custom:light-entity-card
+          #  header: Tobi's Light
+          #  entity: light.tobis_light
+          #  persist_features: true
+          #  shorten_cards: true
+          #  show_slider_percent: true
+          #  full_width_sliders: true
+          #  persitent_features: true      
+          #  effect_list:
+          #    - "play"
+          #    - "bedtime"
