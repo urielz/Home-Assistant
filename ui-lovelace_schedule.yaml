@@ -25,16 +25,6 @@ cards:
                    font-size: 12px;
                  }            
 
-          - type: custom:scheduler-card
-            include:
-              - switch.sonoff_hydroponic
-            title: 'Hydroponic Grow Lights'
-            discover_existing: false
-            style: |
-              ha-card {
-                   font-size: 12px;
-                 }            
-
       - type: custom:layout-break
 
       # .......................................................................
@@ -53,30 +43,44 @@ cards:
                    font-size: 12px;
                  }            
 
+      - type: vertical-stack
+        cards:
+
+          - type: custom:scheduler-card
+            include:
+              - switch.sonoff_fence_lights
+            title: 'Fence Lights'
+            discover_existing: false 
+            style: |
+              ha-card {
+                   font-size: 12px;
+                 }           
+
       - type: custom:layout-break
 
       # .......................................................................
-      # Column 3
+      # Column 3 
       # .......................................................................
       - type: vertical-stack
         cards:
 
           - type: custom:scheduler-card
             include:
-              - switch.sonoff_humidifier
-            title: "Tobi's Light"
-            font-size: 8
+              - light.dinning_room_ambience_light
+            title: 'Mood Light Dinning Room'
             discover_existing: false
             style: |
               ha-card {
                    font-size: 12px;
-                 }
-            # ha-markdown:
-            #   $: |
-            #     h1 {
-            #       font-size: 20px;
-            #       font-weight: bold;
-            #       font-family: Helvetica;
-            #       letter-spacing: '-0.01em';
-            #     }
-            #   type: markdown                 
+
+
+          - type: custom:scheduler-card
+            include:
+              - switch.sonoff_pics
+            title: 'Photos String Lights'
+            discover_existing: false
+            style: |
+              ha-card {
+                   font-size: 12px;
+                 }            
+
