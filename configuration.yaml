@@ -32,9 +32,6 @@ lovelace:
     # Simple Thermostat Card (HACS): https://github.com/nervetattoo/simple-thermostat
     - {type: module, url: '/local/community/simple-thermostat/simple-thermostat.js'}
 
-    # Weather Card (HACS): https://github.com/bramkragten/weather-card
-    - {type: module, url: ' /local/community/weather-card/weather-card.js'}
-                
     # Roomba Card (HACS): https://github.com/jeremywillans/lovelace-roomba-vacuum-card
     - {type: module, url: ' /local/community/lovelace-roomba-vacuum-card/roomba-vacuum-card.js'}
   
@@ -75,7 +72,9 @@ lovelace:
 
     # Light Entity Card (HACS): https://github.com/ljmerza/light-entity-card
     - {type: module, url: '/local/community/light-entity-card/light-entity-card.js'}
-                
+
+    # Weather Chart Card (for forecast): https://github.com/mlamberts78/weather-chart-card
+    - {type: module, url: '/local/community/weather-chart-card/weather-chart-card.js'}
     
     # testing....
 
@@ -169,10 +168,14 @@ influxdb:
     entity_globs:
       - sensor.office_*                # ESP32 + derived variables (thermal comfort)
       - sensor.tobis_*                 #
+      - sensor.emi_*                   #
+      - sensor.guestroom_*
       - sensor.gameroom_*              #
       - sensor.laundry_*               #
       - sensor.living_*                #
       - sensor.airthings_*             # Kitchen: T, RH, VOC, Battery; Basement: T, RH, Radon, Battery
+      - sensor.basement_*
+      - sensor.kitchen_*
       - sensor.pfsense_*               # pfsense variables
       - binary_sensor.pfsense_*        #
       - switch.pfsense_*               #
