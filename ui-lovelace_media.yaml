@@ -1,0 +1,29 @@
+title: Media
+icon: 'mdi:music'
+panel: true
+badges: []
+cards:
+
+  # 
+  # https://github.com/thomasloven/lovelace-layout-card
+  # 
+  - type: 'custom:layout-card'
+    layout_type: vertical
+    max_columns: 2
+    cards:
+
+
+      # SONOS Media Player ----------------------------------------------------
+      # https://github.com/kalkih/mini-media-player
+      #
+      #- type: custom:mini-media-player
+      #  name: SONOS
+      #  entity: media_player.speaker
+      #  #artwork: cover
+      #  icon: mdi:music
+      #  source: icon
+    - type: custom:sonos-card
+      entities: # Entities are automatically discovered if you don't supply this setting. You can also use this sort your entities in a specific order (instead of alphabetically).
+        - media_player.speaker
+        #excludeItemsInEntitiesList: true # Will invert the selection in the `entities` list, so that all players that are not in the list will be used.
+        #showNonSonosPlayers: true # default is false, which means only Sonos players will be shown.
