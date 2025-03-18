@@ -73,8 +73,10 @@ lovelace:
     # Light Entity Card (HACS): https://github.com/ljmerza/light-entity-card
     - {type: module, url: '/local/community/light-entity-card/light-entity-card.js'}
 
-    # Weather Chart Card (for forecast): https://github.com/mlamberts78/weather-chart-card
+    # Weather Chart Card (for current climate forecast): https://github.com/mlamberts78/weather-chart-card
     - {type: module, url: '/local/community/weather-chart-card/weather-chart-card.js'}
+
+    - {type: module, url: '/local/community/custom-sonos-card/custom-sonos-card.js'}
     
     # testing....
 
