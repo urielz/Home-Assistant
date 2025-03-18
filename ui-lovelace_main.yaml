@@ -16,11 +16,27 @@ cards:
       # Column 1
       # .......................................................................
 
-      # Weather Forecast Card -------------------------------------------------
-      # https://github.com/bramkragten/weather-card
-      #
-      - type: custom:weather-card 
+      # Weather Forecast
+      # https://github.com/mlamberts78/weather-chart-card
+       
+      - type: custom:weather-chart-card
         entity: weather.bellevue
+        shown_main: true
+        show_time: true
+        #time_size: 20
+        show_date: true
+        show_day: true
+        show_temperature: true
+        show_current_condition: true 
+        show_attributes: true
+        show_dew_point: true
+        animated_icons: true
+        icons_size: 30 
+        forecast:
+          style: style2
+          condition_icons: true
+          show_wind_forecast: true
+          precipitation_color: rgba(132, 209, 253, 0.1)	
 
       # SONOS Media Player ----------------------------------------------------
       # https://github.com/kalkih/mini-media-player
@@ -199,11 +215,15 @@ cards:
             stroke_width: 0.5
             type: area
             opacity: 0.25
+          - entity: sensor.guestroom_temperature
+            name: "Guestroom" # blue - rgba(66,147,204,255)
+            color: rgb(255,0,0) # red
+            yaxis_id: main                  
           - entity: sensor.tobis_bedroom_temperature
             name: "Tobi's Bedroom" # blue - rgba(66,147,204,255)
             yaxis_id: main                  
           - entity: sensor.office_temperature
-            name: 'Office' # red - rgba(221,79,65,255)
+            name: 'Dinning Room' # red - rgba(221,79,65,255)
             yaxis_id: main
           - entity: sensor.kitchen_temperature
             name: 'Kitchen'
@@ -351,12 +371,16 @@ cards:
             stroke_width: 0.5
             type: area
             opacity: 0.25
+          - entity: sensor.guestroom_humidity  
+            name: "Guest Bedroom"
+            color: rgb(255,0,0) # red
+            yaxis_id: main                  
           - entity: sensor.tobis_bedroom_humidity  
             name: "Tobi's Bedroom"
             color: rgb(54,152,220) # blue
             yaxis_id: main                  
           - entity: sensor.office_humidity
-            name: 'Office'
+            name: 'Dinning Room'
             yaxis_id: main
           - entity: sensor.kitchen_humidity
             name: 'Kitchen'
