@@ -2,12 +2,14 @@ title: Bellevue House
 views:
   - !include 'ui-lovelace_main.yaml'        # Main tab
   - !include 'ui-lovelace_devices.yaml'     # Any device that can be control and/or automatize
+  - !include 'ui-lovelace_media.yaml'       # SONOS speaker, and potentially more stuff down the road... 
   - !include 'ui-lovelace_hydroponics.yaml' # Hydroponics dashboard - currently not setup
   - !include 'ui-lovelace_cameras.yaml'     # Outdoor and indoor cameras 
   - !include 'ui-lovelace_vacuum.yaml'      # Roomba Vacuum tab
   - !include 'ui-lovelace_power.yaml'       # Track energy consumption and cost of various appliances
   - !include 'ui-lovelace_cost.yaml'        # Cost tracking of various appliances  
   - !include 'ui-lovelace_hardware.yaml'    # Monitor hardware status
+  - !include 'ui-lovelace_traffic.yaml'     # Internet/WAN/NAS traffic
   - !include 'ui-lovelace_sensors.yaml'     # Sensors - Current conditions
   - !include 'ui-lovelace_stats.yaml'       # Various graphics stats pulled from influxDB/Grafana
   - !include 'ui-lovelace_schedule.yaml'    # Automatic Schedule for various devices  
